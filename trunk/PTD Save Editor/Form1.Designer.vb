@@ -722,7 +722,7 @@ Partial Class Form1
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(260, 13)
         Me.Label10.TabIndex = 1001
-        Me.Label10.Text = "Pokémon Tower Defense Save Editor v1.1 - by M@T"
+        Me.Label10.Text = "Pokémon Tower Defense Save Editor v1.2 - by M@T"
         '
         'llbl_Website
         '
@@ -733,7 +733,7 @@ Partial Class Form1
         Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
         Me.llbl_Website.TabIndex = 1003
         Me.llbl_Website.TabStop = True
-        Me.llbl_Website.Text = "PTD v2.2 alpha"
+        Me.llbl_Website.Text = "PTD v2.3 alpha"
         '
         'Form1
         '
