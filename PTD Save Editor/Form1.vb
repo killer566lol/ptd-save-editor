@@ -67,7 +67,10 @@ Public Class Form1
                                       "Chip Away", "Psybeam", "Smack Down", "Growth", _
                                       "Fire Fang", "Water Pulse", "Toxic Spikes", "Featherdance", _
                                       "Assurance", "Agility", "Stockpile", "Helping Hand", _
-                                      "Air Cutter"}
+                                      "Air Cutter", "Roar", "Odor Sleuth", "Flame Wheel", _
+                                      "Reversal", "Fire Spin", "Flame Burst", "Absorb", _
+                                      "Mega Drain", "Water Sport", "Hypnosis", "Rain Dance", _
+                                      "Bubblebeam", "Lucky Chant", "Body Slam"}
 
     Friend ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", "Pierre Eau", "Pierre Feu"}
 #End Region
