@@ -60,7 +60,17 @@ Public Class Form1
                                       "Encore", "Double Slap", "Follow Me", "Minimize", _
                                       "Mud Sport", "Rock Polish", "Rock Throw", "Magnitude", _
                                       "Rollout", "Swift", "Wrap", "Glare", _
-                                      "Screech", "Acid", "Astonish", "Wing Attack"}
+                                      "Screech", "Acid", "Astonish", "Wing Attack", _
+                                      "Sweet Scent", "Twister", "Mirror Move", "Double Team", _
+                                      "Horn Attack", "Confuse Ray", "Rock Blast", "Protect", _
+                                      "Crunch", "Crush Claw", "Wake-Up Slap", "Spore", _
+                                      "Chip Away", "Psybeam", "Smack Down", "Growth", _
+                                      "Fire Fang", "Water Pulse", "Toxic Spikes", "Featherdance", _
+                                      "Assurance", "Agility", "Stockpile", "Helping Hand", _
+                                      "Air Cutter", "Roar", "Odor Sleuth", "Flame Wheel", _
+                                      "Reversal", "Fire Spin", "Flame Burst", "Absorb", _
+                                      "Mega Drain", "Water Sport", "Hypnosis", "Rain Dance", _
+                                      "Bubblebeam", "Lucky Chant", "Body Slam"}
 
     Friend ItemList As String() = {"(none)", "Moon Stone", "Leaf Stone", "Thunderstone", "Water Stone", "Fire Stone"}
 #End Region
@@ -68,7 +78,7 @@ Public Class Form1
     Private profile1, profile2, profile3 As Save
     Private profile1Set, profile2Set, profile3Set As Boolean
 
-    Private tmpTeam As List(Of Save.Pokemon)
+    Friend tmpTeam As List(Of Save.Pokemon)
     Private tmpPoke As Save.Pokemon
     Private tmpMoveList As List(Of Integer)
     Friend tmpInv As List(Of Integer)
@@ -76,7 +86,7 @@ Public Class Form1
     Private updatingDisplay As Boolean = False
 
 
-    Private Structure Save
+    Friend Structure Save
         Enum Versions As Byte
             UNDEFINED = 0
             RED = 1
@@ -84,31 +94,50 @@ Public Class Form1
         End Enum
 
         Structure Pokemon
-            Public id As Integer
-            Public num As Integer
-            Public lvl As Integer
-            Public exp As Integer
-            Public shiny As Boolean
-            Public m As List(Of Integer)
-            Public moveSel As Byte
+            Public id As Integer            ' Pokémon's ID (catch order)
+            Public num As Integer           ' Pokédex number
+            Public lvl As Integer           ' Level
+            Public exp As Integer           ' Experience points
+            Public shiny As Boolean         ' Pokémon is shiny ?
+            Public m As List(Of Integer)    ' Move list
+            Public moveSel As Byte          ' Currently selected move
 
-            Public ReadOnly Property numMoves() As Byte
+            Public ReadOnly Property numMoves() As Byte ' Number of moves
                 Get
                     Return If(m Is Nothing, 0, m.Count())
                 End Get
             End Property
+
+            Public Shared Function NewEmpty() As Pokemon
+                NewEmpty = New Save.Pokemon()
+                NewEmpty.id = 0
+                NewEmpty.num = 1
+                NewEmpty.lvl = 1
+                NewEmpty.exp = 0
+                NewEmpty.shiny = False
+                'NewEmpty.m = New Integer() {1}.ToList()
+                NewEmpty.m = New List(Of Integer)(New Integer() {1})
+                NewEmpty.moveSel = 1
+            End Function
+
+            Public Function makeShiny() As Pokemon
+                Me.shiny = True
+                Return Me
+            End Function
         End Structure
 
-        Public name As String
-        Public badges As Byte
-        Public money As Integer
-        Public unlocked As Integer
-        Public levelAttempted As Integer
-        Public ver As Versions
-        Public team As List(Of Pokemon)
-        Public Inv As List(Of Integer)
+        Public name As String               ' Profile name
+        Public badges As Byte               ' Number of badges
+        Public money As Integer             ' Amount of money
+        Public unlocked As Integer          ' Number of Levels unlocked
+        Public levelAttempted As Integer    ' Number of Levels attempted
+        Public ver As Versions              ' Game version (Red/Blue)
+        Public team As List(Of Pokemon)     ' Pokémon team
+        Public Inv As List(Of Integer)      ' Inventory
+        Public CLevelCompleted As Integer   ' Challenge Levels completed
+        Public CLevel1CodeUsed As Boolean   ' Shiny Geodude obtained ?
 
-        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|undefined|undefined|undefined|undefined|0|0"
+        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|undefined|undefined|undefined|undefined|0|0|0|0" ' "Satoshi|0|undefined|undefined|undefined|undefined|0|0"
 
         Public ReadOnly Property hmp() As Integer
             Get
@@ -157,7 +186,7 @@ Public Class Form1
                 pos += 1
                 Dim _numMoves As Integer = CInt(dataArr(pos))
                 pos += 1
-                tmpPokeBuild.shiny = (CInt(dataArr(pos)) > 0)
+                tmpPokeBuild.shiny = (dataArr(pos) <> "0") ' (CInt(dataArr(pos)) > 0)
                 pos += 1
 
                 tmpPokeBuild.m = New List(Of Integer)
@@ -182,6 +211,16 @@ Public Class Form1
                 Me.Inv.Add(CInt(dataArr(pos)))
                 pos += 1
             Next i
+
+            If dataArr.Length > pos Then
+                Me.CLevelCompleted = CInt(dataArr(pos))
+                pos += 1
+                Me.CLevel1CodeUsed = (dataArr(pos) <> "0")
+                pos += 1
+            Else
+                Me.CLevelCompleted = 0
+                Me.CLevel1CodeUsed = False
+            End If
         End Sub
 
         'Public Shared Function FromString(ByVal dataStr As String) As Save
@@ -220,7 +259,12 @@ Public Class Form1
                 ToString &= "|" & i
             Next i
 
-            Return ToString
+            ToString &= "|" & Me.CLevelCompleted
+            ToString &= "|" & If(Me.CLevel1CodeUsed, "1", "0")
+        End Function
+
+        Public Shared Function NewEmpty() As Save
+            Return New Save(EMPTY_ACCOUNT)
         End Function
     End Structure
 
@@ -236,7 +280,7 @@ Public Class Form1
         nc.Add("Pass", pass)
 
         Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 6.1; rv:2.0) Gecko/20100101 Firefox/4.0")
+        wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1")
 
         Return GetEncoding("iso-8859-1").GetString(wc.UploadValues("http://balloons.comoj.com/poke.php?Date=" & GetTime(), nc))
     End Function
@@ -335,6 +379,9 @@ Public Class Form1
 
         tmpTeam = New List(Of Save.Pokemon)(profile.team)
         tmpInv = New List(Of Integer)(profile.Inv)
+
+        nud_Challenge.Value = profile.CLevelCompleted
+        cb_ShinyGeodude.Checked = profile.CLevel1CodeUsed
     End Sub
 
     Private Sub updateProfile(ByVal profileId As Integer)
@@ -355,8 +402,9 @@ Public Class Form1
         End If
 
         profile.team = New List(Of Save.Pokemon)(tmpTeam)
-
         profile.Inv = New List(Of Integer)(tmpInv)
+        profile.CLevelCompleted = nud_Challenge.Value
+        profile.CLevel1CodeUsed = cb_ShinyGeodude.Checked
 
         Select Case profileId
             Case 1
@@ -405,19 +453,20 @@ Public Class Form1
         rb_Red.Checked = False
         rb_Blue.Checked = False
         lb_Team.SelectedIndex = -1
-
+        nud_Attempted.Value = 0
+        nud_Unlocked.Value = 0
+        nud_Challenge.Value = 0
+        cb_ShinyGeodude.Checked = False
 
         resetPokeDisplay()
     End Sub
 
     Private Sub resetPokeDisplay()
         For Each c As Control In gb_Pokemon.Controls
-            If c.Equals(lb_Team) OrElse c.Equals(b_AddPoke) Then
-                Continue For
+            If Not (c.Equals(lb_Team) OrElse c.Equals(b_AddPoke) OrElse c.Equals(b_Events)) Then
+                c.Enabled = False
             End If
-
-            c.Enabled = False
-        Next
+        Next c
 
         resetPokeValues()
     End Sub
@@ -425,7 +474,7 @@ Public Class Form1
     Private Sub enablePokeFields()
         For Each c As Control In gb_Pokemon.Controls
             c.Enabled = True
-        Next
+        Next c
     End Sub
 
     Private Sub resetDisplay()
@@ -499,13 +548,23 @@ Public Class Form1
         tmpPoke.m = New List(Of Integer)(tmpMoves)
     End Sub
 
+    Friend Sub addPokeToTeam(ByVal poke As Save.Pokemon, Optional ByVal autoIncrId As Boolean = True)
+        If autoIncrId Then
+            poke.id = If(tmpTeam.Count < 1, 1, tmpTeam.Max(New Func(Of Save.Pokemon, Integer)(Function(p As Save.Pokemon) p.id)) + 1)
+        End If
+
+        tmpTeam.Add(poke)
+        lb_Team.Items.Add(PokemonList(poke.num))
+        lb_Team.SelectedIndex = lb_Team.Items.Count - 1
+    End Sub
+
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         tb_Pass.UseSystemPasswordChar = True
 
         For i = 1 To PokemonList.Length - 1
             cb_Specie.Items.Add(PokemonList(i))
-        Next
+        Next i
 
         cb_Move1.Items.AddRange(AttackList)
         cb_Move2.Items.AddRange(AttackList)
@@ -525,7 +584,7 @@ Public Class Form1
             Dim tmpResult As String = ImportAccount(tb_Email.Text, tb_Pass.Text)
             resultData = GetDictionaryFromString(tmpResult)
         Catch
-            MsgBox("An error occurred while fetching data from the serveur." & vbNewLine & _
+            MsgBox("An error occurred while fetching data from the server." & vbNewLine & _
                    "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error")
             resetDisplay()
             lbl_Status.Text = "Error."
@@ -579,7 +638,7 @@ Public Class Form1
             End If
 
             resetDisplay()
-            lbl_Status.Text = "Erreur."
+            lbl_Status.Text = "Error."
 
             MsgBox("An error occurred while loading" & complInfo & "." & vbNewLine & _
                    "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error.")
@@ -777,14 +836,14 @@ Public Class Form1
                 End Select
             End If
 
-            lbl_Status.Text = "Erreur."
+            lbl_Status.Text = "Error."
 
             MsgBox("An error occurred while saving" & complInfo & "." & vbNewLine & _
                    "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error.")
         End If
     End Sub
 
-    Private Sub b_DelPoke_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles b_DelPoke.Click
+    Private Sub b_DelPoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_DelPoke.Click
         Dim tmpIndex As Integer = lb_Team.SelectedIndex
 
         tmpTeam.RemoveAt(tmpIndex)
@@ -795,29 +854,13 @@ Public Class Form1
         'sender.Focus()
     End Sub
 
-    Private Sub b_AddPoke_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles b_AddPoke.Click
-        If lb_Team.SelectedIndex = -1 Then
-            tmpPoke = New Save.Pokemon()
-            tmpPoke.num = 1
-            tmpPoke.lvl = 1
-            tmpPoke.exp = 0
-            tmpPoke.shiny = False
-            'tmpPoke.m = New Integer() {1}.ToList()
-            tmpPoke.m = New List(Of Integer)(New Integer() {1})
-            tmpPoke.moveSel = 1
-        End If
+    Private Sub b_AddPoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_AddPoke.Click
+        tmpPoke = Save.Pokemon.NewEmpty()
 
-        tmpPoke.id = If(tmpTeam.Count < 1, 1, tmpTeam.Max(New Func(Of Save.Pokemon, Integer)(Function(p As Save.Pokemon) p.id)) + 1)
-
-        tmpTeam.Add(tmpPoke)
-        lb_Team.Items.Add(PokemonList(tmpPoke.num))
-        lb_Team.SelectedIndex = lb_Team.Items.Count - 1
-        'lb_Team.TopIndex = lb_Team.Items.Count - 1
-
-        'sender.Focus()
+        addPokeToTeam(tmpPoke)
     End Sub
 
-    Private Sub b_PokeUp_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles b_PokeUp.Click
+    Private Sub b_PokeUp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_PokeUp.Click
         Dim tmpIndex As Integer = lb_Team.SelectedIndex
         If tmpIndex < 1 Then Exit Sub
 
@@ -830,7 +873,7 @@ Public Class Form1
         sender.Focus()
     End Sub
 
-    Private Sub b_PokeDown_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles b_PokeDown.Click
+    Private Sub b_PokeDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_PokeDown.Click
         Dim tmpIndex As Integer = lb_Team.SelectedIndex
         If tmpIndex > lb_Team.Items.Count - 2 Then Exit Sub
 
@@ -841,6 +884,17 @@ Public Class Form1
         lb_Team.SelectedIndex = tmpIndex + 1
 
         sender.Focus()
+    End Sub
+
+    Private Sub b_Duplicate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_Duplicate.Click
+        tmpPoke.id = If(tmpTeam.Count < 1, 1, tmpTeam.Max(New Func(Of Save.Pokemon, Integer)(Function(p As Save.Pokemon) p.id)) + 1)
+
+        tmpTeam.Insert(lb_Team.SelectedIndex + 1, tmpPoke)
+        lb_Team.Items.Insert(lb_Team.SelectedIndex + 1, PokemonList(tmpPoke.num))
+        lb_Team.SelectedIndex = lb_Team.SelectedIndex + 1
+        'lb_Team.TopIndex = lb_Team.SelectedIndex + 1
+
+        'sender.Focus()
     End Sub
 
     Private Sub b_DelOrCreateProfile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_DelOrCreateProfile.Click
@@ -865,17 +919,17 @@ Public Class Form1
             End If
         ElseIf b_DelOrCreateProfile.Tag.ToString() = "New" Then
             If rb_Profile1.Checked Then
-                profile1 = New Save(Save.EMPTY_ACCOUNT)
+                profile1 = Save.NewEmpty()
                 profile1Set = True
                 rb_Profile1.Checked = False
                 rb_Profile1.Checked = True
             ElseIf rb_Profile2.Checked Then
-                profile2 = New Save(Save.EMPTY_ACCOUNT)
+                profile2 = Save.NewEmpty()
                 profile2Set = True
                 rb_Profile2.Checked = False
                 rb_Profile2.Checked = True
             ElseIf rb_Profile3.Checked Then
-                profile3 = New Save(Save.EMPTY_ACCOUNT)
+                profile3 = Save.NewEmpty()
                 profile3Set = True
                 rb_Profile3.Checked = False
                 rb_Profile3.Checked = True
@@ -883,4 +937,11 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub llbl_Website_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llbl_Website.LinkClicked
+        System.Diagnostics.Process.Start("http://samdangames.blogspot.com/")
+    End Sub
+
+    Private Sub b_Events_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_Events.Click
+        Form3.ShowDialog()
+    End Sub
 End Class
