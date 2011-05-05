@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module>
   <ModulePrefs title="PTD Save Editor Downloads" />
-  <Content type="url" href="http://code.google.com/p/ptd-save-editor/downloads/list?can=3%26q=%26colspec=Filename+Summary+Uploaded+Size+DownloadCount" />
+  <Content type="url" href="http://code.google.com/p/ptd-save-editor/downloads/list?can=3&amp;colspec=Filename+Summary+Uploaded+Size+DownloadCount" />
 </Module>
