@@ -85,6 +85,9 @@ Public Class Form1
 
     Private updatingDisplay As Boolean = False
 
+    Private Const SERVER_LINK As String = "http://www.sndgames.com/php/poke.php"
+    Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.0; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
+
 
     Friend Structure Save
         Enum Versions As Byte
@@ -137,7 +140,7 @@ Public Class Form1
         Public CLevelCompleted As Integer   ' Challenge Levels completed
         Public CLevel1CodeUsed As Boolean   ' Shiny Geodude obtained ?
 
-        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|undefined|undefined|undefined|undefined|0|0|0|0" ' "Satoshi|0|undefined|undefined|undefined|undefined|0|0"
+        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|undefined|undefined|undefined|undefined|0|0|0|0"
 
         Public ReadOnly Property hmp() As Integer
             Get
@@ -186,7 +189,7 @@ Public Class Form1
                 pos += 1
                 Dim _numMoves As Integer = CInt(dataArr(pos))
                 pos += 1
-                tmpPokeBuild.shiny = (dataArr(pos) <> "0") ' (CInt(dataArr(pos)) > 0)
+                tmpPokeBuild.shiny = (dataArr(pos) <> "0")
                 pos += 1
 
                 tmpPokeBuild.m = New List(Of Integer)
@@ -280,9 +283,9 @@ Public Class Form1
         nc.Add("Pass", pass)
 
         Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 6.1; rv:2.0) Gecko/20100101 Firefox/4.0")
+        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
 
-        Return GetEncoding("iso-8859-1").GetString(wc.UploadValues("http://balloons.comoj.com/poke.php?Date=" & GetTime(), nc))
+        Return GetEncoding("iso-8859-1").GetString(wc.UploadValues(SERVER_LINK & "?Date=" & GetTime(), nc))
     End Function
 
     Private Function SaveAccount(ByVal email As String, ByVal pass As String) As String
@@ -295,9 +298,9 @@ Public Class Form1
         nc.Add("Info3", profile3.ToString())
 
         Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 6.1; rv:2.0) Gecko/20100101 Firefox/4.0")
+        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
 
-        Return GetEncoding("iso-8859-1").GetString(wc.UploadValues("http://balloons.comoj.com/poke.php?Date=" & GetTime(), nc))
+        Return GetEncoding("iso-8859-1").GetString(wc.UploadValues(SERVER_LINK & "?Date=" & GetTime(), nc))
     End Function
 
     Private Function GetDictionaryFromString(ByVal dataStr As String) As Dictionary(Of String, String)
