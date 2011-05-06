@@ -65,10 +65,6 @@ Public Class Form3
                 tmpEventPoke.num = 74
                 tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 25}) ' Tackle, Defense Curl
 
-            Case 8  ' Shiny Jigglypuff
-                tmpEventPoke.num = 39
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {47}) ' Sing
-
             Case Else
                 Exit Sub
 
