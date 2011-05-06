@@ -723,9 +723,9 @@ Partial Class Form1
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(12, 439)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(260, 13)
+        Me.Label10.Size = New System.Drawing.Size(269, 13)
         Me.Label10.TabIndex = 1001
-        Me.Label10.Text = "Pokémon Tower Defense Save Editor v1.3 - by M@T"
+        Me.Label10.Text = "Pokémon Tower Defense Save Editor v1.3.1 - by M@T"
         '
         'llbl_Website
         '
