@@ -1,4 +1,4 @@
-﻿Imports System.Net, System.Text, System.Text.Encoding
+﻿Imports System.Net, System.Text.Encoding
 
 Public Class Form1
 
@@ -85,10 +85,6 @@ Public Class Form1
 
     Private updatingDisplay As Boolean = False
 
-    Private Const SERVER_LINK As String = "http://www.sndgames.com/php/poke.php"
-    Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.0; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
-    Private serverEncoding As Encoding = UTF8 ' GetEncoding("iso-8859-1")
-
 
     Friend Structure Save
         Enum Versions As Byte
@@ -141,7 +137,7 @@ Public Class Form1
         Public CLevelCompleted As Integer   ' Challenge Levels completed
         Public CLevel1CodeUsed As Boolean   ' Shiny Geodude obtained ?
 
-        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|undefined|undefined|undefined|undefined|0|0|0|0"
+        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|undefined|undefined|undefined|undefined|0|0|0|0" ' "Satoshi|0|undefined|undefined|undefined|undefined|0|0"
 
         Public ReadOnly Property hmp() As Integer
             Get
@@ -190,7 +186,7 @@ Public Class Form1
                 pos += 1
                 Dim _numMoves As Integer = CInt(dataArr(pos))
                 pos += 1
-                tmpPokeBuild.shiny = (dataArr(pos) <> "0")
+                tmpPokeBuild.shiny = (dataArr(pos) <> "0") ' (CInt(dataArr(pos)) > 0)
                 pos += 1
 
                 tmpPokeBuild.m = New List(Of Integer)
@@ -284,9 +280,9 @@ Public Class Form1
         nc.Add("Pass", pass)
 
         Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
+        wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 6.1; rv:2.0) Gecko/20100101 Firefox/4.0")
 
-        Return serverEncoding.GetString(wc.UploadValues(SERVER_LINK & "?Date=" & GetTime(), nc))
+        Return GetEncoding("iso-8859-1").GetString(wc.UploadValues("http://balloons.comoj.com/poke.php?Date=" & GetTime(), nc))
     End Function
 
     Private Function SaveAccount(ByVal email As String, ByVal pass As String) As String
@@ -299,9 +295,9 @@ Public Class Form1
         nc.Add("Info3", profile3.ToString())
 
         Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
+        wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 6.1; rv:2.0) Gecko/20100101 Firefox/4.0")
 
-        Return serverEncoding.GetString(wc.UploadValues(SERVER_LINK & "?Date=" & GetTime(), nc))
+        Return GetEncoding("iso-8859-1").GetString(wc.UploadValues("http://balloons.comoj.com/poke.php?Date=" & GetTime(), nc))
     End Function
 
     Private Function GetDictionaryFromString(ByVal dataStr As String) As Dictionary(Of String, String)
@@ -947,21 +943,5 @@ Public Class Form1
 
     Private Sub b_Events_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_Events.Click
         Form3.ShowDialog()
-    End Sub
-
-    Private Sub tb_Money_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles tb_Money.LostFocus
-        If tb_Money.Text = "" Then
-            tb_Money.Text = "0"
-        Else
-            Dim sb As New StringBuilder(tb_Money.Text.Length - 1)
-
-            For Each c As Char In tb_Money.Text
-                If Char.IsDigit(c) Then sb.Append(c)
-            Next c
-
-            If sb.Length = 0 Then sb.Append("0"c)
-
-            tb_Money.Text = Int(sb.ToString())
-        End If
     End Sub
 End Class
