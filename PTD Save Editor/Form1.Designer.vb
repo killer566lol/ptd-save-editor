@@ -35,9 +35,6 @@ Partial Class Form1
         Me.b_SaveAccount = New System.Windows.Forms.Button
         Me.lbl_Status = New System.Windows.Forms.Label
         Me.gb_Data = New System.Windows.Forms.GroupBox
-        Me.cb_ShinyGeodude = New System.Windows.Forms.CheckBox
-        Me.nud_Challenge = New System.Windows.Forms.NumericUpDown
-        Me.Label11 = New System.Windows.Forms.Label
         Me.b_EditInv = New System.Windows.Forms.Button
         Me.b_SaveProfile = New System.Windows.Forms.Button
         Me.Label9 = New System.Windows.Forms.Label
@@ -45,8 +42,6 @@ Partial Class Form1
         Me.nud_Attempted = New System.Windows.Forms.NumericUpDown
         Me.nud_Unlocked = New System.Windows.Forms.NumericUpDown
         Me.gb_Pokemon = New System.Windows.Forms.GroupBox
-        Me.b_Events = New System.Windows.Forms.Button
-        Me.b_Duplicate = New System.Windows.Forms.Button
         Me.b_DelPoke = New System.Windows.Forms.Button
         Me.b_AddPoke = New System.Windows.Forms.Button
         Me.b_PokeDown = New System.Windows.Forms.Button
@@ -80,12 +75,9 @@ Partial Class Form1
         Me.lbl_Name = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.b_DelOrCreateProfile = New System.Windows.Forms.Button
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.llbl_Website = New System.Windows.Forms.LinkLabel
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
-        CType(Me.nud_Challenge, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nud_Attempted, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nud_Unlocked, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gb_Pokemon.SuspendLayout()
@@ -228,12 +220,8 @@ Partial Class Form1
         '
         'gb_Data
         '
-        Me.gb_Data.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gb_Data.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gb_Data.Controls.Add(Me.cb_ShinyGeodude)
-        Me.gb_Data.Controls.Add(Me.nud_Challenge)
-        Me.gb_Data.Controls.Add(Me.Label11)
         Me.gb_Data.Controls.Add(Me.b_EditInv)
         Me.gb_Data.Controls.Add(Me.b_SaveProfile)
         Me.gb_Data.Controls.Add(Me.Label9)
@@ -252,36 +240,10 @@ Partial Class Form1
         Me.gb_Data.Enabled = False
         Me.gb_Data.Location = New System.Drawing.Point(12, 96)
         Me.gb_Data.Name = "gb_Data"
-        Me.gb_Data.Size = New System.Drawing.Size(413, 340)
+        Me.gb_Data.Size = New System.Drawing.Size(413, 326)
         Me.gb_Data.TabIndex = 200
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Données"
-        '
-        'cb_ShinyGeodude
-        '
-        Me.cb_ShinyGeodude.AutoSize = True
-        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(257, 92)
-        Me.cb_ShinyGeodude.Name = "cb_ShinyGeodude"
-        Me.cb_ShinyGeodude.Size = New System.Drawing.Size(135, 17)
-        Me.cb_ShinyGeodude.TabIndex = 83
-        Me.cb_ShinyGeodude.Text = "Racaillou Shiny obtenu"
-        Me.cb_ShinyGeodude.UseVisualStyleBackColor = True
-        '
-        'nud_Challenge
-        '
-        Me.nud_Challenge.Location = New System.Drawing.Point(205, 91)
-        Me.nud_Challenge.Name = "nud_Challenge"
-        Me.nud_Challenge.Size = New System.Drawing.Size(40, 20)
-        Me.nud_Challenge.TabIndex = 82
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(91, 93)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(112, 13)
-        Me.Label11.TabIndex = 81
-        Me.Label11.Text = """Challenge"" terminés :" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'b_EditInv
         '
@@ -338,10 +300,9 @@ Partial Class Form1
         '
         'gb_Pokemon
         '
-        Me.gb_Pokemon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gb_Pokemon.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gb_Pokemon.Controls.Add(Me.b_Events)
-        Me.gb_Pokemon.Controls.Add(Me.b_Duplicate)
         Me.gb_Pokemon.Controls.Add(Me.b_DelPoke)
         Me.gb_Pokemon.Controls.Add(Me.b_AddPoke)
         Me.gb_Pokemon.Controls.Add(Me.b_PokeDown)
@@ -356,30 +317,12 @@ Partial Class Form1
         Me.gb_Pokemon.Controls.Add(Me.cb_Specie)
         Me.gb_Pokemon.Controls.Add(Me.lb_Team)
         Me.gb_Pokemon.Controls.Add(Me.tb_Exp)
-        Me.gb_Pokemon.Location = New System.Drawing.Point(6, 110)
+        Me.gb_Pokemon.Location = New System.Drawing.Point(6, 96)
         Me.gb_Pokemon.Name = "gb_Pokemon"
         Me.gb_Pokemon.Size = New System.Drawing.Size(401, 224)
         Me.gb_Pokemon.TabIndex = 70
         Me.gb_Pokemon.TabStop = False
         Me.gb_Pokemon.Text = "Pokémon"
-        '
-        'b_Events
-        '
-        Me.b_Events.Location = New System.Drawing.Point(320, 45)
-        Me.b_Events.Name = "b_Events"
-        Me.b_Events.Size = New System.Drawing.Size(75, 23)
-        Me.b_Events.TabIndex = 102
-        Me.b_Events.Text = "Events..."
-        Me.b_Events.UseVisualStyleBackColor = True
-        '
-        'b_Duplicate
-        '
-        Me.b_Duplicate.Location = New System.Drawing.Point(243, 149)
-        Me.b_Duplicate.Name = "b_Duplicate"
-        Me.b_Duplicate.Size = New System.Drawing.Size(67, 23)
-        Me.b_Duplicate.TabIndex = 101
-        Me.b_Duplicate.Text = "Dupliquer"
-        Me.b_Duplicate.UseVisualStyleBackColor = True
         '
         'b_DelPoke
         '
@@ -608,7 +551,7 @@ Partial Class Form1
         '
         Me.GroupBox4.Controls.Add(Me.rb_Blue)
         Me.GroupBox4.Controls.Add(Me.rb_Red)
-        Me.GroupBox4.Location = New System.Drawing.Point(251, 19)
+        Me.GroupBox4.Location = New System.Drawing.Point(251, 24)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(65, 65)
         Me.GroupBox4.TabIndex = 60
@@ -704,9 +647,9 @@ Partial Class Form1
         '
         'b_DelOrCreateProfile
         '
-        Me.b_DelOrCreateProfile.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.b_DelOrCreateProfile.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_DelOrCreateProfile.Enabled = False
-        Me.b_DelOrCreateProfile.Location = New System.Drawing.Point(334, 144)
+        Me.b_DelOrCreateProfile.Location = New System.Drawing.Point(334, 172)
         Me.b_DelOrCreateProfile.Name = "b_DelOrCreateProfile"
         Me.b_DelOrCreateProfile.Size = New System.Drawing.Size(85, 23)
         Me.b_DelOrCreateProfile.TabIndex = 1000
@@ -714,34 +657,11 @@ Partial Class Form1
         Me.b_DelOrCreateProfile.Text = "Effacer Profil"
         Me.b_DelOrCreateProfile.UseVisualStyleBackColor = True
         '
-        'Label10
-        '
-        Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(12, 439)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(269, 13)
-        Me.Label10.TabIndex = 1001
-        Me.Label10.Text = "Pokémon Tower Defense Save Editor v1.3.1 - by M@T"
-        '
-        'llbl_Website
-        '
-        Me.llbl_Website.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.llbl_Website.AutoSize = True
-        Me.llbl_Website.Location = New System.Drawing.Point(12, 452)
-        Me.llbl_Website.Name = "llbl_Website"
-        Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
-        Me.llbl_Website.TabIndex = 1003
-        Me.llbl_Website.TabStop = True
-        Me.llbl_Website.Text = "PTD v2.4 alpha"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(437, 474)
-        Me.Controls.Add(Me.llbl_Website)
-        Me.Controls.Add(Me.Label10)
+        Me.ClientSize = New System.Drawing.Size(437, 434)
         Me.Controls.Add(Me.b_DelOrCreateProfile)
         Me.Controls.Add(Me.gb_Data)
         Me.Controls.Add(Me.gb_Login)
@@ -756,7 +676,6 @@ Partial Class Form1
         Me.gb_Login.PerformLayout()
         Me.gb_Data.ResumeLayout(False)
         Me.gb_Data.PerformLayout()
-        CType(Me.nud_Challenge, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nud_Attempted, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nud_Unlocked, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gb_Pokemon.ResumeLayout(False)
@@ -768,7 +687,6 @@ Partial Class Form1
         Me.GroupBox4.PerformLayout()
         CType(Me.nud_Badges, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents b_ImportAccount As System.Windows.Forms.Button
@@ -824,12 +742,5 @@ Partial Class Form1
     Friend WithEvents b_DelPoke As System.Windows.Forms.Button
     Friend WithEvents b_AddPoke As System.Windows.Forms.Button
     Friend WithEvents b_DelOrCreateProfile As System.Windows.Forms.Button
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents llbl_Website As System.Windows.Forms.LinkLabel
-    Friend WithEvents nud_Challenge As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents cb_ShinyGeodude As System.Windows.Forms.CheckBox
-    Friend WithEvents b_Duplicate As System.Windows.Forms.Button
-    Friend WithEvents b_Events As System.Windows.Forms.Button
 
 End Class
