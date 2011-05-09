@@ -2,7 +2,7 @@
 
 Public Class Form1
 
-#Region "    Lists"
+#Region "Lists"
     Friend PokemonList As String() = {"-", "Bulbizarre", "Herbizarre", "Florizarre", _
                                        "Salamèche", "Reptincel", "Dracaufeu", "Carapuce", _
                                        "Carabaffe", "Tortank", "Chenipan", "Chrysacier", _
@@ -72,9 +72,18 @@ Public Class Form1
                                       "Mega Drain", "Water Sport", "Hypnosis", "Rain Dance", _
                                       "Bubblebeam", "Lucky Chant", "Body Slam"}
 
-    Friend ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", "Pierre Eau", "Pierre Feu"}
+    Friend ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", _
+                                   "Pierre Eau", "Pierre Feu"}
+
+    Private implementedPokemonList As Integer() = {1, 2, 4, 5, 7, 8, 9, 10, 11, 12, _
+                                                   13, 14, 15, 16, 17, 19, 20, 21, 22, 23, _
+                                                   24, 25, 26, 27, 28, 29, 30, 31, 32, 33, _
+                                                   34, 35, 36, 37, 38, 39, 40, 41, 42, 43, _
+                                                   44, 45, 46, 47, 56, 58, 59, 60, 61, 62, _
+                                                   69, 70, 71, 74, 75, 95, 151}
 #End Region
 
+#Region "Definitions"
     Private profile1, profile2, profile3 As Save
     Private profile1Set, profile2Set, profile3Set As Boolean
 
@@ -89,7 +98,10 @@ Public Class Form1
     Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.0; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
     Private serverEncoding As Encoding = UTF8 ' GetEncoding("iso-8859-1")
 
+    Private Const IS_BETA = True
+#End Region
 
+#Region "Structures"
     Friend Structure Save
         Enum Versions As Byte
             UNDEFINED = 0
@@ -271,8 +283,9 @@ Public Class Form1
             Return New Save(EMPTY_ACCOUNT)
         End Function
     End Structure
+#End Region
 
-
+#Region "Subs and Functions"
     Private Function GetTime() As Long
         Return Int((Date.UtcNow - New Date(1970, 1, 1)).TotalMilliseconds)
     End Function
@@ -562,9 +575,40 @@ Public Class Form1
         lb_Team.SelectedIndex = lb_Team.Items.Count - 1
     End Sub
 
+    Private Function VersionProg() As String
+        With System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly.Location)
 
+            If .FileBuildPart = 0 Then
+
+                If .FilePrivatePart = 0 Then
+                    VersionProg = .FileMajorPart & "." & .FileMinorPart
+                Else
+                    VersionProg = .FileMajorPart & "." & .FileMinorPart & "." & .FileBuildPart & "." & .FilePrivatePart
+                End If
+
+            Else
+
+                If .FilePrivatePart = 0 Then
+                    VersionProg = .FileMajorPart & "." & .FileMinorPart & "." & .FileBuildPart
+                Else
+                    VersionProg = .FileMajorPart & "." & .FileMinorPart & "." & .FileBuildPart & "." & .FilePrivatePart
+                End If
+
+            End If
+        End With
+
+        If IS_BETA Then
+            VersionProg &= " beta"
+        End If
+    End Function
+#End Region
+
+#Region "Events"
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         tb_Pass.UseSystemPasswordChar = True
+
+        Me.Text = Me.Text.Replace("{version}", VersionProg())
+        lbl_ProgramVersion.Text = lbl_ProgramVersion.Text.Replace("{version}", VersionProg())
 
         For i = 1 To PokemonList.Length - 1
             cb_Specie.Items.Add(PokemonList(i))
@@ -964,4 +1008,9 @@ Public Class Form1
             tb_Money.Text = Int(sb.ToString())
         End If
     End Sub
+
+    Private Sub cb_Specie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_Specie.SelectedIndexChanged
+        lbl_NotYetImplemented.Visible = Not implementedPokemonList.Contains(cb_Specie.SelectedIndex + 1)
+    End Sub
+#End Region
 End Class
