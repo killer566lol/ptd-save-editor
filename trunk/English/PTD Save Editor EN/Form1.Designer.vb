@@ -80,8 +80,9 @@ Partial Class Form1
         Me.lbl_Name = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.b_DelOrCreateProfile = New System.Windows.Forms.Button
-        Me.Label10 = New System.Windows.Forms.Label
+        Me.lbl_ProgramVersion = New System.Windows.Forms.Label
         Me.llbl_Website = New System.Windows.Forms.LinkLabel
+        Me.lbl_NotYetImplemented = New System.Windows.Forms.Label
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -343,6 +344,7 @@ Partial Class Form1
         '
         Me.gb_Pokemon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Pokemon.Controls.Add(Me.lbl_NotYetImplemented)
         Me.gb_Pokemon.Controls.Add(Me.b_Events)
         Me.gb_Pokemon.Controls.Add(Me.b_Duplicate)
         Me.gb_Pokemon.Controls.Add(Me.b_DelPoke)
@@ -582,6 +584,8 @@ Partial Class Form1
         '
         'cb_Specie
         '
+        Me.cb_Specie.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cb_Specie.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cb_Specie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cb_Specie.FormattingEnabled = True
         Me.cb_Specie.Location = New System.Drawing.Point(97, 19)
@@ -717,15 +721,15 @@ Partial Class Form1
         Me.b_DelOrCreateProfile.Text = "Delete Profile"
         Me.b_DelOrCreateProfile.UseVisualStyleBackColor = True
         '
-        'Label10
+        'lbl_ProgramVersion
         '
-        Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(12, 439)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(269, 13)
-        Me.Label10.TabIndex = 1001
-        Me.Label10.Text = "Pokémon Tower Defense Save Editor v1.3.1 - by M@T"
+        Me.lbl_ProgramVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lbl_ProgramVersion.AutoSize = True
+        Me.lbl_ProgramVersion.Location = New System.Drawing.Point(12, 439)
+        Me.lbl_ProgramVersion.Name = "lbl_ProgramVersion"
+        Me.lbl_ProgramVersion.Size = New System.Drawing.Size(287, 13)
+        Me.lbl_ProgramVersion.TabIndex = 1001
+        Me.lbl_ProgramVersion.Text = "Pokémon Tower Defense Save Editor v{version} - by M@T"
         '
         'llbl_Website
         '
@@ -738,13 +742,25 @@ Partial Class Form1
         Me.llbl_Website.TabStop = True
         Me.llbl_Website.Text = "PTD v2.4 alpha"
         '
+        'lbl_NotYetImplemented
+        '
+        Me.lbl_NotYetImplemented.AutoSize = True
+        Me.lbl_NotYetImplemented.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_NotYetImplemented.ForeColor = System.Drawing.Color.OrangeRed
+        Me.lbl_NotYetImplemented.Location = New System.Drawing.Point(114, 43)
+        Me.lbl_NotYetImplemented.Name = "lbl_NotYetImplemented"
+        Me.lbl_NotYetImplemented.Size = New System.Drawing.Size(53, 26)
+        Me.lbl_NotYetImplemented.TabIndex = 103
+        Me.lbl_NotYetImplemented.Text = "Not in the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game yet."
+        Me.lbl_NotYetImplemented.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(437, 474)
         Me.Controls.Add(Me.llbl_Website)
-        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.lbl_ProgramVersion)
         Me.Controls.Add(Me.b_DelOrCreateProfile)
         Me.Controls.Add(Me.gb_Data)
         Me.Controls.Add(Me.gb_Login)
@@ -752,7 +768,7 @@ Partial Class Form1
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Pokémon Tower Defense Save Editor - by M@T"
+        Me.Text = "Pokémon Tower Defense Save Editor v{version} - by M@T"
         Me.gb_Profiles.ResumeLayout(False)
         Me.gb_Profiles.PerformLayout()
         Me.gb_Login.ResumeLayout(False)
@@ -827,12 +843,13 @@ Partial Class Form1
     Friend WithEvents b_DelPoke As System.Windows.Forms.Button
     Friend WithEvents b_AddPoke As System.Windows.Forms.Button
     Friend WithEvents b_DelOrCreateProfile As System.Windows.Forms.Button
-    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents lbl_ProgramVersion As System.Windows.Forms.Label
     Friend WithEvents llbl_Website As System.Windows.Forms.LinkLabel
     Friend WithEvents nud_Challenge As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents cb_ShinyGeodude As System.Windows.Forms.CheckBox
     Friend WithEvents b_Duplicate As System.Windows.Forms.Button
     Friend WithEvents b_Events As System.Windows.Forms.Button
+    Friend WithEvents lbl_NotYetImplemented As System.Windows.Forms.Label
 
 End Class
