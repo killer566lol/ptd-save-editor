@@ -35,6 +35,7 @@ Partial Class Form1
         Me.b_SaveAccount = New System.Windows.Forms.Button
         Me.lbl_Status = New System.Windows.Forms.Label
         Me.gb_Data = New System.Windows.Forms.GroupBox
+        Me.cb_Jynx = New System.Windows.Forms.CheckBox
         Me.cb_ShinyGeodude = New System.Windows.Forms.CheckBox
         Me.nud_Challenge = New System.Windows.Forms.NumericUpDown
         Me.Label11 = New System.Windows.Forms.Label
@@ -232,6 +233,7 @@ Partial Class Form1
         Me.gb_Data.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Data.Controls.Add(Me.cb_Jynx)
         Me.gb_Data.Controls.Add(Me.cb_ShinyGeodude)
         Me.gb_Data.Controls.Add(Me.nud_Challenge)
         Me.gb_Data.Controls.Add(Me.Label11)
@@ -258,10 +260,20 @@ Partial Class Form1
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Données"
         '
+        'cb_Jynx
+        '
+        Me.cb_Jynx.AutoSize = True
+        Me.cb_Jynx.Location = New System.Drawing.Point(257, 99)
+        Me.cb_Jynx.Name = "cb_Jynx"
+        Me.cb_Jynx.Size = New System.Drawing.Size(109, 17)
+        Me.cb_Jynx.TabIndex = 84
+        Me.cb_Jynx.Text = "Lippoutou obtenu"
+        Me.cb_Jynx.UseVisualStyleBackColor = True
+        '
         'cb_ShinyGeodude
         '
         Me.cb_ShinyGeodude.AutoSize = True
-        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(257, 92)
+        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(257, 84)
         Me.cb_ShinyGeodude.Name = "cb_ShinyGeodude"
         Me.cb_ShinyGeodude.Size = New System.Drawing.Size(135, 17)
         Me.cb_ShinyGeodude.TabIndex = 83
@@ -746,10 +758,10 @@ Partial Class Form1
         Me.llbl_Website.AutoSize = True
         Me.llbl_Website.Location = New System.Drawing.Point(12, 452)
         Me.llbl_Website.Name = "llbl_Website"
-        Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
+        Me.llbl_Website.Size = New System.Drawing.Size(91, 13)
         Me.llbl_Website.TabIndex = 1003
         Me.llbl_Website.TabStop = True
-        Me.llbl_Website.Text = "PTD v2.4 alpha"
+        Me.llbl_Website.Text = "PTD v2.5.1 alpha"
         '
         'Form1
         '
@@ -848,5 +860,6 @@ Partial Class Form1
     Friend WithEvents b_Duplicate As System.Windows.Forms.Button
     Friend WithEvents b_Events As System.Windows.Forms.Button
     Friend WithEvents lbl_NotYetImplemented As System.Windows.Forms.Label
+    Friend WithEvents cb_Jynx As System.Windows.Forms.CheckBox
 
 End Class

@@ -45,6 +45,7 @@ Partial Class Form1
         Me.nud_Attempted = New System.Windows.Forms.NumericUpDown
         Me.nud_Unlocked = New System.Windows.Forms.NumericUpDown
         Me.gb_Pokemon = New System.Windows.Forms.GroupBox
+        Me.lbl_NotYetImplemented = New System.Windows.Forms.Label
         Me.b_Events = New System.Windows.Forms.Button
         Me.b_Duplicate = New System.Windows.Forms.Button
         Me.b_DelPoke = New System.Windows.Forms.Button
@@ -82,7 +83,7 @@ Partial Class Form1
         Me.b_DelOrCreateProfile = New System.Windows.Forms.Button
         Me.lbl_ProgramVersion = New System.Windows.Forms.Label
         Me.llbl_Website = New System.Windows.Forms.LinkLabel
-        Me.lbl_NotYetImplemented = New System.Windows.Forms.Label
+        Me.cb_Jynx = New System.Windows.Forms.CheckBox
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -235,6 +236,7 @@ Partial Class Form1
         Me.gb_Data.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Data.Controls.Add(Me.cb_Jynx)
         Me.gb_Data.Controls.Add(Me.cb_ShinyGeodude)
         Me.gb_Data.Controls.Add(Me.nud_Challenge)
         Me.gb_Data.Controls.Add(Me.Label11)
@@ -264,7 +266,7 @@ Partial Class Form1
         'cb_ShinyGeodude
         '
         Me.cb_ShinyGeodude.AutoSize = True
-        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(267, 92)
+        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(267, 84)
         Me.cb_ShinyGeodude.Name = "cb_ShinyGeodude"
         Me.cb_ShinyGeodude.Size = New System.Drawing.Size(143, 17)
         Me.cb_ShinyGeodude.TabIndex = 83
@@ -367,6 +369,18 @@ Partial Class Form1
         Me.gb_Pokemon.TabIndex = 70
         Me.gb_Pokemon.TabStop = False
         Me.gb_Pokemon.Text = "Pokémon"
+        '
+        'lbl_NotYetImplemented
+        '
+        Me.lbl_NotYetImplemented.AutoSize = True
+        Me.lbl_NotYetImplemented.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_NotYetImplemented.ForeColor = System.Drawing.Color.OrangeRed
+        Me.lbl_NotYetImplemented.Location = New System.Drawing.Point(114, 43)
+        Me.lbl_NotYetImplemented.Name = "lbl_NotYetImplemented"
+        Me.lbl_NotYetImplemented.Size = New System.Drawing.Size(53, 26)
+        Me.lbl_NotYetImplemented.TabIndex = 103
+        Me.lbl_NotYetImplemented.Text = "Not in the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game yet."
+        Me.lbl_NotYetImplemented.Visible = False
         '
         'b_Events
         '
@@ -742,17 +756,15 @@ Partial Class Form1
         Me.llbl_Website.TabStop = True
         Me.llbl_Website.Text = "PTD v2.4 alpha"
         '
-        'lbl_NotYetImplemented
+        'cb_Jynx
         '
-        Me.lbl_NotYetImplemented.AutoSize = True
-        Me.lbl_NotYetImplemented.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_NotYetImplemented.ForeColor = System.Drawing.Color.OrangeRed
-        Me.lbl_NotYetImplemented.Location = New System.Drawing.Point(114, 43)
-        Me.lbl_NotYetImplemented.Name = "lbl_NotYetImplemented"
-        Me.lbl_NotYetImplemented.Size = New System.Drawing.Size(53, 26)
-        Me.lbl_NotYetImplemented.TabIndex = 103
-        Me.lbl_NotYetImplemented.Text = "Not in the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game yet."
-        Me.lbl_NotYetImplemented.Visible = False
+        Me.cb_Jynx.AutoSize = True
+        Me.cb_Jynx.Location = New System.Drawing.Point(267, 99)
+        Me.cb_Jynx.Name = "cb_Jynx"
+        Me.cb_Jynx.Size = New System.Drawing.Size(91, 17)
+        Me.cb_Jynx.TabIndex = 104
+        Me.cb_Jynx.Text = "Jynx obtained"
+        Me.cb_Jynx.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -851,5 +863,6 @@ Partial Class Form1
     Friend WithEvents b_Duplicate As System.Windows.Forms.Button
     Friend WithEvents b_Events As System.Windows.Forms.Button
     Friend WithEvents lbl_NotYetImplemented As System.Windows.Forms.Label
+    Friend WithEvents cb_Jynx As System.Windows.Forms.CheckBox
 
 End Class

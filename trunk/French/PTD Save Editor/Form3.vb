@@ -13,68 +13,76 @@ Public Class Form3
     End Function
 
     Private Sub b_DoEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_DoEvent.Click
-        Dim tmpEventPoke As Save.Pokemon
+        If lb_Events.SelectedIndex = 0 Then ' Shiny Starter
+            Dim tmpIndex As Integer = GetStarterIndex(Form1.tmpTeam)
 
-        If lb_Events.SelectedIndex > 0 Then
+            If tmpIndex >= 0 Then
+                Form1.tmpTeam(tmpIndex) = Form1.tmpTeam(tmpIndex).makeShiny()
+                Form1.lb_Team.SelectedIndex = tmpIndex
+                Form1.cb_Shiny.Checked = True
+            End If
+
+        ElseIf lb_Events.SelectedIndex > 0 Then
+            Dim tmpEventPoke As Save.Pokemon
+
             tmpEventPoke = New Save.Pokemon()
             tmpEventPoke.lvl = 1
             tmpEventPoke.exp = 0
             tmpEventPoke.shiny = True
             tmpEventPoke.moveSel = 1
-        End If
 
-        Select Case lb_Events.SelectedIndex
-            Case 0  ' Shiny Starter
-                Dim tmpIndex As Integer = GetStarterIndex(Form1.tmpTeam)
-                If tmpIndex < 0 Then Exit Select
+            Select Case lb_Events.SelectedIndex
+                Case 1  ' Shiny Bulbasaur
+                    tmpEventPoke.num = 1
+                    tmpEventPoke.lvl = 5
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 5}) ' Tackle, Growl
 
-                Form1.tmpTeam(tmpIndex) = Form1.tmpTeam(tmpIndex).makeShiny()
-                Form1.lb_Team.SelectedIndex = tmpIndex
-                Form1.cb_Shiny.Checked = True
+                Case 2  ' Shiny Charmander
+                    tmpEventPoke.num = 4
+                    tmpEventPoke.lvl = 5
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {6, 5}) ' Scratch, Growl
 
-                Exit Sub
+                Case 3  ' Shiny Squirtle
+                    tmpEventPoke.num = 7
+                    tmpEventPoke.lvl = 5
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 3}) ' Tackle, Tail Whip
 
-            Case 1  ' Shiny Bulbasaur
-                tmpEventPoke.num = 1
-                tmpEventPoke.lvl = 5
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 5}) ' Tackle, Growl
+                Case 4  ' Shiny Mew
+                    tmpEventPoke.num = 151
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {48, 57, 56}) ' Pound, Reflect Type, Transform
 
-            Case 2  ' Shiny Charmander
-                tmpEventPoke.num = 4
-                tmpEventPoke.lvl = 5
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {6, 5}) ' Scratch, Growl
+                Case 5  ' Shiny Pikachu
+                    tmpEventPoke.num = 25
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {22, 5}) ' Thundershock, Growl
 
-            Case 3  ' Shiny Squirtle
-                tmpEventPoke.num = 7
-                tmpEventPoke.lvl = 5
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 3}) ' Tackle, Tail Whip
+                Case 6  ' Shiny Pidgey
+                    tmpEventPoke.num = 16
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {1}) ' Tackle
 
-            Case 4  ' Shiny Mew
-                tmpEventPoke.num = 151
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {48, 57, 56}) ' Pound, Reflect Type, Transform
+                Case 7  ' Shiny Geodude
+                    tmpEventPoke.num = 74
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 25}) ' Tackle, Defense Curl
+                    Form1.cb_ShinyGeodude.Checked = True
 
-            Case 5  ' Shiny Pikachu
-                tmpEventPoke.num = 25
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {22, 5}) ' Thundershock, Growl
+                Case 8  ' Shiny Jigglypuff
+                    tmpEventPoke.num = 39
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {47}) ' Sing
 
-            Case 6  ' Shiny Pidgey
-                tmpEventPoke.num = 16
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {1}) ' Tackle
+                Case 9  ' Shiny Rattata
+                    tmpEventPoke.num = 19
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 3}) ' Tackle, Tail Whip
 
-            Case 7  ' Shiny Geodude
-                tmpEventPoke.num = 74
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 25}) ' Tackle, Defense Curl
+                Case 10  ' Jynx
+                    tmpEventPoke.num = 124
+                    tmpEventPoke.shiny = False
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {48}) ' Pound
+                    Form1.cb_Jynx.Checked = True
 
-            Case 8  ' Shiny Jigglypuff
-                tmpEventPoke.num = 39
-                tmpEventPoke.m = New List(Of Integer)(New Integer() {47}) ' Sing
+                Case Else
+                    Exit Sub
 
-            Case Else
-                Exit Sub
+            End Select
 
-        End Select
-
-        If lb_Events.SelectedIndex > 0 Then
             Form1.addPokeToTeam(tmpEventPoke)
         End If
     End Sub
@@ -87,5 +95,9 @@ Public Class Form3
 
     Private Sub lb_Events_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lb_Events.SelectedIndexChanged
         b_DoEvent.Enabled = lb_Events.SelectedIndex >= 0
+    End Sub
+
+    Private Sub lb_Events_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lb_Events.DoubleClick
+        b_DoEvent.PerformClick()
     End Sub
 End Class

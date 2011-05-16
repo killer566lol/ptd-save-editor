@@ -40,7 +40,66 @@ Public Class Form1
                                        "Pyroli", "Porygon", "Amonita", "Amonistar", _
                                        "Kabuto", "Kabutops", "Ptéra", "Ronflex", _
                                        "Artikodin", "Électhor", "Sulfura", "Minidraco", _
-                                       "Draco", "Dracolosse", "Mewtwo", "Mew"}
+                                       "Draco", "Dracolosse", "Mewtwo", "Mew", _
+                                       "Germignon", "Macronium", "Méganium", "Héricendre", _
+                                       "Feurisson", "Typhlosion", "Kaiminus", "Crocrodil", _
+                                       "Aligatueur", "Fouinette", "Fouinar", "Hoothoot", _
+                                       "Noarfang", "Coxy", "Coxyclaque", "Mimigal", _
+                                       "Migalos", "Nostenfer", "Loupio", "Lanturn", _
+                                       "Pichu", "Mélo", "Toudoudou", "Togepi", _
+                                       "Togetic", "Natu", "Xatu", "Wattouat", _
+                                       "Lainergie", "Pharamp", "Joliflor", "Marill", _
+                                       "Azumarill", "Simularbre", "Tarpaud", "Granivol", _
+                                       "Floravol", "Cotovol", "Capumain", "Tournegrin", _
+                                       "Héliatronc", "Yanma", "Axoloto", "Maraiste", _
+                                       "Mentali", "Noctali", "Cornèbre", "Roigada", _
+                                       "Feuforêve", "Zarbi", "Qulbutoké", "Girafarig", _
+                                       "Pomdepik", "Foretress", "Insolourdo", "Scorplane", _
+                                       "Steelix", "Snubbull", "Granbull", "Qwilfish", _
+                                       "Cizayox", "Caratroc", "Scarhino", "Farfuret", _
+                                       "Teddiursa", "Ursaring", "Limagma", "Volcaropod", _
+                                       "Marcacrin", "Cochignon", "Corayon", "Rémoraid", _
+                                       "Octillery", "Cadoizo", "Démanta", "Airmure", _
+                                       "Malosse", "Démolosse", "Hyporoi", "Phanpy", _
+                                       "Donphan", "Porygon2", "Cerfrousse", "Queulorior", _
+                                       "Debugant", "Kapoera", "Lippouti", "Élekid", _
+                                       "Magby", "Écrémeuh", "Leuphorie", "Raikou", _
+                                       "Entei", "Suicune", "Embrylex", "Ymphect", _
+                                       "Tyranocif", "Lugia", "Ho-Oh", "Celebi", _
+                                       "Arcko", "Massko", "Jungko", "Poussifeu", _
+                                       "Galifeu", "Braségali", "Gobou", "Flobio", _
+                                       "Laggron", "Medhyèna", "Grahyèna", "Zigzaton", _
+                                       "Linéon", "Chenipotte", "Armulys", "Charmillon", _
+                                       "Blindalys", "Papinox", "Nénupiot", "Lombre", _
+                                       "Ludicolo", "Grainipiot", "Pifeuil", "Tengalice", _
+                                       "Nirondelle", "Hélédelle", "Goélise", "Bekipan", _
+                                       "Tarsal", "Kirlia", "Gardevoir", "Arakdo", _
+                                       "Maskadra", "Balignon", "Chapignon", "Parecool", _
+                                       "Vigoroth", "Monaflèmit", "Ningale", "Ninjask", _
+                                       "Munja", "Chuchmur", "Ramboum", "Brouhabam", _
+                                       "Makuhita", "Hariyama", "Azurill", "Tarinor", _
+                                       "Skitty", "Delcatty", "Ténéfix", "Mysdibule", _
+                                       "Galekid", "Galegon", "Galeking", "Méditikka", _
+                                       "Charmina", "Dynavolt", "Élecsprint", "Posipi", _
+                                       "Négapi", "Muciole", "Lumivole", "Rosélia", _
+                                       "Gloupti", "Avaltout", "Carvanha", "Sharpedo", _
+                                       "Wailmer", "Wailord", "Chamallot", "Camérupt", _
+                                       "Chartor", "Spoink", "Groret", "Spinda", _
+                                       "Kraknoix", "Vibraninf", "Libégon", "Cacnea", _
+                                       "Cacturne", "Tylton", "Altaria", "Mangriff", _
+                                       "Séviper", "Séléroc", "Solaroc", "Barloche", _
+                                       "Barbicha", "Écrapince", "Colhomard", "Balbuto", _
+                                       "Kaorine", "Lilia", "Vacilys", "Anorith", _
+                                       "Armaldo", "Barpau", "Milobellus", "Morphéo", _
+                                       "Kecleon", "Polichombr", "Branette", "Skelénox", _
+                                       "Téraclope", "Tropius", "Éoko", "Absol", _
+                                       "Okéoké", "Stalgamin", "Oniglali", "Obalie", _
+                                       "Phogleur", "Kaimorse", "Coquiperl", "Serpang", _
+                                       "Rosabyss", "Relicanth", "Lovdisc", "Draby", _
+                                       "Drackhaus", "Drattak", "Terhal", "Métang", _
+                                       "Métalosse", "Regirock", "Regice", "Registeel", _
+                                       "Latias", "Latios", "Kyogre", "Groudon", _
+                                       "Rayquaza", "Jirachi", "Deoxys"}
 
     Friend AttackList As String() = {"(aucune)", "Tackle", "Sand Attack", "Tail Whip", _
                                       "Quick Attack", "Growl", "Scratch", "String Shot", _
@@ -70,7 +129,9 @@ Public Class Form1
                                       "Air Cutter", "Roar", "Odor Sleuth", "Flame Wheel", _
                                       "Reversal", "Fire Spin", "Flame Burst", "Absorb", _
                                       "Mega Drain", "Water Sport", "Hypnosis", "Rain Dance", _
-                                      "Bubblebeam", "Lucky Chant", "Body Slam"}
+                                      "Bubblebeam", "Lucky Chant", "Body Slam", "Recover", _
+                                      "Teleport", "Miracle Eye", "Ally Switch", "Lick", _
+                                      "Lovely Kiss", "Powder Snow", "Ice Punch", "Heart Stamp"}
 
     Friend ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", _
                                    "Pierre Eau", "Pierre Feu"}
@@ -80,7 +141,8 @@ Public Class Form1
                                                    24, 25, 26, 27, 28, 29, 30, 31, 32, 33, _
                                                    34, 35, 36, 37, 38, 39, 40, 41, 42, 43, _
                                                    44, 45, 46, 47, 56, 58, 59, 60, 61, 62, _
-                                                   69, 70, 71, 74, 75, 95, 151}
+                                                   63, 64, 65, 69, 70, 71, 74, 75, 76, 90, _
+                                                   95, 116, 118, 120, 121, 124, 151, 382}
 #End Region
 
 #Region "Definitions"
@@ -97,8 +159,6 @@ Public Class Form1
     Private Const SERVER_LINK As String = "http://www.sndgames.com/php/poke.php"
     Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.0; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
     Private serverEncoding As Encoding = UTF8 ' GetEncoding("iso-8859-1")
-
-    Private Const IS_BETA = True
 #End Region
 
 #Region "Structures"
@@ -151,9 +211,9 @@ Public Class Form1
         Public team As List(Of Pokemon)     ' Pokémon team
         Public Inv As List(Of Integer)      ' Inventory
         Public CLevelCompleted As Integer   ' Challenge Levels completed
-        Public CLevel1CodeUsed As Boolean   ' Shiny Geodude obtained ?
+        Public CLevel1CodeUsed As String    ' In-game events (as of v2.5.1 : Shiny Geodude and Jynx)
 
-        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|undefined|undefined|undefined|undefined|0|0|0|0"
+        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|0|0|0|undefined|0|0|0|0"
 
         Public ReadOnly Property hmp() As Integer
             Get
@@ -231,11 +291,11 @@ Public Class Form1
             If dataArr.Length > pos Then
                 Me.CLevelCompleted = CInt(dataArr(pos))
                 pos += 1
-                Me.CLevel1CodeUsed = (dataArr(pos) <> "0")
+                Me.CLevel1CodeUsed = dataArr(pos)
                 pos += 1
             Else
                 Me.CLevelCompleted = 0
-                Me.CLevel1CodeUsed = False
+                Me.CLevel1CodeUsed = "0"
             End If
         End Sub
 
@@ -276,7 +336,7 @@ Public Class Form1
             Next i
 
             ToString &= "|" & Me.CLevelCompleted
-            ToString &= "|" & If(Me.CLevel1CodeUsed, "1", "0")
+            ToString &= "|" & Me.CLevel1CodeUsed
         End Function
 
         Public Shared Function NewEmpty() As Save
@@ -398,11 +458,26 @@ Public Class Form1
         tmpInv = New List(Of Integer)(profile.Inv)
 
         nud_Challenge.Value = profile.CLevelCompleted
-        cb_ShinyGeodude.Checked = profile.CLevel1CodeUsed
+        cb_ShinyGeodude.Checked = profile.CLevel1CodeUsed(0) = "1"
+        cb_Jynx.Checked = profile.CLevel1CodeUsed.Length > 1 AndAlso profile.CLevel1CodeUsed(1) = "1"
     End Sub
 
     Private Sub updateProfile(ByVal profileId As Integer)
-        Dim profile As Save = New Save()
+        Dim profile As Save
+
+        Select Case profileId
+            Case 1
+                profile = profile1
+
+            Case 2
+                profile = profile2
+
+            Case 3
+                profile = profile3
+
+            Case Else
+                Exit Sub
+        End Select
 
         profile.name = lbl_Name.Text
         profile.badges = nud_Badges.Value
@@ -421,7 +496,10 @@ Public Class Form1
         profile.team = New List(Of Save.Pokemon)(tmpTeam)
         profile.Inv = New List(Of Integer)(tmpInv)
         profile.CLevelCompleted = nud_Challenge.Value
-        profile.CLevel1CodeUsed = cb_ShinyGeodude.Checked
+        profile.CLevel1CodeUsed = If(cb_ShinyGeodude.Checked, "1", "0") & _
+                                  If(cb_Jynx.Checked, "1", "") & _
+                                  If(profile.CLevel1CodeUsed.Length > 2, profile.CLevel1CodeUsed.Substring(2), "")
+
 
         Select Case profileId
             Case 1
@@ -597,9 +675,9 @@ Public Class Form1
             End If
         End With
 
-        If IS_BETA Then
+#If BETA Then
             VersionProg &= " beta"
-        End If
+#End If
     End Function
 #End Region
 
@@ -1010,7 +1088,7 @@ Public Class Form1
     End Sub
 
     Private Sub cb_Specie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_Specie.SelectedIndexChanged
-        lbl_NotYetImplemented.Visible = Not implementedPokemonList.Contains(cb_Specie.SelectedIndex + 1)
+        lbl_NotYetImplemented.Visible = cb_Specie.SelectedIndex > 0 AndAlso Not implementedPokemonList.Contains(cb_Specie.SelectedIndex + 1)
     End Sub
 #End Region
 End Class
