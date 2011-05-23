@@ -35,6 +35,7 @@ Partial Class Form1
         Me.b_SaveAccount = New System.Windows.Forms.Button
         Me.lbl_Status = New System.Windows.Forms.Label
         Me.gb_Data = New System.Windows.Forms.GroupBox
+        Me.cb_Jynx = New System.Windows.Forms.CheckBox
         Me.cb_ShinyGeodude = New System.Windows.Forms.CheckBox
         Me.nud_Challenge = New System.Windows.Forms.NumericUpDown
         Me.Label11 = New System.Windows.Forms.Label
@@ -83,7 +84,6 @@ Partial Class Form1
         Me.b_DelOrCreateProfile = New System.Windows.Forms.Button
         Me.lbl_ProgramVersion = New System.Windows.Forms.Label
         Me.llbl_Website = New System.Windows.Forms.LinkLabel
-        Me.cb_Jynx = New System.Windows.Forms.CheckBox
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -262,6 +262,16 @@ Partial Class Form1
         Me.gb_Data.TabIndex = 200
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Data"
+        '
+        'cb_Jynx
+        '
+        Me.cb_Jynx.AutoSize = True
+        Me.cb_Jynx.Location = New System.Drawing.Point(267, 99)
+        Me.cb_Jynx.Name = "cb_Jynx"
+        Me.cb_Jynx.Size = New System.Drawing.Size(91, 17)
+        Me.cb_Jynx.TabIndex = 104
+        Me.cb_Jynx.Text = "Jynx obtained"
+        Me.cb_Jynx.UseVisualStyleBackColor = True
         '
         'cb_ShinyGeodude
         '
@@ -754,17 +764,7 @@ Partial Class Form1
         Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
         Me.llbl_Website.TabIndex = 1003
         Me.llbl_Website.TabStop = True
-        Me.llbl_Website.Text = "PTD v2.4 alpha"
-        '
-        'cb_Jynx
-        '
-        Me.cb_Jynx.AutoSize = True
-        Me.cb_Jynx.Location = New System.Drawing.Point(267, 99)
-        Me.cb_Jynx.Name = "cb_Jynx"
-        Me.cb_Jynx.Size = New System.Drawing.Size(91, 17)
-        Me.cb_Jynx.TabIndex = 104
-        Me.cb_Jynx.Text = "Jynx obtained"
-        Me.cb_Jynx.UseVisualStyleBackColor = True
+        Me.llbl_Website.Text = "PTD v2.6 alpha"
         '
         'Form1
         '

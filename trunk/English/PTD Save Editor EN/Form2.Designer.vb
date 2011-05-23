@@ -121,7 +121,7 @@ Partial Class Form2
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Inventaire"
+        Me.Text = "Inventory"
         Me.ResumeLayout(False)
 
     End Sub

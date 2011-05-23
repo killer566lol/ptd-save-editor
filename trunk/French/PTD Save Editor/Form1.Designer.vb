@@ -758,10 +758,10 @@ Partial Class Form1
         Me.llbl_Website.AutoSize = True
         Me.llbl_Website.Location = New System.Drawing.Point(12, 452)
         Me.llbl_Website.Name = "llbl_Website"
-        Me.llbl_Website.Size = New System.Drawing.Size(91, 13)
+        Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
         Me.llbl_Website.TabIndex = 1003
         Me.llbl_Website.TabStop = True
-        Me.llbl_Website.Text = "PTD v2.5.1 alpha"
+        Me.llbl_Website.Text = "PTD v2.6 alpha"
         '
         'Form1
         '
