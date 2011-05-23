@@ -131,18 +131,24 @@ Public Class Form1
                                       "Mega Drain", "Water Sport", "Hypnosis", "Rain Dance", _
                                       "Bubblebeam", "Lucky Chant", "Body Slam", "Recover", _
                                       "Teleport", "Miracle Eye", "Ally Switch", "Lick", _
-                                      "Lovely Kiss", "Powder Snow", "Ice Punch", "Heart Stamp"}
+                                      "Lovely Kiss", "Powder Snow", "Ice Punch", "Heart Stamp", _
+                                      "Swallow", "Slam", "Spit Up", "Double Edge", _
+                                      "Sand Tomb", "Safeguard", "Slash", "Knock Off", _
+                                      "Leaf Tornado", "Aqua Tail", "Silver Wind", "Pin Missile", _
+                                      "Super Fang", "Acid Spray", "Cosmic Power", "Mud Shot", _
+                                      "Fake Tears", "Splash"}
 
     Friend ItemList As String() = {"(none)", "Moon Stone", "Leaf Stone", "Thunderstone", _
-                                   "Water Stone", "Fire Stone"}
+                                   "Water Stone", "Fire Stone", "Old Rod"}
 
     Private implementedPokemonList As Integer() = {1, 2, 4, 5, 7, 8, 9, 10, 11, 12, _
                                                    13, 14, 15, 16, 17, 19, 20, 21, 22, 23, _
                                                    24, 25, 26, 27, 28, 29, 30, 31, 32, 33, _
                                                    34, 35, 36, 37, 38, 39, 40, 41, 42, 43, _
-                                                   44, 45, 46, 47, 56, 58, 59, 60, 61, 62, _
-                                                   63, 64, 65, 69, 70, 71, 74, 75, 76, 90, _
-                                                   95, 116, 118, 120, 121, 124, 151, 382}
+                                                   44, 45, 46, 47, 56, 57, 58, 59, 60, 61, _
+                                                   62, 63, 64, 65, 69, 70, 71, 74, 75, 76, _
+                                                   90, 95, 116, 118, 120, 121, 124, 129, 130, 151, _
+                                                   382}
 #End Region
 
 #Region "Definitions"
@@ -211,9 +217,9 @@ Public Class Form1
         Public team As List(Of Pokemon)     ' Pokémon team
         Public Inv As List(Of Integer)      ' Inventory
         Public CLevelCompleted As Integer   ' Challenge Levels completed
-        Public CLevel1CodeUsed As String   ' In-game events (as of v2.5.1 : Shiny Geodude and Jynx)
+        Public CLevel1CodeUsed As String    ' In-game events (as of v2.6 : Shiny Geodude and Jynx)
 
-        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|0|0|0|undefined|0|0|0|0"
+        Public Const EMPTY_ACCOUNT As String = "Satoshi|0|0|0|0|0|0|0|0|0"
 
         Public ReadOnly Property hmp() As Integer
             Get
@@ -311,7 +317,7 @@ Public Class Form1
             ToString &= Me.money & "|"
             ToString &= Me.unlocked & "|"
             ToString &= Me.levelAttempted & "|"
-            ToString &= If(Me.ver = Versions.UNDEFINED, "undefined", CStr(Me.ver)) & "|"
+            ToString &= CStr(Me.ver) & "|"
             ToString &= Me.hmp
 
             For Each p As Pokemon In Me.team

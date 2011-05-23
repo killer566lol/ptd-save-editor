@@ -78,6 +78,10 @@ Public Class Form3
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {48}) ' Pound
                     Form1.cb_Jynx.Checked = True
 
+                Case 11  ' Shiny Zubat
+                    tmpEventPoke.num = 41
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {54}) ' Leech Life
+
                 Case Else
                     Exit Sub
 
