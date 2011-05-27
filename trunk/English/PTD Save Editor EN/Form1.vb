@@ -163,6 +163,7 @@ Public Class Form1
     Private updatingDisplay As Boolean = False
 
     Private Const SERVER_LINK As String = "http://www.sndgames.com/php/poke.php"
+    Private Const SERVER_LINK_TRADE As String = "http://www.sndgames.com/php/trading.php"
     Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
     Private serverEncoding As Encoding = UTF8 ' GetEncoding("iso-8859-1")
 #End Region
@@ -180,13 +181,25 @@ Public Class Form1
             Public num As Integer           ' Pokédex number
             Public lvl As Integer           ' Level
             Public exp As Integer           ' Experience points
-            Public shiny As Boolean         ' Pokémon is shiny ?
+            Public shiny As Boolean         ' Is Pokémon shiny ?
             Public m As List(Of Integer)    ' Move list
             Public moveSel As Byte          ' Currently selected move
 
-            Public ReadOnly Property numMoves() As Byte ' Number of moves
+            Public ReadOnly Property numMoves() As Integer ' Number of moves
                 Get
                     Return If(m Is Nothing, 0, m.Count())
+                End Get
+            End Property
+
+            Public ReadOnly Property fourMoves() As List(Of Integer)
+                Get
+                    Dim tmpMoveArr As Integer() = {0, 0, 0, 0}
+
+                    For i As Integer = 0 To Me.numMoves - 1
+                        tmpMoveArr(i) = Me.m(i)
+                    Next i
+
+                    Return New List(Of Integer)(tmpMoveArr)
                 End Get
             End Property
 
@@ -383,6 +396,32 @@ Public Class Form1
         Return serverEncoding.GetString(wc.UploadValues(SERVER_LINK & "?Date=" & GetTime(), nc))
     End Function
 
+    Private Function CreateCode(ByVal poke As Save.Pokemon) As String
+        Dim isShiny As String = If(poke.shiny, "1", "0")
+        Dim moves As List(Of Integer) = poke.fourMoves()
+
+        Dim nc As New System.Collections.Specialized.NameValueCollection()
+        nc.Add("Action", "createCode")
+        nc.Add("Email", "")
+        nc.Add("Pass", "")
+        nc.Add("Info1", "")
+        nc.Add("Info2", "")
+        nc.Add("Info3", "")
+        nc.Add("Code", poke.num & poke.lvl & moves(0) & moves(1) & moves(2) & moves(3) & isShiny)
+        nc.Add("num", poke.num)
+        nc.Add("lvl", poke.lvl)
+        nc.Add("shiny", isShiny)
+        nc.Add("move1", moves(0))
+        nc.Add("move2", moves(1))
+        nc.Add("move3", moves(2))
+        nc.Add("move4", moves(3))
+
+        Dim wc As New WebClient()
+        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
+
+        Return serverEncoding.GetString(wc.UploadValues(SERVER_LINK_TRADE & "?Date=" & GetTime(), nc))
+    End Function
+
     Private Function GetDictionaryFromString(ByVal dataStr As String) As Dictionary(Of String, String)
         Dim keyValues As String() = dataStr.Split("&")
 
@@ -542,6 +581,8 @@ Public Class Form1
         rb_SelMove2.Checked = False
         rb_SelMove3.Checked = False
         rb_SelMove4.Checked = False
+        tb_PreviewCode.Text = ""
+        tb_SecurityCode.Text = ""
     End Sub
 
     Private Sub resetValues()
@@ -557,6 +598,7 @@ Public Class Form1
         nud_Unlocked.Value = 0
         nud_Challenge.Value = 0
         cb_ShinyGeodude.Checked = False
+        cb_Jynx.Checked = False
 
         resetPokeDisplay()
     End Sub
@@ -848,10 +890,7 @@ Public Class Form1
             tb_Exp.Text = tmpPoke.exp
             cb_Shiny.Checked = tmpPoke.shiny
 
-            tmpMoveList = New List(Of Integer)(tmpPoke.m)
-            While tmpMoveList.Count < 4
-                tmpMoveList.Add(0)
-            End While
+            tmpMoveList = tmpPoke.fourMoves()
 
             cb_Move1.SelectedIndex = tmpMoveList(0)
             cb_Move2.SelectedIndex = tmpMoveList(1)
@@ -1094,6 +1133,56 @@ Public Class Form1
 
     Private Sub cb_Specie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_Specie.SelectedIndexChanged
         lbl_NotYetImplemented.Visible = cb_Specie.SelectedIndex > 0 AndAlso Not implementedPokemonList.Contains(cb_Specie.SelectedIndex + 1)
+    End Sub
+
+    Private Sub tb_PreviewCode_Click(ByVal sender As TextBox, ByVal e As System.EventArgs) Handles tb_PreviewCode.Click, tb_SecurityCode.Click
+        sender.SelectAll()
+    End Sub
+
+    Private Sub b_GenerateCode_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_GenerateCode.Click
+        updatePokeData()
+
+        Dim resultData As Dictionary(Of String, String)
+
+        tb_PreviewCode.Text = ""
+        tb_SecurityCode.Text = ""
+        tb_PreviewCode.BackColor = Drawing.SystemColors.Control
+
+        Try
+            Dim tmpResult As String = CreateCode(tmpPoke)
+            resultData = GetDictionaryFromString(tmpResult)
+        Catch
+            tb_PreviewCode.Text = "Erreur, réessayez."
+
+            Exit Sub
+        End Try
+
+        If resultData.ContainsKey("Result") AndAlso resultData("Result") = "Success" Then
+            If resultData.ContainsKey("Reason") AndAlso resultData("Reason") = "saved" Then
+                If resultData.ContainsKey("PreviewCode") Then tb_PreviewCode.Text = resultData("PreviewCode")
+                If resultData.ContainsKey("SecurityCode") Then tb_SecurityCode.Text = resultData("SecurityCode")
+            End If
+        Else
+            Dim complInfo As String = ""
+
+            If resultData.ContainsKey("Reason") Then
+                complInfo = " : " & resultData("Reason")
+            End If
+
+            tb_PreviewCode.BackColor = Drawing.Color.Salmon
+
+            tb_PreviewCode.Text = "Err" & complInfo
+        End If
+    End Sub
+
+    Private Sub b_CopyCode_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_CopyCode.Click
+        If tb_SecurityCode.Text <> "" AndAlso tb_PreviewCode.Text <> "" Then
+            Clipboard.SetText(tb_PreviewCode.Text & vbTab & tb_SecurityCode.Text)
+        End If
+    End Sub
+
+    Private Sub tb_SecurityCode_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tb_SecurityCode.TextChanged
+        b_CopyCode.Enabled = tb_SecurityCode.Text <> "" AndAlso tb_PreviewCode.Text <> ""
     End Sub
 #End Region
 End Class
