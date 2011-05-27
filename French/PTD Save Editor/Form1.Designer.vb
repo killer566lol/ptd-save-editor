@@ -22,6 +22,7 @@ Partial Class Form1
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container
         Me.b_ImportAccount = New System.Windows.Forms.Button
         Me.tb_Email = New System.Windows.Forms.TextBox
         Me.tb_Pass = New System.Windows.Forms.TextBox
@@ -46,6 +47,11 @@ Partial Class Form1
         Me.nud_Attempted = New System.Windows.Forms.NumericUpDown
         Me.nud_Unlocked = New System.Windows.Forms.NumericUpDown
         Me.gb_Pokemon = New System.Windows.Forms.GroupBox
+        Me.gb_GenerateCode = New System.Windows.Forms.GroupBox
+        Me.b_CopyCode = New System.Windows.Forms.Button
+        Me.tb_SecurityCode = New System.Windows.Forms.TextBox
+        Me.tb_PreviewCode = New System.Windows.Forms.TextBox
+        Me.b_GenerateCode = New System.Windows.Forms.Button
         Me.lbl_NotYetImplemented = New System.Windows.Forms.Label
         Me.b_Events = New System.Windows.Forms.Button
         Me.b_Duplicate = New System.Windows.Forms.Button
@@ -84,6 +90,7 @@ Partial Class Form1
         Me.b_DelOrCreateProfile = New System.Windows.Forms.Button
         Me.lbl_ProgramVersion = New System.Windows.Forms.Label
         Me.llbl_Website = New System.Windows.Forms.LinkLabel
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -91,6 +98,7 @@ Partial Class Form1
         CType(Me.nud_Attempted, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nud_Unlocked, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gb_Pokemon.SuspendLayout()
+        Me.gb_GenerateCode.SuspendLayout()
         Me.gb_Moves.SuspendLayout()
         CType(Me.nud_Level, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
@@ -255,7 +263,7 @@ Partial Class Form1
         Me.gb_Data.Enabled = False
         Me.gb_Data.Location = New System.Drawing.Point(12, 96)
         Me.gb_Data.Name = "gb_Data"
-        Me.gb_Data.Size = New System.Drawing.Size(413, 340)
+        Me.gb_Data.Size = New System.Drawing.Size(413, 405)
         Me.gb_Data.TabIndex = 200
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Données"
@@ -290,11 +298,11 @@ Partial Class Form1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(91, 93)
+        Me.Label11.Location = New System.Drawing.Point(86, 93)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(112, 13)
+        Me.Label11.Size = New System.Drawing.Size(117, 13)
         Me.Label11.TabIndex = 81
-        Me.Label11.Text = """Challenge"" terminés :" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label11.Text = """Challenges"" terminés :" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'b_EditInv
         '
@@ -351,8 +359,10 @@ Partial Class Form1
         '
         'gb_Pokemon
         '
-        Me.gb_Pokemon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gb_Pokemon.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Pokemon.Controls.Add(Me.gb_GenerateCode)
         Me.gb_Pokemon.Controls.Add(Me.lbl_NotYetImplemented)
         Me.gb_Pokemon.Controls.Add(Me.b_Events)
         Me.gb_Pokemon.Controls.Add(Me.b_Duplicate)
@@ -372,10 +382,62 @@ Partial Class Form1
         Me.gb_Pokemon.Controls.Add(Me.tb_Exp)
         Me.gb_Pokemon.Location = New System.Drawing.Point(6, 110)
         Me.gb_Pokemon.Name = "gb_Pokemon"
-        Me.gb_Pokemon.Size = New System.Drawing.Size(401, 224)
+        Me.gb_Pokemon.Size = New System.Drawing.Size(401, 289)
         Me.gb_Pokemon.TabIndex = 70
         Me.gb_Pokemon.TabStop = False
         Me.gb_Pokemon.Text = "Pokémon"
+        '
+        'gb_GenerateCode
+        '
+        Me.gb_GenerateCode.Controls.Add(Me.b_CopyCode)
+        Me.gb_GenerateCode.Controls.Add(Me.tb_SecurityCode)
+        Me.gb_GenerateCode.Controls.Add(Me.tb_PreviewCode)
+        Me.gb_GenerateCode.Controls.Add(Me.b_GenerateCode)
+        Me.gb_GenerateCode.Location = New System.Drawing.Point(97, 214)
+        Me.gb_GenerateCode.Name = "gb_GenerateCode"
+        Me.gb_GenerateCode.Size = New System.Drawing.Size(298, 50)
+        Me.gb_GenerateCode.TabIndex = 104
+        Me.gb_GenerateCode.TabStop = False
+        Me.gb_GenerateCode.Text = "Générer un code   (Trading -> Recieve Trade Pokemon)"
+        '
+        'b_CopyCode
+        '
+        Me.b_CopyCode.Enabled = False
+        Me.b_CopyCode.Location = New System.Drawing.Point(269, 19)
+        Me.b_CopyCode.Name = "b_CopyCode"
+        Me.b_CopyCode.Size = New System.Drawing.Size(23, 23)
+        Me.b_CopyCode.TabIndex = 3
+        Me.b_CopyCode.Text = "C"
+        Me.ToolTip1.SetToolTip(Me.b_CopyCode, "Copier le code dans le presse-papiers.")
+        Me.b_CopyCode.UseVisualStyleBackColor = True
+        '
+        'tb_SecurityCode
+        '
+        Me.tb_SecurityCode.Location = New System.Drawing.Point(228, 21)
+        Me.tb_SecurityCode.Name = "tb_SecurityCode"
+        Me.tb_SecurityCode.ReadOnly = True
+        Me.tb_SecurityCode.Size = New System.Drawing.Size(35, 20)
+        Me.tb_SecurityCode.TabIndex = 2
+        Me.ToolTip1.SetToolTip(Me.tb_SecurityCode, """Security Code""")
+        '
+        'tb_PreviewCode
+        '
+        Me.tb_PreviewCode.Location = New System.Drawing.Point(87, 21)
+        Me.tb_PreviewCode.Name = "tb_PreviewCode"
+        Me.tb_PreviewCode.ReadOnly = True
+        Me.tb_PreviewCode.Size = New System.Drawing.Size(135, 20)
+        Me.tb_PreviewCode.TabIndex = 1
+        Me.ToolTip1.SetToolTip(Me.tb_PreviewCode, """Preview Code""")
+        '
+        'b_GenerateCode
+        '
+        Me.b_GenerateCode.Location = New System.Drawing.Point(6, 19)
+        Me.b_GenerateCode.Name = "b_GenerateCode"
+        Me.b_GenerateCode.Size = New System.Drawing.Size(75, 23)
+        Me.b_GenerateCode.TabIndex = 0
+        Me.b_GenerateCode.Text = "Générer"
+        Me.ToolTip1.SetToolTip(Me.b_GenerateCode, "Générer un code pour un Pokémon en utilisant les valeurs courantes.")
+        Me.b_GenerateCode.UseVisualStyleBackColor = True
         '
         'lbl_NotYetImplemented
         '
@@ -400,7 +462,7 @@ Partial Class Form1
         '
         'b_Duplicate
         '
-        Me.b_Duplicate.Location = New System.Drawing.Point(243, 149)
+        Me.b_Duplicate.Location = New System.Drawing.Point(243, 153)
         Me.b_Duplicate.Name = "b_Duplicate"
         Me.b_Duplicate.Size = New System.Drawing.Size(67, 23)
         Me.b_Duplicate.TabIndex = 101
@@ -409,8 +471,7 @@ Partial Class Form1
         '
         'b_DelPoke
         '
-        Me.b_DelPoke.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.b_DelPoke.Location = New System.Drawing.Point(170, 178)
+        Me.b_DelPoke.Location = New System.Drawing.Point(170, 182)
         Me.b_DelPoke.Name = "b_DelPoke"
         Me.b_DelPoke.Size = New System.Drawing.Size(67, 23)
         Me.b_DelPoke.TabIndex = 90
@@ -419,8 +480,7 @@ Partial Class Form1
         '
         'b_AddPoke
         '
-        Me.b_AddPoke.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.b_AddPoke.Location = New System.Drawing.Point(170, 149)
+        Me.b_AddPoke.Location = New System.Drawing.Point(170, 153)
         Me.b_AddPoke.Name = "b_AddPoke"
         Me.b_AddPoke.Size = New System.Drawing.Size(67, 23)
         Me.b_AddPoke.TabIndex = 80
@@ -429,8 +489,7 @@ Partial Class Form1
         '
         'b_PokeDown
         '
-        Me.b_PokeDown.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.b_PokeDown.Location = New System.Drawing.Point(97, 178)
+        Me.b_PokeDown.Location = New System.Drawing.Point(97, 182)
         Me.b_PokeDown.Name = "b_PokeDown"
         Me.b_PokeDown.Size = New System.Drawing.Size(67, 23)
         Me.b_PokeDown.TabIndex = 70
@@ -439,8 +498,7 @@ Partial Class Form1
         '
         'b_PokeUp
         '
-        Me.b_PokeUp.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.b_PokeUp.Location = New System.Drawing.Point(97, 149)
+        Me.b_PokeUp.Location = New System.Drawing.Point(97, 153)
         Me.b_PokeUp.Name = "b_PokeUp"
         Me.b_PokeUp.Size = New System.Drawing.Size(67, 23)
         Me.b_PokeUp.TabIndex = 60
@@ -457,7 +515,7 @@ Partial Class Form1
         Me.gb_Moves.Controls.Add(Me.cb_Move3)
         Me.gb_Moves.Controls.Add(Me.cb_Move2)
         Me.gb_Moves.Controls.Add(Me.cb_Move1)
-        Me.gb_Moves.Location = New System.Drawing.Point(97, 69)
+        Me.gb_Moves.Location = New System.Drawing.Point(97, 72)
         Me.gb_Moves.Name = "gb_Moves"
         Me.gb_Moves.Size = New System.Drawing.Size(260, 75)
         Me.gb_Moves.TabIndex = 50
@@ -559,7 +617,7 @@ Partial Class Form1
         '
         Me.lbl_ID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lbl_ID.AutoSize = True
-        Me.lbl_ID.Location = New System.Drawing.Point(94, 204)
+        Me.lbl_ID.Location = New System.Drawing.Point(94, 269)
         Me.lbl_ID.Name = "lbl_ID"
         Me.lbl_ID.Size = New System.Drawing.Size(24, 13)
         Me.lbl_ID.TabIndex = 47
@@ -594,9 +652,9 @@ Partial Class Form1
         '
         'b_SavePoke
         '
-        Me.b_SavePoke.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.b_SavePoke.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_SavePoke.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b_SavePoke.Location = New System.Drawing.Point(284, 195)
+        Me.b_SavePoke.Location = New System.Drawing.Point(284, 182)
         Me.b_SavePoke.Name = "b_SavePoke"
         Me.b_SavePoke.Size = New System.Drawing.Size(111, 23)
         Me.b_SavePoke.TabIndex = 100
@@ -621,7 +679,7 @@ Partial Class Form1
         Me.lb_Team.FormattingEnabled = True
         Me.lb_Team.Location = New System.Drawing.Point(6, 19)
         Me.lb_Team.Name = "lb_Team"
-        Me.lb_Team.Size = New System.Drawing.Size(85, 199)
+        Me.lb_Team.Size = New System.Drawing.Size(85, 264)
         Me.lb_Team.TabIndex = 0
         '
         'tb_Exp
@@ -746,7 +804,7 @@ Partial Class Form1
         '
         Me.lbl_ProgramVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lbl_ProgramVersion.AutoSize = True
-        Me.lbl_ProgramVersion.Location = New System.Drawing.Point(12, 439)
+        Me.lbl_ProgramVersion.Location = New System.Drawing.Point(12, 504)
         Me.lbl_ProgramVersion.Name = "lbl_ProgramVersion"
         Me.lbl_ProgramVersion.Size = New System.Drawing.Size(287, 13)
         Me.lbl_ProgramVersion.TabIndex = 1001
@@ -756,7 +814,7 @@ Partial Class Form1
         '
         Me.llbl_Website.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.llbl_Website.AutoSize = True
-        Me.llbl_Website.Location = New System.Drawing.Point(12, 452)
+        Me.llbl_Website.Location = New System.Drawing.Point(12, 517)
         Me.llbl_Website.Name = "llbl_Website"
         Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
         Me.llbl_Website.TabIndex = 1003
@@ -767,7 +825,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(437, 474)
+        Me.ClientSize = New System.Drawing.Size(437, 539)
         Me.Controls.Add(Me.llbl_Website)
         Me.Controls.Add(Me.lbl_ProgramVersion)
         Me.Controls.Add(Me.b_DelOrCreateProfile)
@@ -789,6 +847,8 @@ Partial Class Form1
         CType(Me.nud_Unlocked, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gb_Pokemon.ResumeLayout(False)
         Me.gb_Pokemon.PerformLayout()
+        Me.gb_GenerateCode.ResumeLayout(False)
+        Me.gb_GenerateCode.PerformLayout()
         Me.gb_Moves.ResumeLayout(False)
         Me.gb_Moves.PerformLayout()
         CType(Me.nud_Level, System.ComponentModel.ISupportInitialize).EndInit()
@@ -861,5 +921,11 @@ Partial Class Form1
     Friend WithEvents b_Events As System.Windows.Forms.Button
     Friend WithEvents lbl_NotYetImplemented As System.Windows.Forms.Label
     Friend WithEvents cb_Jynx As System.Windows.Forms.CheckBox
+    Friend WithEvents gb_GenerateCode As System.Windows.Forms.GroupBox
+    Friend WithEvents b_GenerateCode As System.Windows.Forms.Button
+    Friend WithEvents tb_SecurityCode As System.Windows.Forms.TextBox
+    Friend WithEvents tb_PreviewCode As System.Windows.Forms.TextBox
+    Friend WithEvents b_CopyCode As System.Windows.Forms.Button
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
 End Class
