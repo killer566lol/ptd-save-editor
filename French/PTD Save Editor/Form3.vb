@@ -82,6 +82,10 @@ Public Class Form3
                     tmpEventPoke.num = 41
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {54}) ' Leech Life
 
+                Case 12  ' Shiny Abra
+                    tmpEventPoke.num = 63
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {116}) ' Teleport
+
                 Case Else
                     Exit Sub
 
