@@ -101,7 +101,7 @@ Public Class Form1
                                       "Latias", "Latios", "Kyogre", "Groudon", _
                                       "Rayquaza", "Jirachi", "Deoxys"}
 
-    Friend AttackList As String() = {"(none)", "Tackle", "Sand Attack", "Tail Whip", _
+    Friend AttackList As String() = {"(aucune)", "Tackle", "Sand Attack", "Tail Whip", _
                                       "Quick Attack", "Growl", "Scratch", "String Shot", _
                                       "Poison Sting", "Leech Seed", "Ember", "Bubble", _
                                       "Focus Energy", "Bug Bite", "Harden", "Gust", _
@@ -132,23 +132,31 @@ Public Class Form1
                                       "Bubblebeam", "Lucky Chant", "Body Slam", "Recover", _
                                       "Teleport", "Miracle Eye", "Ally Switch", "Lick", _
                                       "Lovely Kiss", "Powder Snow", "Ice Punch", "Heart Stamp", _
-                                      "Swallow", "Slam", "Spit Up", "Double Edge", _
+                                      "Swallow", "Slam", "Spit Up", "Double-Edge", _
                                       "Sand Tomb", "Safeguard", "Slash", "Knock Off", _
                                       "Leaf Tornado", "Aqua Tail", "Silver Wind", "Pin Missile", _
                                       "Super Fang", "Acid Spray", "Cosmic Power", "Mud Shot", _
-                                      "Fake Tears", "Splash"}
+                                      "Fake Tears", "Splash", "Thunderbolt", "Rest", _
+                                      "Selfdestruct", "Tailwind", "Reflect", "Flail", _
+                                      "Psychic", "Worry Seed", "Skull Bash", "Will-O-Wisp", _
+                                      "Belly Drum", "Petal Dance", "DynamicPunch", "Bulldoze", _
+                                      "Ice Fang", "Synthesis", "Roost", "Mud Bomb", _
+                                      "Gyro Ball", "Flatter", "Acrobatics", "Moonlight", _
+                                      "Swagger", "Iron Defense", "Rage Powder", "Endeavor", _
+                                      "Feint", "Payback", "Telekinesis", "Thrash", _
+                                      "Gastro Acid", "Stealth Rock", "Kyogre's Rest"}
 
     Friend ItemList As String() = {"(none)", "Moon Stone", "Leaf Stone", "Thunderstone", _
                                    "Water Stone", "Fire Stone", "Old Rod"}
 
-    Private implementedPokemonList As Integer() = {1, 2, 4, 5, 7, 8, 9, 10, 11, 12, _
-                                                   13, 14, 15, 16, 17, 19, 20, 21, 22, 23, _
-                                                   24, 25, 26, 27, 28, 29, 30, 31, 32, 33, _
-                                                   34, 35, 36, 37, 38, 39, 40, 41, 42, 43, _
-                                                   44, 45, 46, 47, 56, 57, 58, 59, 60, 61, _
-                                                   62, 63, 64, 65, 69, 70, 71, 74, 75, 76, _
-                                                   90, 95, 116, 118, 120, 121, 124, 129, 130, 151, _
-                                                   382}
+    Private implementedPokemonList As Integer() = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, _
+                                                   11, 12, 13, 14, 15, 16, 17, 18, 19, 20, _
+                                                   21, 22, 23, 24, 25, 26, 27, 28, 29, 30, _
+                                                   31, 32, 33, 34, 35, 36, 37, 38, 39, 40, _
+                                                   41, 42, 43, 44, 45, 46, 47, 56, 57, 58, _
+                                                   59, 60, 61, 62, 63, 64, 65, 69, 70, 71, _
+                                                   74, 75, 76, 90, 95, 116, 118, 120, 121, 124, _
+                                                   129, 130, 151, 382}
 #End Region
 
 #Region "Definitions"
@@ -864,7 +872,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub tb_Money_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tb_Money.KeyPress, tb_Exp.KeyPress
+    Private Sub tb_Numeric_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tb_Money.KeyPress, tb_Exp.KeyPress
         e.Handled = Not (Char.IsDigit(e.KeyChar) OrElse AscW(e.KeyChar) = 8 OrElse My.Computer.Keyboard.CtrlKeyDown)
     End Sub
 
@@ -1115,19 +1123,19 @@ Public Class Form1
         Form3.ShowDialog()
     End Sub
 
-    Private Sub tb_Money_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles tb_Money.LostFocus
-        If tb_Money.Text = "" Then
-            tb_Money.Text = "0"
+    Private Sub tb_Numeric_LostFocus(ByVal sender As TextBox, ByVal e As System.EventArgs) Handles tb_Money.LostFocus, tb_Exp.LostFocus
+        If sender.Text = "" Then
+            sender.Text = "0"
         Else
-            Dim sb As New StringBuilder(tb_Money.Text.Length - 1)
+            Dim sb As New StringBuilder(sender.Text.Length - 1)
 
-            For Each c As Char In tb_Money.Text
+            For Each c As Char In sender.Text
                 If Char.IsDigit(c) Then sb.Append(c)
             Next c
 
             If sb.Length = 0 Then sb.Append("0"c)
 
-            tb_Money.Text = Int(sb.ToString())
+            sender.Text = Int(sb.ToString())
         End If
     End Sub
 
@@ -1183,6 +1191,14 @@ Public Class Form1
 
     Private Sub tb_SecurityCode_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tb_SecurityCode.TextChanged
         b_CopyCode.Enabled = tb_SecurityCode.Text <> "" AndAlso tb_PreviewCode.Text <> ""
+    End Sub
+
+    Private Sub nud_Level_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nud_Level.ValueChanged
+        Try
+            lbl_MaxExp.Text = "/" & Math.Pow(nud_Level.Value, 3)
+        Catch
+            lbl_MaxExp.Text = ""
+        End Try
     End Sub
 #End Region
 End Class
