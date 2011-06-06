@@ -1,4 +1,5 @@
 ﻿Imports System.Net, System.Text, System.Text.Encoding
+Imports System.Collections.Specialized
 
 Public Class Form1
 
@@ -167,13 +168,19 @@ Public Class Form1
     Private tmpPoke As Save.Pokemon
     Private tmpMoveList As List(Of Integer)
     Friend tmpInv As List(Of Integer)
+    Private previousPokeId As Integer = -1
 
     Private updatingDisplay As Boolean = False
+    Private savingPoke As Boolean = False
 
     Private Const SERVER_LINK As String = "http://www.sndgames.com/php/poke.php"
     Private Const SERVER_LINK_TRADE As String = "http://www.sndgames.com/php/trading.php"
+    Private Const SERVER_LINK_ACHIEVEMENTS As String = "http://www.sndgames.com/php/achieve.php"
     Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
-    Private serverEncoding As Encoding = UTF8 ' GetEncoding("iso-8859-1")
+    Private serverEncoding As Encoding = UTF8
+
+    Friend achievements As String = "0000"
+    Friend currentAchievements As String = "0000"
 #End Region
 
 #Region "Structures"
@@ -377,20 +384,33 @@ Public Class Form1
         Return Int((Date.UtcNow - New Date(1970, 1, 1)).TotalMilliseconds)
     End Function
 
+    Private Function ServerRequest(ByVal values As NameValueCollection, ByVal uri As String) As String
+        Dim wc As New WebClient()
+        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
+
+        Return serverEncoding.GetString(wc.UploadValues(uri & "?Date=" & GetTime(), values))
+    End Function
+
     Private Function ImportAccount(ByVal email As String, ByVal pass As String) As String
-        Dim nc As New System.Collections.Specialized.NameValueCollection()
+        Dim nc As New NameValueCollection()
         nc.Add("Action", "importAccount")
         nc.Add("Email", email)
         nc.Add("Pass", pass)
 
-        Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
+        Return ServerRequest(nc, SERVER_LINK)
+    End Function
 
-        Return serverEncoding.GetString(wc.UploadValues(SERVER_LINK & "?Date=" & GetTime(), nc))
+    Private Function GetAchievements(ByVal email As String, ByVal pass As String) As String
+        Dim nc As New NameValueCollection()
+        nc.Add("Action", "checkAccount")
+        nc.Add("Email", email)
+        nc.Add("Pass", pass)
+
+        Return ServerRequest(nc, SERVER_LINK_ACHIEVEMENTS)
     End Function
 
     Private Function SaveAccount(ByVal email As String, ByVal pass As String) As String
-        Dim nc As New System.Collections.Specialized.NameValueCollection()
+        Dim nc As New NameValueCollection()
         nc.Add("Action", "saveAccount")
         nc.Add("Email", email)
         nc.Add("Pass", pass)
@@ -398,17 +418,25 @@ Public Class Form1
         nc.Add("Info2", profile2.ToString())
         nc.Add("Info3", profile3.ToString())
 
-        Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
+        Return ServerRequest(nc, SERVER_LINK)
+    End Function
 
-        Return serverEncoding.GetString(wc.UploadValues(SERVER_LINK & "?Date=" & GetTime(), nc))
+    Private Function UpdateAchievement(ByVal email As String, ByVal pass As String, ByVal pos As Integer) As String
+        Dim nc As New NameValueCollection()
+        nc.Add("Action", "updateAccount")
+        nc.Add("Email", email)
+        nc.Add("Pass", pass)
+        nc.Add("type", "1")
+        nc.Add("pos", CStr(pos))
+
+        Return ServerRequest(nc, SERVER_LINK_ACHIEVEMENTS)
     End Function
 
     Private Function CreateCode(ByVal poke As Save.Pokemon) As String
         Dim isShiny As String = If(poke.shiny, "1", "0")
         Dim moves As List(Of Integer) = poke.fourMoves()
 
-        Dim nc As New System.Collections.Specialized.NameValueCollection()
+        Dim nc As New NameValueCollection()
         nc.Add("Action", "createCode")
         nc.Add("Email", "")
         nc.Add("Pass", "")
@@ -424,10 +452,7 @@ Public Class Form1
         nc.Add("move3", moves(2))
         nc.Add("move4", moves(3))
 
-        Dim wc As New WebClient()
-        wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
-
-        Return serverEncoding.GetString(wc.UploadValues(SERVER_LINK_TRADE & "?Date=" & GetTime(), nc))
+        Return ServerRequest(nc, SERVER_LINK_TRADE)
     End Function
 
     Private Function GetDictionaryFromString(ByVal dataStr As String) As Dictionary(Of String, String)
@@ -576,6 +601,8 @@ Public Class Form1
     End Sub
 
     Private Sub resetPokeValues()
+        previousPokeId = -1
+
         lbl_ID.Text = "ID :"
         cb_Specie.SelectedIndex = -1
         nud_Level.Value = 1
@@ -613,7 +640,7 @@ Public Class Form1
 
     Private Sub resetPokeDisplay()
         For Each c As Control In gb_Pokemon.Controls
-            If Not (c.Equals(lb_Team) OrElse c.Equals(b_AddPoke) OrElse c.Equals(b_Events)) Then
+            If Not (c.Equals(lb_Team) OrElse c.Equals(b_AddPoke)) Then
                 c.Enabled = False
             End If
         Next c
@@ -638,10 +665,11 @@ Public Class Form1
         gb_Data.Enabled = False
         gb_Data.Text = "Données"
         b_DelOrCreateProfile.Enabled = False
+        b_Achievements.Enabled = False
         resetValues()
     End Sub
 
-    Private Sub updatePokeData()
+    Private Sub saveCurrentPokeData()
         tmpPoke.num = cb_Specie.SelectedIndex + 1
         tmpPoke.lvl = nud_Level.Value
         tmpPoke.exp = CInt(tb_Exp.Text)
@@ -698,6 +726,46 @@ Public Class Form1
         tmpPoke.m = New List(Of Integer)(tmpMoves)
     End Sub
 
+    Private Sub savePokeData(ByVal pkmId As Integer)
+        savingPoke = True
+
+        saveCurrentPokeData()
+
+        tmpTeam(pkmId) = tmpPoke
+        lb_Team.Items(pkmId) = PokemonList(tmpPoke.num)
+
+        savingPoke = False
+    End Sub
+
+    Private Sub updatePokeData()
+        updatingDisplay = True
+
+        If lb_Team.SelectedIndex = -1 Then
+            resetPokeDisplay()
+        Else
+            enablePokeFields()
+
+            tmpPoke = tmpTeam(lb_Team.SelectedIndex)
+
+            lbl_ID.Text = "ID : " & tmpPoke.id
+            cb_Specie.SelectedIndex = tmpPoke.num - 1
+            nud_Level.Value = tmpPoke.lvl
+            tb_Exp.Text = tmpPoke.exp
+            cb_Shiny.Checked = tmpPoke.shiny
+
+            tmpMoveList = tmpPoke.fourMoves()
+
+            cb_Move1.SelectedIndex = tmpMoveList(0)
+            cb_Move2.SelectedIndex = tmpMoveList(1)
+            cb_Move3.SelectedIndex = tmpMoveList(2)
+            cb_Move4.SelectedIndex = tmpMoveList(3)
+
+            CType(gb_Moves.Controls.Find("rb_SelMove" & tmpPoke.moveSel, False)(0), RadioButton).Checked = True
+        End If
+
+        updatingDisplay = False
+    End Sub
+
     Friend Sub addPokeToTeam(ByVal poke As Save.Pokemon, Optional ByVal autoIncrId As Boolean = True)
         If autoIncrId Then
             poke.id = If(tmpTeam.Count < 1, 1, tmpTeam.Max(New Func(Of Save.Pokemon, Integer)(Function(p As Save.Pokemon) p.id)) + 1)
@@ -734,6 +802,11 @@ Public Class Form1
             VersionProg &= " beta"
 #End If
     End Function
+
+    Private Sub refreshSprite()
+        Dim rm As Resources.ResourceManager = New Resources.ResourceManager("PTD_Save_Editor.Resources", GetType(Form1).Assembly)
+        PictureBox1.Image = CType(rm.GetObject("_" & cb_Specie.SelectedIndex + 1 & If(cb_Shiny.Checked, "s", "")), Drawing.Bitmap)
+    End Sub
 #End Region
 
 #Region "Events"
@@ -756,14 +829,18 @@ Public Class Form1
     End Sub
 
     Private Sub b_ImportAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_ImportAccount.Click
-        lbl_Status.Text = "Chargement..."
+        lbl_Status.Text = "Chargement de la sauvegarde..."
         gb_Login.Refresh()
 
-        Dim resultData As Dictionary(Of String, String)
+        Dim resultData, achiev As Dictionary(Of String, String)
 
         Try
-            Dim tmpResult As String = ImportAccount(tb_Email.Text, tb_Pass.Text)
-            resultData = GetDictionaryFromString(tmpResult)
+            'Dim tmpResult As String = ImportAccount(tb_Email.Text, tb_Pass.Text)
+            resultData = GetDictionaryFromString(ImportAccount(tb_Email.Text, tb_Pass.Text))
+
+            lbl_Status.Text = "Chargement des achievements..."
+            gb_Login.Refresh()
+            achiev = GetDictionaryFromString(GetAchievements(tb_Email.Text, tb_Pass.Text))
         Catch
             MsgBox("Erreur lors de la récupération des données sur le serveur." & vbNewLine & _
                    "Veuillez réessayer.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Erreur")
@@ -797,9 +874,16 @@ Public Class Form1
                 profile3Set = False
             End If
 
+            If achiev.ContainsKey("Result") AndAlso achiev("Result") = "Success" AndAlso achiev.ContainsKey("Ach1") Then
+                achievements = achiev("Ach1")
+                currentAchievements = achievements
+            End If
+
             gb_Profiles.Enabled = True
             'gb_Data.Enabled = True
             b_SaveAccount.Enabled = True
+
+            b_Achievements.Enabled = True
 
             rb_Profile1.Checked = False
             rb_Profile1.Checked = True
@@ -883,32 +967,15 @@ Public Class Form1
     End Sub
 
     Private Sub lb_Team_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lb_Team.SelectedIndexChanged
-        updatingDisplay = True
+        If savingPoke Then Exit Sub
 
-        If lb_Team.SelectedIndex = -1 Then
-            resetPokeDisplay()
-        Else
-            enablePokeFields()
-
-            tmpPoke = tmpTeam(lb_Team.SelectedIndex)
-
-            lbl_ID.Text = "ID : " & tmpPoke.id
-            cb_Specie.SelectedIndex = tmpPoke.num - 1
-            nud_Level.Value = tmpPoke.lvl
-            tb_Exp.Text = tmpPoke.exp
-            cb_Shiny.Checked = tmpPoke.shiny
-
-            tmpMoveList = tmpPoke.fourMoves()
-
-            cb_Move1.SelectedIndex = tmpMoveList(0)
-            cb_Move2.SelectedIndex = tmpMoveList(1)
-            cb_Move3.SelectedIndex = tmpMoveList(2)
-            cb_Move4.SelectedIndex = tmpMoveList(3)
-
-            CType(gb_Moves.Controls.Find("rb_SelMove" & tmpPoke.moveSel, False)(0), RadioButton).Checked = True
+        If previousPokeId >= 0 Then
+            savePokeData(previousPokeId)
         End If
 
-        updatingDisplay = False
+        previousPokeId = lb_Team.SelectedIndex
+
+        updatePokeData()
     End Sub
 
     Private Sub cb_Move_SelectedIndexChanged(ByVal sender As ComboBox, ByVal e As System.EventArgs) Handles cb_Move1.SelectedIndexChanged, cb_Move2.SelectedIndexChanged, cb_Move3.SelectedIndexChanged, cb_Move4.SelectedIndexChanged
@@ -943,12 +1010,7 @@ Public Class Form1
     End Sub
 
     Private Sub b_SavePoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_SavePoke.Click
-        updatePokeData()
-
-        tmpTeam(lb_Team.SelectedIndex) = tmpPoke
-        'Dim tmpTopIndex As Integer = lb_Team.TopIndex
-        lb_Team.Items(lb_Team.SelectedIndex) = PokemonList(tmpPoke.num)
-        'lb_Team.TopIndex = tmpTopIndex
+        savePokeData(lb_Team.SelectedIndex)
     End Sub
 
     Private Sub nud_Attempted_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nud_Attempted.ValueChanged
@@ -977,16 +1039,33 @@ Public Class Form1
             Exit Sub
         End If
 
-        lbl_Status.Text = "Enregistrement..."
+        lbl_Status.Text = "Enregistrement de la sauvegarde..."
         gb_Login.Refresh()
 
         b_SaveProfile.PerformClick()
 
-        Dim resultData As Dictionary(Of String, String)
+        Dim resultData, achiev As Dictionary(Of String, String)
 
         Try
-            Dim tmpResult As String = SaveAccount(tb_Email.Text, tb_Pass.Text)
-            resultData = GetDictionaryFromString(tmpResult)
+            resultData = GetDictionaryFromString(SaveAccount(tb_Email.Text, tb_Pass.Text))
+
+            lbl_Status.Text = "Enregistrement des achievements..."
+            gb_Login.Refresh()
+
+            Dim tmpAchievements As String = achievements
+
+            For i As Integer = 0 To currentAchievements.Length - 1
+                If achievements(i) = "0"c AndAlso currentAchievements(i) <> "0"c Then
+                    achiev = GetDictionaryFromString(UpdateAchievement(tb_Email.Text, tb_Pass.Text, i))
+
+                    If achiev.ContainsKey("Result") AndAlso achiev("Result") = "Success" AndAlso achiev.ContainsKey("Ach1") Then
+                        tmpAchievements = achiev("Ach1")
+                    End If
+                End If
+            Next i
+
+            achievements = tmpAchievements
+            currentAchievements = tmpAchievements
         Catch
             MsgBox("Erreur lors de la sauvegarde sur le serveur." & vbNewLine & _
                    "Veuillez réessayer.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Erreur")
@@ -1141,6 +1220,7 @@ Public Class Form1
 
     Private Sub cb_Specie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_Specie.SelectedIndexChanged
         lbl_NotYetImplemented.Visible = cb_Specie.SelectedIndex > 0 AndAlso Not implementedPokemonList.Contains(cb_Specie.SelectedIndex + 1)
+        refreshSprite()
     End Sub
 
     Private Sub tb_PreviewCode_Click(ByVal sender As TextBox, ByVal e As System.EventArgs) Handles tb_PreviewCode.Click, tb_SecurityCode.Click
@@ -1148,7 +1228,7 @@ Public Class Form1
     End Sub
 
     Private Sub b_GenerateCode_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_GenerateCode.Click
-        updatePokeData()
+        saveCurrentPokeData()
 
         Dim resultData As Dictionary(Of String, String)
 
@@ -1199,6 +1279,18 @@ Public Class Form1
         Catch
             lbl_MaxExp.Text = ""
         End Try
+    End Sub
+
+    Private Sub b_Achievements_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_Achievements.Click
+        Form4.ShowDialog()
+    End Sub
+
+    Private Sub cb_Shiny_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_Shiny.CheckedChanged
+        refreshSprite()
+    End Sub
+
+    Private Sub b_CancelPoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_CancelPoke.Click
+        updatePokeData()
     End Sub
 #End Region
 End Class

@@ -93,6 +93,9 @@ Partial Class Form1
         Me.lbl_ProgramVersion = New System.Windows.Forms.Label
         Me.llbl_Website = New System.Windows.Forms.LinkLabel
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.b_Achievements = New System.Windows.Forms.Button
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.b_CancelPoke = New System.Windows.Forms.Button
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -105,6 +108,7 @@ Partial Class Form1
         CType(Me.nud_Level, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.nud_Badges, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'b_ImportAccount
@@ -249,6 +253,7 @@ Partial Class Form1
         Me.gb_Data.Controls.Add(Me.cb_Jynx)
         Me.gb_Data.Controls.Add(Me.cb_ShinyGeodude)
         Me.gb_Data.Controls.Add(Me.nud_Challenge)
+        Me.gb_Data.Controls.Add(Me.b_Events)
         Me.gb_Data.Controls.Add(Me.Label11)
         Me.gb_Data.Controls.Add(Me.b_EditInv)
         Me.gb_Data.Controls.Add(Me.b_SaveProfile)
@@ -268,7 +273,7 @@ Partial Class Form1
         Me.gb_Data.Enabled = False
         Me.gb_Data.Location = New System.Drawing.Point(12, 96)
         Me.gb_Data.Name = "gb_Data"
-        Me.gb_Data.Size = New System.Drawing.Size(413, 418)
+        Me.gb_Data.Size = New System.Drawing.Size(413, 486)
         Me.gb_Data.TabIndex = 200
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Data"
@@ -276,7 +281,7 @@ Partial Class Form1
         'cb_Jynx
         '
         Me.cb_Jynx.AutoSize = True
-        Me.cb_Jynx.Location = New System.Drawing.Point(267, 99)
+        Me.cb_Jynx.Location = New System.Drawing.Point(267, 105)
         Me.cb_Jynx.Name = "cb_Jynx"
         Me.cb_Jynx.Size = New System.Drawing.Size(91, 17)
         Me.cb_Jynx.TabIndex = 104
@@ -286,7 +291,7 @@ Partial Class Form1
         'cb_ShinyGeodude
         '
         Me.cb_ShinyGeodude.AutoSize = True
-        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(267, 84)
+        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(267, 90)
         Me.cb_ShinyGeodude.Name = "cb_ShinyGeodude"
         Me.cb_ShinyGeodude.Size = New System.Drawing.Size(143, 17)
         Me.cb_ShinyGeodude.TabIndex = 83
@@ -311,7 +316,7 @@ Partial Class Form1
         '
         'b_EditInv
         '
-        Me.b_EditInv.Location = New System.Drawing.Point(151, 13)
+        Me.b_EditInv.Location = New System.Drawing.Point(6, 123)
         Me.b_EditInv.Name = "b_EditInv"
         Me.b_EditInv.Size = New System.Drawing.Size(84, 23)
         Me.b_EditInv.TabIndex = 30
@@ -364,14 +369,14 @@ Partial Class Form1
         '
         'gb_Pokemon
         '
-        Me.gb_Pokemon.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gb_Pokemon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Pokemon.Controls.Add(Me.b_CancelPoke)
+        Me.gb_Pokemon.Controls.Add(Me.PictureBox1)
         Me.gb_Pokemon.Controls.Add(Me.lbl_MaxExp)
         Me.gb_Pokemon.Controls.Add(Me.lbl_MaxLevel)
         Me.gb_Pokemon.Controls.Add(Me.gb_GenerateCode)
         Me.gb_Pokemon.Controls.Add(Me.lbl_NotYetImplemented)
-        Me.gb_Pokemon.Controls.Add(Me.b_Events)
         Me.gb_Pokemon.Controls.Add(Me.b_Duplicate)
         Me.gb_Pokemon.Controls.Add(Me.b_DelPoke)
         Me.gb_Pokemon.Controls.Add(Me.b_AddPoke)
@@ -387,9 +392,9 @@ Partial Class Form1
         Me.gb_Pokemon.Controls.Add(Me.cb_Specie)
         Me.gb_Pokemon.Controls.Add(Me.lb_Team)
         Me.gb_Pokemon.Controls.Add(Me.tb_Exp)
-        Me.gb_Pokemon.Location = New System.Drawing.Point(6, 110)
+        Me.gb_Pokemon.Location = New System.Drawing.Point(6, 152)
         Me.gb_Pokemon.Name = "gb_Pokemon"
-        Me.gb_Pokemon.Size = New System.Drawing.Size(401, 302)
+        Me.gb_Pokemon.Size = New System.Drawing.Size(401, 328)
         Me.gb_Pokemon.TabIndex = 70
         Me.gb_Pokemon.TabStop = False
         Me.gb_Pokemon.Text = "Pokémon"
@@ -397,7 +402,7 @@ Partial Class Form1
         'lbl_MaxExp
         '
         Me.lbl_MaxExp.AutoSize = True
-        Me.lbl_MaxExp.Location = New System.Drawing.Point(302, 68)
+        Me.lbl_MaxExp.Location = New System.Drawing.Point(200, 75)
         Me.lbl_MaxExp.Name = "lbl_MaxExp"
         Me.lbl_MaxExp.Size = New System.Drawing.Size(0, 13)
         Me.lbl_MaxExp.TabIndex = 108
@@ -405,11 +410,11 @@ Partial Class Form1
         'lbl_MaxLevel
         '
         Me.lbl_MaxLevel.AutoSize = True
-        Me.lbl_MaxLevel.Location = New System.Drawing.Point(286, 43)
+        Me.lbl_MaxLevel.Location = New System.Drawing.Point(184, 48)
         Me.lbl_MaxLevel.Name = "lbl_MaxLevel"
         Me.lbl_MaxLevel.Size = New System.Drawing.Size(81, 13)
         Me.lbl_MaxLevel.TabIndex = 107
-        Me.lbl_MaxLevel.Text = "Max = 36 (v2.7)"
+        Me.lbl_MaxLevel.Text = "Max = 36 (v2.8)"
         '
         'gb_GenerateCode
         '
@@ -417,7 +422,7 @@ Partial Class Form1
         Me.gb_GenerateCode.Controls.Add(Me.tb_SecurityCode)
         Me.gb_GenerateCode.Controls.Add(Me.tb_PreviewCode)
         Me.gb_GenerateCode.Controls.Add(Me.b_GenerateCode)
-        Me.gb_GenerateCode.Location = New System.Drawing.Point(97, 229)
+        Me.gb_GenerateCode.Location = New System.Drawing.Point(97, 260)
         Me.gb_GenerateCode.Name = "gb_GenerateCode"
         Me.gb_GenerateCode.Size = New System.Drawing.Size(298, 50)
         Me.gb_GenerateCode.TabIndex = 105
@@ -468,7 +473,7 @@ Partial Class Form1
         Me.lbl_NotYetImplemented.AutoSize = True
         Me.lbl_NotYetImplemented.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_NotYetImplemented.ForeColor = System.Drawing.Color.OrangeRed
-        Me.lbl_NotYetImplemented.Location = New System.Drawing.Point(114, 43)
+        Me.lbl_NotYetImplemented.Location = New System.Drawing.Point(188, 16)
         Me.lbl_NotYetImplemented.Name = "lbl_NotYetImplemented"
         Me.lbl_NotYetImplemented.Size = New System.Drawing.Size(53, 26)
         Me.lbl_NotYetImplemented.TabIndex = 103
@@ -477,7 +482,7 @@ Partial Class Form1
         '
         'b_Events
         '
-        Me.b_Events.Location = New System.Drawing.Point(320, 12)
+        Me.b_Events.Location = New System.Drawing.Point(332, 123)
         Me.b_Events.Name = "b_Events"
         Me.b_Events.Size = New System.Drawing.Size(75, 23)
         Me.b_Events.TabIndex = 102
@@ -486,7 +491,7 @@ Partial Class Form1
         '
         'b_Duplicate
         '
-        Me.b_Duplicate.Location = New System.Drawing.Point(243, 168)
+        Me.b_Duplicate.Location = New System.Drawing.Point(243, 202)
         Me.b_Duplicate.Name = "b_Duplicate"
         Me.b_Duplicate.Size = New System.Drawing.Size(67, 23)
         Me.b_Duplicate.TabIndex = 101
@@ -495,7 +500,7 @@ Partial Class Form1
         '
         'b_DelPoke
         '
-        Me.b_DelPoke.Location = New System.Drawing.Point(174, 197)
+        Me.b_DelPoke.Location = New System.Drawing.Point(174, 231)
         Me.b_DelPoke.Name = "b_DelPoke"
         Me.b_DelPoke.Size = New System.Drawing.Size(63, 23)
         Me.b_DelPoke.TabIndex = 90
@@ -504,7 +509,7 @@ Partial Class Form1
         '
         'b_AddPoke
         '
-        Me.b_AddPoke.Location = New System.Drawing.Point(174, 168)
+        Me.b_AddPoke.Location = New System.Drawing.Point(174, 202)
         Me.b_AddPoke.Name = "b_AddPoke"
         Me.b_AddPoke.Size = New System.Drawing.Size(63, 23)
         Me.b_AddPoke.TabIndex = 80
@@ -513,7 +518,7 @@ Partial Class Form1
         '
         'b_PokeDown
         '
-        Me.b_PokeDown.Location = New System.Drawing.Point(97, 197)
+        Me.b_PokeDown.Location = New System.Drawing.Point(97, 231)
         Me.b_PokeDown.Name = "b_PokeDown"
         Me.b_PokeDown.Size = New System.Drawing.Size(71, 23)
         Me.b_PokeDown.TabIndex = 70
@@ -522,7 +527,7 @@ Partial Class Form1
         '
         'b_PokeUp
         '
-        Me.b_PokeUp.Location = New System.Drawing.Point(97, 168)
+        Me.b_PokeUp.Location = New System.Drawing.Point(97, 202)
         Me.b_PokeUp.Name = "b_PokeUp"
         Me.b_PokeUp.Size = New System.Drawing.Size(71, 23)
         Me.b_PokeUp.TabIndex = 60
@@ -539,7 +544,7 @@ Partial Class Form1
         Me.gb_Moves.Controls.Add(Me.cb_Move3)
         Me.gb_Moves.Controls.Add(Me.cb_Move2)
         Me.gb_Moves.Controls.Add(Me.cb_Move1)
-        Me.gb_Moves.Location = New System.Drawing.Point(97, 87)
+        Me.gb_Moves.Location = New System.Drawing.Point(97, 121)
         Me.gb_Moves.Name = "gb_Moves"
         Me.gb_Moves.Size = New System.Drawing.Size(260, 75)
         Me.gb_Moves.TabIndex = 50
@@ -629,8 +634,7 @@ Partial Class Form1
         'cb_Shiny
         '
         Me.cb_Shiny.AutoSize = True
-        Me.cb_Shiny.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cb_Shiny.Location = New System.Drawing.Point(198, 20)
+        Me.cb_Shiny.Location = New System.Drawing.Point(100, 98)
         Me.cb_Shiny.Name = "cb_Shiny"
         Me.cb_Shiny.Size = New System.Drawing.Size(52, 17)
         Me.cb_Shiny.TabIndex = 40
@@ -641,7 +645,7 @@ Partial Class Form1
         '
         Me.lbl_ID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lbl_ID.AutoSize = True
-        Me.lbl_ID.Location = New System.Drawing.Point(94, 282)
+        Me.lbl_ID.Location = New System.Drawing.Point(94, 311)
         Me.lbl_ID.Name = "lbl_ID"
         Me.lbl_ID.Size = New System.Drawing.Size(24, 13)
         Me.lbl_ID.TabIndex = 47
@@ -650,7 +654,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(199, 68)
+        Me.Label7.Location = New System.Drawing.Point(97, 75)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(34, 13)
         Me.Label7.TabIndex = 46
@@ -659,7 +663,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(199, 41)
+        Me.Label3.Location = New System.Drawing.Point(97, 48)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(39, 13)
         Me.Label3.TabIndex = 4
@@ -667,7 +671,7 @@ Partial Class Form1
         '
         'nud_Level
         '
-        Me.nud_Level.Location = New System.Drawing.Point(240, 39)
+        Me.nud_Level.Location = New System.Drawing.Point(138, 46)
         Me.nud_Level.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nud_Level.Name = "nud_Level"
         Me.nud_Level.Size = New System.Drawing.Size(40, 20)
@@ -678,7 +682,7 @@ Partial Class Form1
         '
         Me.b_SavePoke.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_SavePoke.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b_SavePoke.Location = New System.Drawing.Point(284, 197)
+        Me.b_SavePoke.Location = New System.Drawing.Point(203, 94)
         Me.b_SavePoke.Name = "b_SavePoke"
         Me.b_SavePoke.Size = New System.Drawing.Size(111, 23)
         Me.b_SavePoke.TabIndex = 100
@@ -703,12 +707,12 @@ Partial Class Form1
         Me.lb_Team.FormattingEnabled = True
         Me.lb_Team.Location = New System.Drawing.Point(6, 19)
         Me.lb_Team.Name = "lb_Team"
-        Me.lb_Team.Size = New System.Drawing.Size(85, 277)
+        Me.lb_Team.Size = New System.Drawing.Size(85, 303)
         Me.lb_Team.TabIndex = 0
         '
         'tb_Exp
         '
-        Me.tb_Exp.Location = New System.Drawing.Point(235, 65)
+        Me.tb_Exp.Location = New System.Drawing.Point(133, 72)
         Me.tb_Exp.MaxLength = 9
         Me.tb_Exp.Name = "tb_Exp"
         Me.tb_Exp.Size = New System.Drawing.Size(61, 20)
@@ -830,7 +834,7 @@ Partial Class Form1
         '
         Me.lbl_ProgramVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lbl_ProgramVersion.AutoSize = True
-        Me.lbl_ProgramVersion.Location = New System.Drawing.Point(12, 517)
+        Me.lbl_ProgramVersion.Location = New System.Drawing.Point(12, 585)
         Me.lbl_ProgramVersion.Name = "lbl_ProgramVersion"
         Me.lbl_ProgramVersion.Size = New System.Drawing.Size(287, 13)
         Me.lbl_ProgramVersion.TabIndex = 1001
@@ -840,18 +844,47 @@ Partial Class Form1
         '
         Me.llbl_Website.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.llbl_Website.AutoSize = True
-        Me.llbl_Website.Location = New System.Drawing.Point(12, 530)
+        Me.llbl_Website.Location = New System.Drawing.Point(12, 598)
         Me.llbl_Website.Name = "llbl_Website"
         Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
         Me.llbl_Website.TabIndex = 1003
         Me.llbl_Website.TabStop = True
-        Me.llbl_Website.Text = "PTD v2.7 alpha"
+        Me.llbl_Website.Text = "PTD v2.8 alpha"
+        '
+        'b_Achievements
+        '
+        Me.b_Achievements.Enabled = False
+        Me.b_Achievements.Location = New System.Drawing.Point(108, 219)
+        Me.b_Achievements.Name = "b_Achievements"
+        Me.b_Achievements.Size = New System.Drawing.Size(82, 23)
+        Me.b_Achievements.TabIndex = 105
+        Me.b_Achievements.Text = "Achievements"
+        Me.b_Achievements.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(299, 19)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(96, 64)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox1.TabIndex = 1004
+        Me.PictureBox1.TabStop = False
+        '
+        'b_CancelPoke
+        '
+        Me.b_CancelPoke.Location = New System.Drawing.Point(320, 94)
+        Me.b_CancelPoke.Name = "b_CancelPoke"
+        Me.b_CancelPoke.Size = New System.Drawing.Size(75, 23)
+        Me.b_CancelPoke.TabIndex = 1005
+        Me.b_CancelPoke.Text = "Cancel"
+        Me.b_CancelPoke.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(437, 552)
+        Me.ClientSize = New System.Drawing.Size(437, 620)
+        Me.Controls.Add(Me.b_Achievements)
         Me.Controls.Add(Me.llbl_Website)
         Me.Controls.Add(Me.lbl_ProgramVersion)
         Me.Controls.Add(Me.b_DelOrCreateProfile)
@@ -881,6 +914,7 @@ Partial Class Form1
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         CType(Me.nud_Badges, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -955,5 +989,8 @@ Partial Class Form1
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents lbl_MaxExp As System.Windows.Forms.Label
     Friend WithEvents lbl_MaxLevel As System.Windows.Forms.Label
+    Friend WithEvents b_CancelPoke As System.Windows.Forms.Button
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents b_Achievements As System.Windows.Forms.Button
 
 End Class

@@ -86,6 +86,10 @@ Public Class Form3
                     tmpEventPoke.num = 63
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {116}) ' Teleport
 
+                Case 13  ' Shiny Charmander
+                    tmpEventPoke.num = 4
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {6, 5}) ' Scratch, Growl
+
                 Case Else
                     Exit Sub
 
