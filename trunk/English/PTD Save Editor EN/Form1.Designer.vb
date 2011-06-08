@@ -39,6 +39,7 @@ Partial Class Form1
         Me.cb_Jynx = New System.Windows.Forms.CheckBox
         Me.cb_ShinyGeodude = New System.Windows.Forms.CheckBox
         Me.nud_Challenge = New System.Windows.Forms.NumericUpDown
+        Me.b_Events = New System.Windows.Forms.Button
         Me.Label11 = New System.Windows.Forms.Label
         Me.b_EditInv = New System.Windows.Forms.Button
         Me.b_SaveProfile = New System.Windows.Forms.Button
@@ -47,6 +48,8 @@ Partial Class Form1
         Me.nud_Attempted = New System.Windows.Forms.NumericUpDown
         Me.nud_Unlocked = New System.Windows.Forms.NumericUpDown
         Me.gb_Pokemon = New System.Windows.Forms.GroupBox
+        Me.b_CancelPoke = New System.Windows.Forms.Button
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.lbl_MaxExp = New System.Windows.Forms.Label
         Me.lbl_MaxLevel = New System.Windows.Forms.Label
         Me.gb_GenerateCode = New System.Windows.Forms.GroupBox
@@ -55,7 +58,6 @@ Partial Class Form1
         Me.tb_PreviewCode = New System.Windows.Forms.TextBox
         Me.b_GenerateCode = New System.Windows.Forms.Button
         Me.lbl_NotYetImplemented = New System.Windows.Forms.Label
-        Me.b_Events = New System.Windows.Forms.Button
         Me.b_Duplicate = New System.Windows.Forms.Button
         Me.b_DelPoke = New System.Windows.Forms.Button
         Me.b_AddPoke = New System.Windows.Forms.Button
@@ -94,8 +96,6 @@ Partial Class Form1
         Me.llbl_Website = New System.Windows.Forms.LinkLabel
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.b_Achievements = New System.Windows.Forms.Button
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        Me.b_CancelPoke = New System.Windows.Forms.Button
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -103,12 +103,12 @@ Partial Class Form1
         CType(Me.nud_Attempted, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nud_Unlocked, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gb_Pokemon.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gb_GenerateCode.SuspendLayout()
         Me.gb_Moves.SuspendLayout()
         CType(Me.nud_Level, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.nud_Badges, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'b_ImportAccount
@@ -305,6 +305,15 @@ Partial Class Form1
         Me.nud_Challenge.Size = New System.Drawing.Size(40, 20)
         Me.nud_Challenge.TabIndex = 82
         '
+        'b_Events
+        '
+        Me.b_Events.Location = New System.Drawing.Point(332, 123)
+        Me.b_Events.Name = "b_Events"
+        Me.b_Events.Size = New System.Drawing.Size(75, 23)
+        Me.b_Events.TabIndex = 102
+        Me.b_Events.Text = "Events..."
+        Me.b_Events.UseVisualStyleBackColor = True
+        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -399,6 +408,24 @@ Partial Class Form1
         Me.gb_Pokemon.TabStop = False
         Me.gb_Pokemon.Text = "Pokémon"
         '
+        'b_CancelPoke
+        '
+        Me.b_CancelPoke.Location = New System.Drawing.Point(320, 94)
+        Me.b_CancelPoke.Name = "b_CancelPoke"
+        Me.b_CancelPoke.Size = New System.Drawing.Size(75, 23)
+        Me.b_CancelPoke.TabIndex = 1005
+        Me.b_CancelPoke.Text = "Cancel"
+        Me.b_CancelPoke.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(299, 19)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(96, 64)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox1.TabIndex = 1004
+        Me.PictureBox1.TabStop = False
+        '
         'lbl_MaxExp
         '
         Me.lbl_MaxExp.AutoSize = True
@@ -479,15 +506,6 @@ Partial Class Form1
         Me.lbl_NotYetImplemented.TabIndex = 103
         Me.lbl_NotYetImplemented.Text = "Not in the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game yet."
         Me.lbl_NotYetImplemented.Visible = False
-        '
-        'b_Events
-        '
-        Me.b_Events.Location = New System.Drawing.Point(332, 123)
-        Me.b_Events.Name = "b_Events"
-        Me.b_Events.Size = New System.Drawing.Size(75, 23)
-        Me.b_Events.TabIndex = 102
-        Me.b_Events.Text = "Events..."
-        Me.b_Events.UseVisualStyleBackColor = True
         '
         'b_Duplicate
         '
@@ -593,6 +611,8 @@ Partial Class Form1
         '
         'cb_Move4
         '
+        Me.cb_Move4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cb_Move4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cb_Move4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cb_Move4.FormattingEnabled = True
         Me.cb_Move4.Location = New System.Drawing.Point(158, 46)
@@ -603,6 +623,8 @@ Partial Class Form1
         '
         'cb_Move3
         '
+        Me.cb_Move3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cb_Move3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cb_Move3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cb_Move3.FormattingEnabled = True
         Me.cb_Move3.Location = New System.Drawing.Point(26, 46)
@@ -613,6 +635,8 @@ Partial Class Form1
         '
         'cb_Move2
         '
+        Me.cb_Move2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cb_Move2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cb_Move2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cb_Move2.FormattingEnabled = True
         Me.cb_Move2.Location = New System.Drawing.Point(158, 19)
@@ -623,6 +647,8 @@ Partial Class Form1
         '
         'cb_Move1
         '
+        Me.cb_Move1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cb_Move1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cb_Move1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cb_Move1.FormattingEnabled = True
         Me.cb_Move1.Location = New System.Drawing.Point(26, 19)
@@ -861,24 +887,6 @@ Partial Class Form1
         Me.b_Achievements.Text = "Achievements"
         Me.b_Achievements.UseVisualStyleBackColor = True
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Location = New System.Drawing.Point(299, 19)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(96, 64)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox1.TabIndex = 1004
-        Me.PictureBox1.TabStop = False
-        '
-        'b_CancelPoke
-        '
-        Me.b_CancelPoke.Location = New System.Drawing.Point(320, 94)
-        Me.b_CancelPoke.Name = "b_CancelPoke"
-        Me.b_CancelPoke.Size = New System.Drawing.Size(75, 23)
-        Me.b_CancelPoke.TabIndex = 1005
-        Me.b_CancelPoke.Text = "Cancel"
-        Me.b_CancelPoke.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -906,6 +914,7 @@ Partial Class Form1
         CType(Me.nud_Unlocked, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gb_Pokemon.ResumeLayout(False)
         Me.gb_Pokemon.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gb_GenerateCode.ResumeLayout(False)
         Me.gb_GenerateCode.PerformLayout()
         Me.gb_Moves.ResumeLayout(False)
@@ -914,7 +923,6 @@ Partial Class Form1
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         CType(Me.nud_Badges, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -172,6 +172,7 @@ Public Class Form1
 
     Private updatingDisplay As Boolean = False
     Private savingPoke As Boolean = False
+    Private canSavePoke As Boolean = True
 
     Private Const SERVER_LINK As String = "http://www.sndgames.com/php/poke.php"
     Private Const SERVER_LINK_TRADE As String = "http://www.sndgames.com/php/trading.php"
@@ -384,8 +385,10 @@ Public Class Form1
         Return Int((Date.UtcNow - New Date(1970, 1, 1)).TotalMilliseconds)
     End Function
 
-    Private Function ServerRequest(ByVal values As NameValueCollection, ByVal uri As String) As String
+    Private Function ServerRequest(ByVal values As NameValueCollection, ByVal uri As String, ByVal email As String, ByVal pass As String) As String
         Dim wc As New WebClient()
+        values.Add("Email", email)
+        values.Add("Pass", pass.Substring(0, Math.Min(pass.Length, 10)))
         wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT)
 
         Return serverEncoding.GetString(wc.UploadValues(uri & "?Date=" & GetTime(), values))
@@ -394,42 +397,34 @@ Public Class Form1
     Private Function ImportAccount(ByVal email As String, ByVal pass As String) As String
         Dim nc As New NameValueCollection()
         nc.Add("Action", "importAccount")
-        nc.Add("Email", email)
-        nc.Add("Pass", pass)
 
-        Return ServerRequest(nc, SERVER_LINK)
+        Return ServerRequest(nc, SERVER_LINK, email, pass)
     End Function
 
     Private Function GetAchievements(ByVal email As String, ByVal pass As String) As String
         Dim nc As New NameValueCollection()
         nc.Add("Action", "checkAccount")
-        nc.Add("Email", email)
-        nc.Add("Pass", pass)
 
-        Return ServerRequest(nc, SERVER_LINK_ACHIEVEMENTS)
+        Return ServerRequest(nc, SERVER_LINK_ACHIEVEMENTS, email, pass)
     End Function
 
     Private Function SaveAccount(ByVal email As String, ByVal pass As String) As String
         Dim nc As New NameValueCollection()
         nc.Add("Action", "saveAccount")
-        nc.Add("Email", email)
-        nc.Add("Pass", pass)
         nc.Add("Info1", profile1.ToString())
         nc.Add("Info2", profile2.ToString())
         nc.Add("Info3", profile3.ToString())
 
-        Return ServerRequest(nc, SERVER_LINK)
+        Return ServerRequest(nc, SERVER_LINK, email, pass)
     End Function
 
     Private Function UpdateAchievement(ByVal email As String, ByVal pass As String, ByVal pos As Integer) As String
         Dim nc As New NameValueCollection()
         nc.Add("Action", "updateAccount")
-        nc.Add("Email", email)
-        nc.Add("Pass", pass)
         nc.Add("type", "1")
         nc.Add("pos", CStr(pos))
 
-        Return ServerRequest(nc, SERVER_LINK_ACHIEVEMENTS)
+        Return ServerRequest(nc, SERVER_LINK_ACHIEVEMENTS, email, pass)
     End Function
 
     Private Function CreateCode(ByVal poke As Save.Pokemon) As String
@@ -438,8 +433,6 @@ Public Class Form1
 
         Dim nc As New NameValueCollection()
         nc.Add("Action", "createCode")
-        nc.Add("Email", "")
-        nc.Add("Pass", "")
         nc.Add("Info1", "")
         nc.Add("Info2", "")
         nc.Add("Info3", "")
@@ -452,7 +445,7 @@ Public Class Form1
         nc.Add("move3", moves(2))
         nc.Add("move4", moves(3))
 
-        Return ServerRequest(nc, SERVER_LINK_TRADE)
+        Return ServerRequest(nc, SERVER_LINK_TRADE, "accountforcodes", "gimmecodes")
     End Function
 
     Private Function GetDictionaryFromString(ByVal dataStr As String) As Dictionary(Of String, String)
@@ -727,6 +720,8 @@ Public Class Form1
     End Sub
 
     Private Sub savePokeData(ByVal pkmId As Integer)
+        If Not canSavePoke Then Exit Sub
+
         savingPoke = True
 
         saveCurrentPokeData()
@@ -806,6 +801,9 @@ Public Class Form1
     Private Sub refreshSprite()
         Dim rm As Resources.ResourceManager = New Resources.ResourceManager("PTD_Save_Editor.Resources", GetType(Form1).Assembly)
         PictureBox1.Image = CType(rm.GetObject("_" & cb_Specie.SelectedIndex + 1 & If(cb_Shiny.Checked, "s", "")), Drawing.Bitmap)
+        If PictureBox1.Image Is Nothing Then
+            PictureBox1.Image = PictureBox1.ErrorImage
+        End If
     End Sub
 #End Region
 
@@ -826,6 +824,8 @@ Public Class Form1
         cb_Move4.Items.AddRange(AttackList)
 
         Form2.cb_ItemList.Items.AddRange(ItemList)
+
+        PictureBox1.Image = PictureBox1.ErrorImage
     End Sub
 
     Private Sub b_ImportAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_ImportAccount.Click
@@ -1011,6 +1011,7 @@ Public Class Form1
 
     Private Sub b_SavePoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_SavePoke.Click
         savePokeData(lb_Team.SelectedIndex)
+        updatePokeData()
     End Sub
 
     Private Sub nud_Attempted_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nud_Attempted.ValueChanged
@@ -1103,12 +1104,13 @@ Public Class Form1
     Private Sub b_DelPoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_DelPoke.Click
         Dim tmpIndex As Integer = lb_Team.SelectedIndex
 
+        canSavePoke = False
+
         tmpTeam.RemoveAt(tmpIndex)
         lb_Team.Items.RemoveAt(tmpIndex)
-        'lb_Team.Focus()
         lb_Team.SelectedIndex = If(tmpIndex < lb_Team.Items.Count, tmpIndex, lb_Team.Items.Count - 1)
 
-        'sender.Focus()
+        canSavePoke = True
     End Sub
 
     Private Sub b_AddPoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_AddPoke.Click
@@ -1121,6 +1123,9 @@ Public Class Form1
         Dim tmpIndex As Integer = lb_Team.SelectedIndex
         If tmpIndex < 1 Then Exit Sub
 
+        canSavePoke = False
+        saveCurrentPokeData()
+
         tmpTeam.Insert(tmpIndex - 1, tmpTeam(tmpIndex))
         tmpTeam.RemoveAt(tmpIndex + 1)
         lb_Team.Items.Insert(tmpIndex - 1, lb_Team.Items(tmpIndex))
@@ -1128,11 +1133,16 @@ Public Class Form1
         lb_Team.SelectedIndex = tmpIndex - 1
 
         sender.Focus()
+
+        canSavePoke = True
     End Sub
 
     Private Sub b_PokeDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_PokeDown.Click
         Dim tmpIndex As Integer = lb_Team.SelectedIndex
         If tmpIndex > lb_Team.Items.Count - 2 Then Exit Sub
+
+        canSavePoke = False
+        saveCurrentPokeData()
 
         tmpTeam.Insert(tmpIndex + 2, tmpTeam(tmpIndex))
         tmpTeam.RemoveAt(tmpIndex)
@@ -1141,17 +1151,17 @@ Public Class Form1
         lb_Team.SelectedIndex = tmpIndex + 1
 
         sender.Focus()
+
+        canSavePoke = True
     End Sub
 
     Private Sub b_Duplicate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_Duplicate.Click
+        saveCurrentPokeData()
         tmpPoke.id = If(tmpTeam.Count < 1, 1, tmpTeam.Max(New Func(Of Save.Pokemon, Integer)(Function(p As Save.Pokemon) p.id)) + 1)
 
         tmpTeam.Insert(lb_Team.SelectedIndex + 1, tmpPoke)
         lb_Team.Items.Insert(lb_Team.SelectedIndex + 1, PokemonList(tmpPoke.num))
         lb_Team.SelectedIndex = lb_Team.SelectedIndex + 1
-        'lb_Team.TopIndex = lb_Team.SelectedIndex + 1
-
-        'sender.Focus()
     End Sub
 
     Private Sub b_DelOrCreateProfile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_DelOrCreateProfile.Click
