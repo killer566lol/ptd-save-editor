@@ -145,7 +145,8 @@ Public Class Form1_Main
                                       "Gyro Ball", "Flatter", "Acrobatics", "Moonlight", _
                                       "Swagger", "Iron Defense", "Rage Powder", "Endeavor", _
                                       "Feint", "Payback", "Telekinesis", "Thrash", _
-                                      "Gastro Acid", "Stealth Rock", "Kyogre's Rest"}
+                                      "Gastro Acid", "Stealth Rock", "Kyogre's Rest", "Fake Out", _
+                                      "Faint Attack", "Taunt", "Pay Day", "Power Gem"}
 
     Friend ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", _
                                    "Pierre Eau", "Pierre Feu", "Canne"}
@@ -154,10 +155,10 @@ Public Class Form1_Main
                                                    11, 12, 13, 14, 15, 16, 17, 18, 19, 20, _
                                                    21, 22, 23, 24, 25, 26, 27, 28, 29, 30, _
                                                    31, 32, 33, 34, 35, 36, 37, 38, 39, 40, _
-                                                   41, 42, 43, 44, 45, 46, 47, 56, 57, 58, _
-                                                   59, 60, 61, 62, 63, 64, 65, 69, 70, 71, _
-                                                   74, 75, 76, 90, 95, 116, 118, 120, 121, 124, _
-                                                   129, 130, 151, 382}
+                                                   41, 42, 43, 44, 45, 46, 47, 52, 53, 56, _
+                                                   57, 58, 59, 60, 61, 62, 63, 64, 65, 69, _
+                                                   70, 71, 74, 75, 76, 90, 95, 116, 118, 120, _
+                                                   121, 124, 129, 130, 151, 382}
 #End Region
 
 #Region "Definitions"
@@ -246,7 +247,7 @@ Public Class Form1_Main
         Public team As List(Of Pokemon)     ' Pokémon team
         Public Inv As List(Of Integer)      ' Inventory
         Public CLevelCompleted As Integer   ' Challenge Levels completed
-        Public CLevel1CodeUsed As String    ' In-game events (as of v2.6 : Shiny Geodude and Jynx)
+        Public CLevel1CodeUsed As String    ' In-game events (as of v2.9 : Shiny Geodude and Jynx)
 
         Public Const EMPTY_ACCOUNT As String = "Satoshi|0|0|0|0|0|0|0|0|0"
 
@@ -1204,7 +1205,7 @@ Public Class Form1_Main
         End If
     End Sub
 
-    Private Sub llbl_Website_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llbl_Website.LinkClicked
+    Private Sub llbl_Sam_Blog_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llbl_Sam_Blog.LinkClicked
         System.Diagnostics.Process.Start("http://samdangames.blogspot.com/")
     End Sub
 
@@ -1301,6 +1302,10 @@ Public Class Form1_Main
 
     Private Sub b_CancelPoke_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_CancelPoke.Click
         updatePokeData()
+    End Sub
+
+    Private Sub llbl_PTDSE_Website_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llbl_PTDSE_Website.LinkClicked
+        System.Diagnostics.Process.Start("http://code.google.com/p/ptd-save-editor/")
     End Sub
 #End Region
 End Class
