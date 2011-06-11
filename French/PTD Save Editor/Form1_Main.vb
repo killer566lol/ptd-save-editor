@@ -1,106 +1,106 @@
 ﻿Imports System.Net, System.Text, System.Text.Encoding
 Imports System.Collections.Specialized
 
-Public Class Form1
+Public Class Form1_Main
 
 #Region "Lists"
-    Friend PokemonList As String() = {"-", "Bulbasaur", "Ivysaur", "Venusaur", _
-                                      "Charmander", "Charmeleon", "Charizard", "Squirtle", _
-                                      "Wartortle", "Blastoise", "Caterpie", "Metapod", _
-                                      "Butterfree", "Weedle", "Kakuna", "Beedrill", _
-                                      "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", _
-                                      "Raticate", "Spearow", "Fearow", "Ekans", _
-                                      "Arbok", "Pikachu", "Raichu", "Sandshrew", _
-                                      "Sandslash", "Nidoran" & ChrW(9792), "Nidorina", "Nidoqueen", _
-                                      "Nidoran" & ChrW(9794), "Nidorino", "Nidoking", "Clefairy", _
-                                      "Clefable", "Vulpix", "Ninetales", "Jigglypuff", _
-                                      "Wigglytuff", "Zubat", "Golbat", "Oddish", _
-                                      "Gloom", "Vileplume", "Paras", "Parasect", _
-                                      "Venonat", "Venomoth", "Diglett", "Dugtrio", _
-                                      "Meowth", "Persian", "Psyduck", "Golduck", _
-                                      "Mankey", "Primeape", "Growlithe", "Arcanine", _
-                                      "Poliwag", "Poliwhirl", "Poliwrath", "Abra", _
-                                      "Kadabra", "Alakazam", "Machop", "Machoke", _
-                                      "Machamp", "Bellsprout", "Weepinbell", "Victreebel", _
-                                      "Tentacool", "Tentacruel", "Geodude", "Graveler", _
-                                      "Golem", "Ponyta", "Rapidash", "Slowpoke", _
-                                      "Slowbro", "Magnemite", "Magneton", "Farfetch'd", _
-                                      "Doduo", "Dodrio", "Seel", "Dewgong", _
-                                      "Grimer", "Muk", "Shellder", "Cloyster", _
-                                      "Gastly", "Haunter", "Gengar", "Onix", _
-                                      "Drowzee", "Hypno", "Krabby", "Kingler", _
-                                      "Voltorb", "Electrode", "Exeggcute", "Exeggutor", _
-                                      "Cubone", "Marowak", "Hitmonlee", "Hitmonchan", _
-                                      "Lickitung", "Koffing", "Weezing", "Rhyhorn", _
-                                      "Rhydon", "Chansey", "Tangela", "Kangaskhan", _
-                                      "Horsea", "Seadra", "Goldeen", "Seaking", _
-                                      "Staryu", "Starmie", "Mr. Mime", "Scyther", _
-                                      "Jynx", "Electabuzz", "Magmar", "Pinsir", _
-                                      "Tauros", "Magikarp", "Gyarados", "Lapras", _
-                                      "Ditto", "Eevee", "Vaporeon", "Jolteon", _
-                                      "Flareon", "Porygon", "Omanyte", "Omastar", _
-                                      "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", _
-                                      "Articuno", "Zapdos", "Moltres", "Dratini", _
-                                      "Dragonair", "Dragonite", "Mewtwo", "Mew", _
-                                      "Chikorita", "Bayleef", "Meganium", "Cyndaquil", _
-                                      "Quilava", "Typhlosion", "Totodile", "Croconaw", _
-                                      "Feraligatr", "Sentret", "Furret", "Hoothoot", _
-                                      "Noctowl", "Ledyba", "Ledian", "Spinarak", _
-                                      "Ariados", "Crobat", "Chinchou", "Lanturn", _
-                                      "Pichu", "Cleffa", "Igglybuff", "Togepi", _
-                                      "Togetic", "Natu", "Xatu", "Mareep", _
-                                      "Flaaffy", "Ampharos", "Bellossom", "Marill", _
-                                      "Azumarill", "Sudowoodo", "Politoed", "Hoppip", _
-                                      "Skiploom", "Jumpluff", "Aipom", "Sunkern", _
-                                      "Sunflora", "Yanma", "Wooper", "Quagsire", _
-                                      "Espeon", "Umbreon", "Murkrow", "Slowking", _
-                                      "Misdreavus", "Unown", "Wobbuffet", "Girafarig", _
-                                      "Pineco", "Forretress", "Dunsparce", "Gligar", _
-                                      "Steelix", "Snubbull", "Granbull", "Qwilfish", _
-                                      "Scizor", "Shuckle", "Heracross", "Sneasel", _
-                                      "Teddiursa", "Ursaring", "Slugma", "Magcargo", _
-                                      "Swinub", "Piloswine", "Corsola", "Remoraid", _
-                                      "Octillery", "Delibird", "Mantine", "Skarmory", _
-                                      "Houndour", "Houndoom", "Kingdra", "Phanpy", _
-                                      "Donphan", "Porygon2", "Stantler", "Smeargle", _
-                                      "Tyrogue", "Hitmontop", "Smoochum", "Elekid", _
-                                      "Magby", "Miltank", "Blissey", "Raikou", _
-                                      "Entei", "Suicune", "Larvitar", "Pupitar", _
-                                      "Tyranitar", "Lugia", "Ho-Oh", "Celebi", _
-                                      "Treecko", "Grovyle", "Sceptile", "Torchic", _
-                                      "Combusken", "Blaziken", "Mudkip", "Marshtomp", _
-                                      "Swampert", "Poochyena", "Mightyena", "Zigzagoon", _
-                                      "Linoone", "Wurmple", "Silcoon", "Beautifly", _
-                                      "Cascoon", "Dustox", "Lotad", "Lombre", _
-                                      "Ludicolo", "Seedot", "Nuzleaf", "Shiftry", _
-                                      "Taillow", "Swellow", "Wingull", "Pelipper", _
-                                      "Ralts", "Kirlia", "Gardevoir", "Surskit", _
-                                      "Masquerain", "Shroomish", "Breloom", "Slakoth", _
-                                      "Vigoroth", "Slaking", "Nincada", "Ninjask", _
-                                      "Shedinja", "Whismur", "Loudred", "Exploud", _
-                                      "Makuhita", "Hariyama", "Azurill", "Nosepass", _
-                                      "Skitty", "Delcatty", "Sableye", "Mawile", _
-                                      "Aron", "Lairon", "Aggron", "Meditite", _
-                                      "Medicham", "Electrike", "Manectric", "Plusle", _
-                                      "Minun", "Volbeat", "Illumise", "Roselia", _
-                                      "Gulpin", "Swalot", "Carvanha", "Sharpedo", _
-                                      "Wailmer", "Wailord", "Numel", "Camerupt", _
-                                      "Torkoal", "Spoink", "Grumpig", "Spinda", _
-                                      "Trapinch", "Vibrava", "Flygon", "Cacnea", _
-                                      "Cacturne", "Swablu", "Altaria", "Zangoose", _
-                                      "Seviper", "Lunatone", "Solrock", "Barboach", _
-                                      "Whiscash", "Corphish", "Crawdaunt", "Baltoy", _
-                                      "Claydol", "Lileep", "Cradily", "Anorith", _
-                                      "Armaldo", "Feebas", "Milotic", "Castform", _
-                                      "Kecleon", "Shuppet", "Banette", "Duskull", _
-                                      "Dusclops", "Tropius", "Chimecho", "Absol", _
-                                      "Wynaut", "Snorunt", "Glalie", "Spheal", _
-                                      "Sealeo", "Walrein", "Clamperl", "Huntail", _
-                                      "Gorebyss", "Relicanth", "Luvdisc", "Bagon", _
-                                      "Shelgon", "Salamence", "Beldum", "Metang", _
-                                      "Metagross", "Regirock", "Regice", "Registeel", _
-                                      "Latias", "Latios", "Kyogre", "Groudon", _
-                                      "Rayquaza", "Jirachi", "Deoxys"}
+    Friend PokemonList As String() = {"-", "Bulbizarre", "Herbizarre", "Florizarre", _
+                                       "Salamèche", "Reptincel", "Dracaufeu", "Carapuce", _
+                                       "Carabaffe", "Tortank", "Chenipan", "Chrysacier", _
+                                       "Papilusion", "Aspicot", "Coconfort", "Dardargnan", _
+                                       "Roucool", "Roucoups", "Roucarnage", "Rattata", _
+                                       "Rattatac", "Piafabec", "Rapasdepic", "Abo", _
+                                       "Arbok", "Pikachu", "Raichu", "Sabelette", _
+                                       "Sablaireau", "Nidoran" & ChrW(9792), "Nidorina", "Nidoqueen", _
+                                       "Nidoran" & ChrW(9794), "Nidorino", "Nidoking", "Mélofée", _
+                                       "Mélodelfe", "Goupix", "Feunard", "Rondoudou", _
+                                       "Grodoudou", "Nosferapti", "Nosferalto", "Mystherbe", _
+                                       "Ortide", "Rafflesia", "Paras", "Parasect", _
+                                       "Mimitoss", "Aéromite", "Taupiqueur", "Triopikeur", _
+                                       "Miaouss", "Persian", "Psykokwak", "Akwakwak", _
+                                       "Férosinge", "Colossinge", "Caninos", "Arcanin", _
+                                       "Ptitard", "Têtarte", "Tartard", "Abra", _
+                                       "Kadabra", "Alakazam", "Machoc", "Machopeur", _
+                                       "Mackogneur", "Chétiflor", "Boustiflor", "Empiflor", _
+                                       "Tentacool", "Tentacruel", "Racaillou", "Gravalanch", _
+                                       "Grolem", "Ponyta", "Galopa", "Ramoloss", _
+                                       "Flagadoss", "Magnéti", "Magnéton", "Canarticho", _
+                                       "Doduo", "Dodrio", "Otaria", "Lamantine", _
+                                       "Tadmorv", "Grotadmorv", "Kokiyas", "Crustabri", _
+                                       "Fantominus", "Spectrum", "Ectoplasma", "Onix", _
+                                       "Soporifik", "Hypnomade", "Krabby", "Krabboss", _
+                                       "Voltorbe", "Électrode", "Noeunoeuf", "Noadkoko", _
+                                       "Osselait", "Ossatueur", "Kicklee", "Tygnon", _
+                                       "Excelangue", "Smogo", "Smogogo", "Rhinocorne", _
+                                       "Rhinoféros", "Leveinard", "Saquedeneu", "Kangourex", _
+                                       "Hypotrempe", "Hypocéan", "Poissirène", "Poissoroy", _
+                                       "Stari", "Staross", "M. Mime", "Insécateur", _
+                                       "Lippoutou", "Élektek", "Magmar", "Scarabrute", _
+                                       "Tauros", "Magicarpe", "Léviator", "Lokhlass", _
+                                       "Métamorph", "Évoli", "Aquali", "Voltali", _
+                                       "Pyroli", "Porygon", "Amonita", "Amonistar", _
+                                       "Kabuto", "Kabutops", "Ptéra", "Ronflex", _
+                                       "Artikodin", "Électhor", "Sulfura", "Minidraco", _
+                                       "Draco", "Dracolosse", "Mewtwo", "Mew", _
+                                       "Germignon", "Macronium", "Méganium", "Héricendre", _
+                                       "Feurisson", "Typhlosion", "Kaiminus", "Crocrodil", _
+                                       "Aligatueur", "Fouinette", "Fouinar", "Hoothoot", _
+                                       "Noarfang", "Coxy", "Coxyclaque", "Mimigal", _
+                                       "Migalos", "Nostenfer", "Loupio", "Lanturn", _
+                                       "Pichu", "Mélo", "Toudoudou", "Togepi", _
+                                       "Togetic", "Natu", "Xatu", "Wattouat", _
+                                       "Lainergie", "Pharamp", "Joliflor", "Marill", _
+                                       "Azumarill", "Simularbre", "Tarpaud", "Granivol", _
+                                       "Floravol", "Cotovol", "Capumain", "Tournegrin", _
+                                       "Héliatronc", "Yanma", "Axoloto", "Maraiste", _
+                                       "Mentali", "Noctali", "Cornèbre", "Roigada", _
+                                       "Feuforêve", "Zarbi", "Qulbutoké", "Girafarig", _
+                                       "Pomdepik", "Foretress", "Insolourdo", "Scorplane", _
+                                       "Steelix", "Snubbull", "Granbull", "Qwilfish", _
+                                       "Cizayox", "Caratroc", "Scarhino", "Farfuret", _
+                                       "Teddiursa", "Ursaring", "Limagma", "Volcaropod", _
+                                       "Marcacrin", "Cochignon", "Corayon", "Rémoraid", _
+                                       "Octillery", "Cadoizo", "Démanta", "Airmure", _
+                                       "Malosse", "Démolosse", "Hyporoi", "Phanpy", _
+                                       "Donphan", "Porygon2", "Cerfrousse", "Queulorior", _
+                                       "Debugant", "Kapoera", "Lippouti", "Élekid", _
+                                       "Magby", "Écrémeuh", "Leuphorie", "Raikou", _
+                                       "Entei", "Suicune", "Embrylex", "Ymphect", _
+                                       "Tyranocif", "Lugia", "Ho-Oh", "Celebi", _
+                                       "Arcko", "Massko", "Jungko", "Poussifeu", _
+                                       "Galifeu", "Braségali", "Gobou", "Flobio", _
+                                       "Laggron", "Medhyèna", "Grahyèna", "Zigzaton", _
+                                       "Linéon", "Chenipotte", "Armulys", "Charmillon", _
+                                       "Blindalys", "Papinox", "Nénupiot", "Lombre", _
+                                       "Ludicolo", "Grainipiot", "Pifeuil", "Tengalice", _
+                                       "Nirondelle", "Hélédelle", "Goélise", "Bekipan", _
+                                       "Tarsal", "Kirlia", "Gardevoir", "Arakdo", _
+                                       "Maskadra", "Balignon", "Chapignon", "Parecool", _
+                                       "Vigoroth", "Monaflèmit", "Ningale", "Ninjask", _
+                                       "Munja", "Chuchmur", "Ramboum", "Brouhabam", _
+                                       "Makuhita", "Hariyama", "Azurill", "Tarinor", _
+                                       "Skitty", "Delcatty", "Ténéfix", "Mysdibule", _
+                                       "Galekid", "Galegon", "Galeking", "Méditikka", _
+                                       "Charmina", "Dynavolt", "Élecsprint", "Posipi", _
+                                       "Négapi", "Muciole", "Lumivole", "Rosélia", _
+                                       "Gloupti", "Avaltout", "Carvanha", "Sharpedo", _
+                                       "Wailmer", "Wailord", "Chamallot", "Camérupt", _
+                                       "Chartor", "Spoink", "Groret", "Spinda", _
+                                       "Kraknoix", "Vibraninf", "Libégon", "Cacnea", _
+                                       "Cacturne", "Tylton", "Altaria", "Mangriff", _
+                                       "Séviper", "Séléroc", "Solaroc", "Barloche", _
+                                       "Barbicha", "Écrapince", "Colhomard", "Balbuto", _
+                                       "Kaorine", "Lilia", "Vacilys", "Anorith", _
+                                       "Armaldo", "Barpau", "Milobellus", "Morphéo", _
+                                       "Kecleon", "Polichombr", "Branette", "Skelénox", _
+                                       "Téraclope", "Tropius", "Éoko", "Absol", _
+                                       "Okéoké", "Stalgamin", "Oniglali", "Obalie", _
+                                       "Phogleur", "Kaimorse", "Coquiperl", "Serpang", _
+                                       "Rosabyss", "Relicanth", "Lovdisc", "Draby", _
+                                       "Drackhaus", "Drattak", "Terhal", "Métang", _
+                                       "Métalosse", "Regirock", "Regice", "Registeel", _
+                                       "Latias", "Latios", "Kyogre", "Groudon", _
+                                       "Rayquaza", "Jirachi", "Deoxys"}
 
     Friend AttackList As String() = {"(aucune)", "Tackle", "Sand Attack", "Tail Whip", _
                                       "Quick Attack", "Growl", "Scratch", "String Shot", _
@@ -147,8 +147,8 @@ Public Class Form1
                                       "Feint", "Payback", "Telekinesis", "Thrash", _
                                       "Gastro Acid", "Stealth Rock", "Kyogre's Rest"}
 
-    Friend ItemList As String() = {"(none)", "Moon Stone", "Leaf Stone", "Thunderstone", _
-                                   "Water Stone", "Fire Stone", "Old Rod"}
+    Friend ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", _
+                                   "Pierre Eau", "Pierre Feu", "Canne"}
 
     Private implementedPokemonList As Integer() = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, _
                                                    11, 12, 13, 14, 15, 16, 17, 18, 19, 20, _
@@ -494,11 +494,11 @@ Public Class Form1
 
         If profileSet Then
             gb_Data.Enabled = True
-            b_DelOrCreateProfile.Text = "Delete Profile"
+            b_DelOrCreateProfile.Text = "Effacer Profil"
             b_DelOrCreateProfile.Tag = "Del"
         Else
             gb_Data.Enabled = False
-            b_DelOrCreateProfile.Text = "New Profile"
+            b_DelOrCreateProfile.Text = "Nouveau Profil"
             b_DelOrCreateProfile.Tag = "New"
             Exit Sub
         End If
@@ -656,7 +656,7 @@ Public Class Form1
         b_SaveAccount.Enabled = False
 
         gb_Data.Enabled = False
-        gb_Data.Text = "Data"
+        gb_Data.Text = "Données"
         b_DelOrCreateProfile.Enabled = False
         b_Achievements.Enabled = False
         resetValues()
@@ -799,7 +799,7 @@ Public Class Form1
     End Function
 
     Private Sub refreshSprite()
-        Dim rm As Resources.ResourceManager = New Resources.ResourceManager("PTD_Save_Editor.Resources", GetType(Form1).Assembly)
+        Dim rm As Resources.ResourceManager = New Resources.ResourceManager("PTD_Save_Editor.Resources", GetType(Form1_Main).Assembly)
         PictureBox1.Image = CType(rm.GetObject("_" & cb_Specie.SelectedIndex + 1 & If(cb_Shiny.Checked, "s", "")), Drawing.Bitmap)
         If PictureBox1.Image Is Nothing Then
             PictureBox1.Image = PictureBox1.ErrorImage
@@ -808,7 +808,7 @@ Public Class Form1
 #End Region
 
 #Region "Events"
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Form1_Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         tb_Pass.UseSystemPasswordChar = True
 
         Me.Text = Me.Text.Replace("{version}", VersionProg())
@@ -823,13 +823,13 @@ Public Class Form1
         cb_Move3.Items.AddRange(AttackList)
         cb_Move4.Items.AddRange(AttackList)
 
-        Form2.cb_ItemList.Items.AddRange(ItemList)
+        Form2_Inv_Adv.cb_ItemList.Items.AddRange(ItemList)
 
         PictureBox1.Image = PictureBox1.ErrorImage
     End Sub
 
     Private Sub b_ImportAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_ImportAccount.Click
-        lbl_Status.Text = "Loading savefile..."
+        lbl_Status.Text = "Chargement de la sauvegarde..."
         gb_Login.Refresh()
 
         Dim resultData, achiev As Dictionary(Of String, String)
@@ -838,14 +838,14 @@ Public Class Form1
             'Dim tmpResult As String = ImportAccount(tb_Email.Text, tb_Pass.Text)
             resultData = GetDictionaryFromString(ImportAccount(tb_Email.Text, tb_Pass.Text))
 
-            lbl_Status.Text = "Loading achievements..."
+            lbl_Status.Text = "Chargement des achievements..."
             gb_Login.Refresh()
             achiev = GetDictionaryFromString(GetAchievements(tb_Email.Text, tb_Pass.Text))
         Catch
-            MsgBox("An error occurred while fetching data from the server." & vbNewLine & _
-                   "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error")
+            MsgBox("Erreur lors de la récupération des données sur le serveur." & vbNewLine & _
+                   "Veuillez réessayer.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Erreur")
             resetDisplay()
-            lbl_Status.Text = "Error."
+            lbl_Status.Text = "Erreur."
             Exit Sub
         End Try
 
@@ -888,25 +888,25 @@ Public Class Form1
             rb_Profile1.Checked = False
             rb_Profile1.Checked = True
 
-            lbl_Status.Text = "Load complete."
+            lbl_Status.Text = "Chargement effectué."
         Else
             Dim complInfo As String = ""
 
             If resultData.ContainsKey("Reason") Then
                 Select Case resultData("Reason")
                     Case "NotFound"
-                        complInfo = " : account doesn't exist or wrong password"
+                        complInfo = " : compte inexistant ou mot de passe incorrect"
 
                     Case "DatabaseConnection"
-                        complInfo = " : database is experiencing problems"
+                        complInfo = " : la base de données rencontre des problèmes"
                 End Select
             End If
 
             resetDisplay()
-            lbl_Status.Text = "Error."
+            lbl_Status.Text = "Erreur."
 
-            MsgBox("An error occurred while loading" & complInfo & "." & vbNewLine & _
-                   "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error.")
+            MsgBox("Erreur lors du chargement" & complInfo & "." & vbNewLine & _
+                   "Veuillez réessayer.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Erreur lors du chargement.")
         End If
     End Sub
 
@@ -915,7 +915,7 @@ Public Class Form1
 
         Select Case sender.Tag.ToString()
             Case "1", "2", "3"
-                gb_Data.Text = "Data (Profile " & sender.Tag.ToString() & ")"
+                gb_Data.Text = "Données (Profil " & sender.Tag.ToString() & ")"
                 loadProfile(CInt(sender.Tag))
 
             Case Else
@@ -1030,17 +1030,17 @@ Public Class Form1
     End Sub
 
     Private Sub b_EditInv_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_EditInv.Click
-        Form2.ShowDialog()
+        Form2_Inv.ShowDialog()
     End Sub
 
     Private Sub b_SaveAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_SaveAccount.Click
-        If Not MsgBox("Are you sure you want to update the save on the server ?", _
+        If Not MsgBox("Êtes vous sûr de vouloir mettre à jour la sauvegarde sur le serveur ?", _
                       MsgBoxStyle.YesNo Or MsgBoxStyle.Question Or MsgBoxStyle.DefaultButton2, _
-                      "Confirm") = MsgBoxResult.Yes Then
+                      "Confirmation de l'envoi sur le serveur") = MsgBoxResult.Yes Then
             Exit Sub
         End If
 
-        lbl_Status.Text = "Saving savefile..."
+        lbl_Status.Text = "Enregistrement de la sauvegarde..."
         gb_Login.Refresh()
 
         b_SaveProfile.PerformClick()
@@ -1050,7 +1050,7 @@ Public Class Form1
         Try
             resultData = GetDictionaryFromString(SaveAccount(tb_Email.Text, tb_Pass.Text))
 
-            lbl_Status.Text = "Saving achievements..."
+            lbl_Status.Text = "Enregistrement des achievements..."
             gb_Login.Refresh()
 
             Dim tmpAchievements As String = achievements
@@ -1068,18 +1068,18 @@ Public Class Form1
             achievements = tmpAchievements
             currentAchievements = tmpAchievements
         Catch
-            MsgBox("An error occurred while updating the save on the server." & vbNewLine & _
-                   "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error")
+            MsgBox("Erreur lors de la sauvegarde sur le serveur." & vbNewLine & _
+                   "Veuillez réessayer.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Erreur")
 
-            lbl_Status.Text = "Error."
+            lbl_Status.Text = "Erreur."
             Exit Sub
         End Try
 
         If resultData.ContainsKey("Result") AndAlso resultData("Result") = "Success" Then
             If resultData.ContainsKey("Reason") AndAlso resultData("Reason") = "saved" Then
-                lbl_Status.Text = "Save successful."
+                lbl_Status.Text = "Enregistrement effectué."
 
-                MsgBox("Save successful.", MsgBoxStyle.Information, "Save successful.")
+                MsgBox("Sauvegarde effectuée.", MsgBoxStyle.Information, "Sauvegarde effectuée.")
             End If
         Else
             Dim complInfo As String = ""
@@ -1087,17 +1087,17 @@ Public Class Form1
             If resultData.ContainsKey("Reason") Then
                 Select Case resultData("Reason")
                     Case "NotFound"
-                        complInfo = " : account doesn't exist or wrong password"
+                        complInfo = " : compte inexistant ou mot de passe incorrect"
 
                     Case "DatabaseConnection"
-                        complInfo = " : database is experiencing problems"
+                        complInfo = " : la base de données rencontre des problèmes"
                 End Select
             End If
 
-            lbl_Status.Text = "Error."
+            lbl_Status.Text = "Erreur."
 
-            MsgBox("An error occurred while saving" & complInfo & "." & vbNewLine & _
-                   "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error.")
+            MsgBox("Erreur lors de la sauvegarde" & complInfo & "." & vbNewLine & _
+                   "Veuillez réessayer.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Erreur lors de la sauvegarde.")
         End If
     End Sub
 
@@ -1166,7 +1166,7 @@ Public Class Form1
 
     Private Sub b_DelOrCreateProfile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_DelOrCreateProfile.Click
         If b_DelOrCreateProfile.Tag.ToString() = "Del" Then
-            If MsgBox("Are you sure you want to delete this profile ?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo Or MsgBoxStyle.DefaultButton2, "Delete profile ?") = MsgBoxResult.Yes Then
+            If MsgBox("Êtes-vous sûr de vouloir effacer ce profil ?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo Or MsgBoxStyle.DefaultButton2, "Effacer le profil ?") = MsgBoxResult.Yes Then
                 If rb_Profile1.Checked Then
                     profile1 = Nothing
                     profile1Set = False
@@ -1209,7 +1209,7 @@ Public Class Form1
     End Sub
 
     Private Sub b_Events_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_Events.Click
-        Form3.ShowDialog()
+        Form3_Evts.ShowDialog()
     End Sub
 
     Private Sub tb_Numeric_LostFocus(ByVal sender As TextBox, ByVal e As System.EventArgs) Handles tb_Money.LostFocus, tb_Exp.LostFocus
@@ -1292,7 +1292,7 @@ Public Class Form1
     End Sub
 
     Private Sub b_Achievements_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_Achievements.Click
-        Form4.ShowDialog()
+        Form4_Achvts.ShowDialog()
     End Sub
 
     Private Sub cb_Shiny_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_Shiny.CheckedChanged

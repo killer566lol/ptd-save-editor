@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form4
+Partial Class Form4_Achvts
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -96,11 +96,12 @@ Partial Class Form4
         'b_Validate
         '
         Me.b_Validate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.b_Validate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b_Validate.Location = New System.Drawing.Point(12, 83)
         Me.b_Validate.Name = "b_Validate"
         Me.b_Validate.Size = New System.Drawing.Size(75, 23)
         Me.b_Validate.TabIndex = 1
-        Me.b_Validate.Text = "Validate"
+        Me.b_Validate.Text = "Valider"
         Me.b_Validate.UseVisualStyleBackColor = True
         '
         'b_Cancel
@@ -111,10 +112,10 @@ Partial Class Form4
         Me.b_Cancel.Name = "b_Cancel"
         Me.b_Cancel.Size = New System.Drawing.Size(75, 23)
         Me.b_Cancel.TabIndex = 2
-        Me.b_Cancel.Text = "Cancel"
+        Me.b_Cancel.Text = "Annuler"
         Me.b_Cancel.UseVisualStyleBackColor = True
         '
-        'Form4
+        'Form4_Achvts
         '
         Me.AcceptButton = Me.b_Validate
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -127,7 +128,7 @@ Partial Class Form4
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "Form4"
+        Me.Name = "Form4_Achvts"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class Form1_Main
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -113,7 +113,8 @@ Partial Class Form1
         '
         'b_ImportAccount
         '
-        Me.b_ImportAccount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.b_ImportAccount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_ImportAccount.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b_ImportAccount.Location = New System.Drawing.Point(260, 11)
         Me.b_ImportAccount.Name = "b_ImportAccount"
@@ -225,6 +226,8 @@ Partial Class Form1
         '
         'b_SaveAccount
         '
+        Me.b_SaveAccount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_SaveAccount.Enabled = False
         Me.b_SaveAccount.Location = New System.Drawing.Point(260, 37)
         Me.b_SaveAccount.Name = "b_SaveAccount"
@@ -318,7 +321,7 @@ Partial Class Form1
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(117, 13)
         Me.Label11.TabIndex = 81
-        Me.Label11.Text = """Challenges"" terminés :" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label11.Text = """Challenges"" terminés :"
         '
         'b_EditInv
         '
@@ -375,8 +378,7 @@ Partial Class Form1
         '
         'gb_Pokemon
         '
-        Me.gb_Pokemon.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gb_Pokemon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gb_Pokemon.Controls.Add(Me.b_CancelPoke)
         Me.gb_Pokemon.Controls.Add(Me.PictureBox1)
@@ -886,7 +888,7 @@ Partial Class Form1
         Me.llbl_Website.TabStop = True
         Me.llbl_Website.Text = "PTD v2.8 alpha"
         '
-        'Form1
+        'Form1_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -900,7 +902,7 @@ Partial Class Form1
         Me.Controls.Add(Me.gb_Profiles)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
-        Me.Name = "Form1"
+        Me.Name = "Form1_Main"
         Me.Text = "Pokémon Tower Defense Save Editor v{version} - by M@T"
         Me.gb_Profiles.ResumeLayout(False)
         Me.gb_Profiles.PerformLayout()

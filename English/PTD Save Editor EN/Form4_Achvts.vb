@@ -1,14 +1,14 @@
 ﻿Imports System.Text
 
-Public Class Form4
+Public Class Form4_Achvts
 
-    Private Sub Form4_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Form4_Achvts_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim tmpCb As CheckBox
-        For i As Integer = 0 To Form1.currentAchievements.Length - 1
+        For i As Integer = 0 To Form1_Main.currentAchievements.Length - 1
             tmpCb = CType(gb_Achieve1.Controls.Find("cb_Achieve1_" & (i + 1), False)(0), CheckBox)
-            tmpCb.Checked = Form1.currentAchievements(i) <> "0"c
+            tmpCb.Checked = Form1_Main.currentAchievements(i) <> "0"c
 
-            tmpCb.Enabled = Form1.achievements(i) = "0"c
+            tmpCb.Enabled = Form1_Main.achievements(i) = "0"c
         Next i
     End Sub
 
@@ -20,7 +20,7 @@ Public Class Form4
             sb(CInt(c.Tag)) = If(c.Checked, "1"c, "0"c)
         Next c
 
-        Form1.currentAchievements = sb.ToString()
+        Form1_Main.currentAchievements = sb.ToString()
 
         Close()
     End Sub

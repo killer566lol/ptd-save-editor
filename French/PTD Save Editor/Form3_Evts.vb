@@ -1,6 +1,6 @@
-﻿Imports PTD_Save_Editor.Form1
+﻿Imports PTD_Save_Editor.Form1_Main
 
-Public Class Form3
+Public Class Form3_Evts
 
     Private Function GetStarterIndex(ByVal team As List(Of Save.Pokemon)) As Integer
         Try
@@ -14,12 +14,12 @@ Public Class Form3
 
     Private Sub b_DoEvent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles b_DoEvent.Click
         If lb_Events.SelectedIndex = 0 Then ' Shiny Starter
-            Dim tmpIndex As Integer = GetStarterIndex(Form1.tmpTeam)
+            Dim tmpIndex As Integer = GetStarterIndex(Form1_Main.tmpTeam)
 
             If tmpIndex >= 0 Then
-                Form1.tmpTeam(tmpIndex) = Form1.tmpTeam(tmpIndex).makeShiny()
-                Form1.lb_Team.SelectedIndex = tmpIndex
-                Form1.cb_Shiny.Checked = True
+                Form1_Main.tmpTeam(tmpIndex) = Form1_Main.tmpTeam(tmpIndex).makeShiny()
+                Form1_Main.lb_Team.SelectedIndex = tmpIndex
+                Form1_Main.cb_Shiny.Checked = True
             End If
 
         ElseIf lb_Events.SelectedIndex > 0 Then
@@ -62,7 +62,7 @@ Public Class Form3
                 Case 7  ' Shiny Geodude
                     tmpEventPoke.num = 74
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 25}) ' Tackle, Defense Curl
-                    Form1.cb_ShinyGeodude.Checked = True
+                    Form1_Main.cb_ShinyGeodude.Checked = True
 
                 Case 8  ' Shiny Jigglypuff
                     tmpEventPoke.num = 39
@@ -76,7 +76,7 @@ Public Class Form3
                     tmpEventPoke.num = 124
                     tmpEventPoke.shiny = False
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {48}) ' Pound
-                    Form1.cb_Jynx.Checked = True
+                    Form1_Main.cb_Jynx.Checked = True
 
                 Case 11  ' Shiny Zubat
                     tmpEventPoke.num = 41
@@ -95,7 +95,7 @@ Public Class Form3
 
             End Select
 
-            Form1.addPokeToTeam(tmpEventPoke)
+            Form1_Main.addPokeToTeam(tmpEventPoke)
         End If
     End Sub
 
