@@ -90,6 +90,15 @@ Public Class Form3_Evts
                     tmpEventPoke.num = 4
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {6, 5}) ' Scratch, Growl
 
+                Case 14  ' Shiny Spearow
+                    tmpEventPoke.num = 21
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {42, 5}) ' Peck, Growl
+
+                Case 15  ' Shiny Magikarp
+                    tmpEventPoke.num = 129
+                    tmpEventPoke.lvl = 15
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {141, 1}) ' Splash, Tackle
+
                 Case Else
                     Exit Sub
 

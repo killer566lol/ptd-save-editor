@@ -93,9 +93,10 @@ Partial Class Form1_Main
         Me.Label4 = New System.Windows.Forms.Label
         Me.b_DelOrCreateProfile = New System.Windows.Forms.Button
         Me.lbl_ProgramVersion = New System.Windows.Forms.Label
-        Me.llbl_Website = New System.Windows.Forms.LinkLabel
+        Me.llbl_Sam_Blog = New System.Windows.Forms.LinkLabel
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.b_Achievements = New System.Windows.Forms.Button
+        Me.llbl_PTDSE_Website = New System.Windows.Forms.LinkLabel
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -441,7 +442,7 @@ Partial Class Form1_Main
         Me.lbl_MaxLevel.Name = "lbl_MaxLevel"
         Me.lbl_MaxLevel.Size = New System.Drawing.Size(81, 13)
         Me.lbl_MaxLevel.TabIndex = 107
-        Me.lbl_MaxLevel.Text = "Max = 36 (v2.8)"
+        Me.lbl_MaxLevel.Text = "Max = 36 (v2.9)"
         '
         'gb_GenerateCode
         '
@@ -866,16 +867,16 @@ Partial Class Form1_Main
         Me.lbl_ProgramVersion.TabIndex = 1001
         Me.lbl_ProgramVersion.Text = "Pokémon Tower Defense Save Editor v{version} - by M@T"
         '
-        'llbl_Website
+        'llbl_Sam_Blog
         '
-        Me.llbl_Website.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.llbl_Website.AutoSize = True
-        Me.llbl_Website.Location = New System.Drawing.Point(12, 598)
-        Me.llbl_Website.Name = "llbl_Website"
-        Me.llbl_Website.Size = New System.Drawing.Size(82, 13)
-        Me.llbl_Website.TabIndex = 1003
-        Me.llbl_Website.TabStop = True
-        Me.llbl_Website.Text = "PTD v2.8 alpha"
+        Me.llbl_Sam_Blog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.llbl_Sam_Blog.AutoSize = True
+        Me.llbl_Sam_Blog.Location = New System.Drawing.Point(12, 598)
+        Me.llbl_Sam_Blog.Name = "llbl_Sam_Blog"
+        Me.llbl_Sam_Blog.Size = New System.Drawing.Size(82, 13)
+        Me.llbl_Sam_Blog.TabIndex = 1003
+        Me.llbl_Sam_Blog.TabStop = True
+        Me.llbl_Sam_Blog.Text = "PTD v2.9 alpha"
         '
         'b_Achievements
         '
@@ -887,13 +888,24 @@ Partial Class Form1_Main
         Me.b_Achievements.Text = "Achievements"
         Me.b_Achievements.UseVisualStyleBackColor = True
         '
+        'llbl_PTDSE_Website
+        '
+        Me.llbl_PTDSE_Website.AutoSize = True
+        Me.llbl_PTDSE_Website.Location = New System.Drawing.Point(296, 598)
+        Me.llbl_PTDSE_Website.Name = "llbl_PTDSE_Website"
+        Me.llbl_PTDSE_Website.Size = New System.Drawing.Size(129, 13)
+        Me.llbl_PTDSE_Website.TabIndex = 1004
+        Me.llbl_PTDSE_Website.TabStop = True
+        Me.llbl_PTDSE_Website.Text = "PTD Save Editor Website"
+        '
         'Form1_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(437, 620)
+        Me.Controls.Add(Me.llbl_PTDSE_Website)
         Me.Controls.Add(Me.b_Achievements)
-        Me.Controls.Add(Me.llbl_Website)
+        Me.Controls.Add(Me.llbl_Sam_Blog)
         Me.Controls.Add(Me.lbl_ProgramVersion)
         Me.Controls.Add(Me.b_DelOrCreateProfile)
         Me.Controls.Add(Me.gb_Data)
@@ -981,7 +993,7 @@ Partial Class Form1_Main
     Friend WithEvents b_AddPoke As System.Windows.Forms.Button
     Friend WithEvents b_DelOrCreateProfile As System.Windows.Forms.Button
     Friend WithEvents lbl_ProgramVersion As System.Windows.Forms.Label
-    Friend WithEvents llbl_Website As System.Windows.Forms.LinkLabel
+    Friend WithEvents llbl_Sam_Blog As System.Windows.Forms.LinkLabel
     Friend WithEvents nud_Challenge As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents cb_ShinyGeodude As System.Windows.Forms.CheckBox
@@ -1000,5 +1012,6 @@ Partial Class Form1_Main
     Friend WithEvents b_CancelPoke As System.Windows.Forms.Button
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents b_Achievements As System.Windows.Forms.Button
+    Friend WithEvents llbl_PTDSE_Website As System.Windows.Forms.LinkLabel
 
 End Class
