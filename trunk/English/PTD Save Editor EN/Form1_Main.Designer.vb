@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class Form1_Main
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -887,7 +887,7 @@ Partial Class Form1
         Me.b_Achievements.Text = "Achievements"
         Me.b_Achievements.UseVisualStyleBackColor = True
         '
-        'Form1
+        'Form1_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -901,7 +901,7 @@ Partial Class Form1
         Me.Controls.Add(Me.gb_Profiles)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
-        Me.Name = "Form1"
+        Me.Name = "Form1_Main"
         Me.Text = "Pokémon Tower Defense Save Editor v{version} - by M@T"
         Me.gb_Profiles.ResumeLayout(False)
         Me.gb_Profiles.PerformLayout()

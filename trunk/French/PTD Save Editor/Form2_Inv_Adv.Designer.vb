@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form2
+Partial Class Form2_Inv_Adv
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -33,24 +33,24 @@ Partial Class Form2
         '
         'b_Validate
         '
-        Me.b_Validate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.b_Validate.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.b_Validate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b_Validate.Location = New System.Drawing.Point(12, 233)
         Me.b_Validate.Name = "b_Validate"
         Me.b_Validate.Size = New System.Drawing.Size(75, 23)
         Me.b_Validate.TabIndex = 0
-        Me.b_Validate.Text = "Validate"
+        Me.b_Validate.Text = "Valider"
         Me.b_Validate.UseVisualStyleBackColor = True
         '
         'b_Cancel
         '
-        Me.b_Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.b_Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.b_Cancel.Location = New System.Drawing.Point(194, 233)
         Me.b_Cancel.Name = "b_Cancel"
         Me.b_Cancel.Size = New System.Drawing.Size(75, 23)
         Me.b_Cancel.TabIndex = 1
-        Me.b_Cancel.Text = "Cancel"
+        Me.b_Cancel.Text = "Annuler"
         Me.b_Cancel.UseVisualStyleBackColor = True
         '
         'lb_Items
@@ -69,7 +69,7 @@ Partial Class Form2
         Me.b_Modify.Name = "b_Modify"
         Me.b_Modify.Size = New System.Drawing.Size(75, 23)
         Me.b_Modify.TabIndex = 3
-        Me.b_Modify.Text = "Modify"
+        Me.b_Modify.Text = "Modifier"
         Me.b_Modify.UseVisualStyleBackColor = True
         '
         'cb_ItemList
@@ -88,7 +88,7 @@ Partial Class Form2
         Me.b_Delete.Name = "b_Delete"
         Me.b_Delete.Size = New System.Drawing.Size(75, 23)
         Me.b_Delete.TabIndex = 5
-        Me.b_Delete.Text = "Remove"
+        Me.b_Delete.Text = "Supprimer"
         Me.b_Delete.UseVisualStyleBackColor = True
         '
         'b_Add
@@ -97,10 +97,10 @@ Partial Class Form2
         Me.b_Add.Name = "b_Add"
         Me.b_Add.Size = New System.Drawing.Size(75, 23)
         Me.b_Add.TabIndex = 6
-        Me.b_Add.Text = "Add"
+        Me.b_Add.Text = "Ajouter"
         Me.b_Add.UseVisualStyleBackColor = True
         '
-        'Form2
+        'Form2_Inv_Adv
         '
         Me.AcceptButton = Me.b_Validate
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -117,11 +117,11 @@ Partial Class Form2
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "Form2"
+        Me.Name = "Form2_Inv_Adv"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Inventory"
+        Me.Text = "Inventaire - Mode avancé"
         Me.ResumeLayout(False)
 
     End Sub

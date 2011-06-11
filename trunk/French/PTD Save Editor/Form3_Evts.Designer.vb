@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form3
+Partial Class Form3_Evts
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -28,7 +28,7 @@ Partial Class Form3
         '
         'b_DoEvent
         '
-        Me.b_DoEvent.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.b_DoEvent.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.b_DoEvent.Enabled = False
         Me.b_DoEvent.Location = New System.Drawing.Point(49, 204)
         Me.b_DoEvent.Name = "b_DoEvent"
@@ -50,7 +50,7 @@ Partial Class Form3
         Me.lb_Events.Size = New System.Drawing.Size(160, 186)
         Me.lb_Events.TabIndex = 1
         '
-        'Form3
+        'Form3_Evts
         '
         Me.AcceptButton = Me.b_DoEvent
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -63,7 +63,7 @@ Partial Class Form3
         Me.MaximumSize = New System.Drawing.Size(200, 10000)
         Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(200, 106)
-        Me.Name = "Form3"
+        Me.Name = "Form3_Evts"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
