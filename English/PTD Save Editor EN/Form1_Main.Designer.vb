@@ -97,6 +97,7 @@ Partial Class Form1_Main
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.b_Achievements = New System.Windows.Forms.Button
         Me.llbl_PTDSE_Website = New System.Windows.Forms.LinkLabel
+        Me.cb_SortAlpha = New System.Windows.Forms.CheckBox
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -381,6 +382,7 @@ Partial Class Form1_Main
         '
         Me.gb_Pokemon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Pokemon.Controls.Add(Me.cb_SortAlpha)
         Me.gb_Pokemon.Controls.Add(Me.b_CancelPoke)
         Me.gb_Pokemon.Controls.Add(Me.PictureBox1)
         Me.gb_Pokemon.Controls.Add(Me.lbl_MaxExp)
@@ -898,6 +900,17 @@ Partial Class Form1_Main
         Me.llbl_PTDSE_Website.TabStop = True
         Me.llbl_PTDSE_Website.Text = "PTD Save Editor Website"
         '
+        'cb_SortAlpha
+        '
+        Me.cb_SortAlpha.AutoSize = True
+        Me.cb_SortAlpha.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cb_SortAlpha.Location = New System.Drawing.Point(358, 149)
+        Me.cb_SortAlpha.Name = "cb_SortAlpha"
+        Me.cb_SortAlpha.Size = New System.Drawing.Size(41, 31)
+        Me.cb_SortAlpha.TabIndex = 1005
+        Me.cb_SortAlpha.Text = "Alpha."
+        Me.cb_SortAlpha.UseVisualStyleBackColor = True
+        '
         'Form1_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1013,5 +1026,6 @@ Partial Class Form1_Main
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents b_Achievements As System.Windows.Forms.Button
     Friend WithEvents llbl_PTDSE_Website As System.Windows.Forms.LinkLabel
+    Friend WithEvents cb_SortAlpha As System.Windows.Forms.CheckBox
 
 End Class
