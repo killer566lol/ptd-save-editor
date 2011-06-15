@@ -4,149 +4,151 @@ Imports System.Collections.Specialized
 Public Class Form1_Main
 
 #Region "Lists"
-    Friend PokemonList As String() = {"-", "Bulbizarre", "Herbizarre", "Florizarre", _
-                                       "Salamèche", "Reptincel", "Dracaufeu", "Carapuce", _
-                                       "Carabaffe", "Tortank", "Chenipan", "Chrysacier", _
-                                       "Papilusion", "Aspicot", "Coconfort", "Dardargnan", _
-                                       "Roucool", "Roucoups", "Roucarnage", "Rattata", _
-                                       "Rattatac", "Piafabec", "Rapasdepic", "Abo", _
-                                       "Arbok", "Pikachu", "Raichu", "Sabelette", _
-                                       "Sablaireau", "Nidoran" & ChrW(9792), "Nidorina", "Nidoqueen", _
-                                       "Nidoran" & ChrW(9794), "Nidorino", "Nidoking", "Mélofée", _
-                                       "Mélodelfe", "Goupix", "Feunard", "Rondoudou", _
-                                       "Grodoudou", "Nosferapti", "Nosferalto", "Mystherbe", _
-                                       "Ortide", "Rafflesia", "Paras", "Parasect", _
-                                       "Mimitoss", "Aéromite", "Taupiqueur", "Triopikeur", _
-                                       "Miaouss", "Persian", "Psykokwak", "Akwakwak", _
-                                       "Férosinge", "Colossinge", "Caninos", "Arcanin", _
-                                       "Ptitard", "Têtarte", "Tartard", "Abra", _
-                                       "Kadabra", "Alakazam", "Machoc", "Machopeur", _
-                                       "Mackogneur", "Chétiflor", "Boustiflor", "Empiflor", _
-                                       "Tentacool", "Tentacruel", "Racaillou", "Gravalanch", _
-                                       "Grolem", "Ponyta", "Galopa", "Ramoloss", _
-                                       "Flagadoss", "Magnéti", "Magnéton", "Canarticho", _
-                                       "Doduo", "Dodrio", "Otaria", "Lamantine", _
-                                       "Tadmorv", "Grotadmorv", "Kokiyas", "Crustabri", _
-                                       "Fantominus", "Spectrum", "Ectoplasma", "Onix", _
-                                       "Soporifik", "Hypnomade", "Krabby", "Krabboss", _
-                                       "Voltorbe", "Électrode", "Noeunoeuf", "Noadkoko", _
-                                       "Osselait", "Ossatueur", "Kicklee", "Tygnon", _
-                                       "Excelangue", "Smogo", "Smogogo", "Rhinocorne", _
-                                       "Rhinoféros", "Leveinard", "Saquedeneu", "Kangourex", _
-                                       "Hypotrempe", "Hypocéan", "Poissirène", "Poissoroy", _
-                                       "Stari", "Staross", "M. Mime", "Insécateur", _
-                                       "Lippoutou", "Élektek", "Magmar", "Scarabrute", _
-                                       "Tauros", "Magicarpe", "Léviator", "Lokhlass", _
-                                       "Métamorph", "Évoli", "Aquali", "Voltali", _
-                                       "Pyroli", "Porygon", "Amonita", "Amonistar", _
-                                       "Kabuto", "Kabutops", "Ptéra", "Ronflex", _
-                                       "Artikodin", "Électhor", "Sulfura", "Minidraco", _
-                                       "Draco", "Dracolosse", "Mewtwo", "Mew", _
-                                       "Germignon", "Macronium", "Méganium", "Héricendre", _
-                                       "Feurisson", "Typhlosion", "Kaiminus", "Crocrodil", _
-                                       "Aligatueur", "Fouinette", "Fouinar", "Hoothoot", _
-                                       "Noarfang", "Coxy", "Coxyclaque", "Mimigal", _
-                                       "Migalos", "Nostenfer", "Loupio", "Lanturn", _
-                                       "Pichu", "Mélo", "Toudoudou", "Togepi", _
-                                       "Togetic", "Natu", "Xatu", "Wattouat", _
-                                       "Lainergie", "Pharamp", "Joliflor", "Marill", _
-                                       "Azumarill", "Simularbre", "Tarpaud", "Granivol", _
-                                       "Floravol", "Cotovol", "Capumain", "Tournegrin", _
-                                       "Héliatronc", "Yanma", "Axoloto", "Maraiste", _
-                                       "Mentali", "Noctali", "Cornèbre", "Roigada", _
-                                       "Feuforêve", "Zarbi", "Qulbutoké", "Girafarig", _
-                                       "Pomdepik", "Foretress", "Insolourdo", "Scorplane", _
-                                       "Steelix", "Snubbull", "Granbull", "Qwilfish", _
-                                       "Cizayox", "Caratroc", "Scarhino", "Farfuret", _
-                                       "Teddiursa", "Ursaring", "Limagma", "Volcaropod", _
-                                       "Marcacrin", "Cochignon", "Corayon", "Rémoraid", _
-                                       "Octillery", "Cadoizo", "Démanta", "Airmure", _
-                                       "Malosse", "Démolosse", "Hyporoi", "Phanpy", _
-                                       "Donphan", "Porygon2", "Cerfrousse", "Queulorior", _
-                                       "Debugant", "Kapoera", "Lippouti", "Élekid", _
-                                       "Magby", "Écrémeuh", "Leuphorie", "Raikou", _
-                                       "Entei", "Suicune", "Embrylex", "Ymphect", _
-                                       "Tyranocif", "Lugia", "Ho-Oh", "Celebi", _
-                                       "Arcko", "Massko", "Jungko", "Poussifeu", _
-                                       "Galifeu", "Braségali", "Gobou", "Flobio", _
-                                       "Laggron", "Medhyèna", "Grahyèna", "Zigzaton", _
-                                       "Linéon", "Chenipotte", "Armulys", "Charmillon", _
-                                       "Blindalys", "Papinox", "Nénupiot", "Lombre", _
-                                       "Ludicolo", "Grainipiot", "Pifeuil", "Tengalice", _
-                                       "Nirondelle", "Hélédelle", "Goélise", "Bekipan", _
-                                       "Tarsal", "Kirlia", "Gardevoir", "Arakdo", _
-                                       "Maskadra", "Balignon", "Chapignon", "Parecool", _
-                                       "Vigoroth", "Monaflèmit", "Ningale", "Ninjask", _
-                                       "Munja", "Chuchmur", "Ramboum", "Brouhabam", _
-                                       "Makuhita", "Hariyama", "Azurill", "Tarinor", _
-                                       "Skitty", "Delcatty", "Ténéfix", "Mysdibule", _
-                                       "Galekid", "Galegon", "Galeking", "Méditikka", _
-                                       "Charmina", "Dynavolt", "Élecsprint", "Posipi", _
-                                       "Négapi", "Muciole", "Lumivole", "Rosélia", _
-                                       "Gloupti", "Avaltout", "Carvanha", "Sharpedo", _
-                                       "Wailmer", "Wailord", "Chamallot", "Camérupt", _
-                                       "Chartor", "Spoink", "Groret", "Spinda", _
-                                       "Kraknoix", "Vibraninf", "Libégon", "Cacnea", _
-                                       "Cacturne", "Tylton", "Altaria", "Mangriff", _
-                                       "Séviper", "Séléroc", "Solaroc", "Barloche", _
-                                       "Barbicha", "Écrapince", "Colhomard", "Balbuto", _
-                                       "Kaorine", "Lilia", "Vacilys", "Anorith", _
-                                       "Armaldo", "Barpau", "Milobellus", "Morphéo", _
-                                       "Kecleon", "Polichombr", "Branette", "Skelénox", _
-                                       "Téraclope", "Tropius", "Éoko", "Absol", _
-                                       "Okéoké", "Stalgamin", "Oniglali", "Obalie", _
-                                       "Phogleur", "Kaimorse", "Coquiperl", "Serpang", _
-                                       "Rosabyss", "Relicanth", "Lovdisc", "Draby", _
-                                       "Drackhaus", "Drattak", "Terhal", "Métang", _
-                                       "Métalosse", "Regirock", "Regice", "Registeel", _
-                                       "Latias", "Latios", "Kyogre", "Groudon", _
-                                       "Rayquaza", "Jirachi", "Deoxys"}
+    Private Const MOVE_NONE As String = "(aucune)"
 
-    Friend AttackList As String() = {"(aucune)", "Tackle", "Sand Attack", "Tail Whip", _
-                                      "Quick Attack", "Growl", "Scratch", "String Shot", _
-                                      "Poison Sting", "Leech Seed", "Ember", "Bubble", _
-                                      "Focus Energy", "Bug Bite", "Harden", "Gust", _
-                                      "Vine Whip", "Smokescreen", "Withdraw", "Bite", _
-                                      "Confusion", "Fury Attack", "Thundershock", "Thunderwave", _
-                                      "Poison Powder", "Defense Curl", "Sleep Powder", "Take Down", _
-                                      "Razor Leaf", "Dragon Rage", "Scary Face", "Water Gun", _
-                                      "Rapid Spin", "Pursuit", "Hyper Fang", "Sucker Punch", _
-                                      "Whirlwind", "Stun Spore", "Supersonic", "Twineedle", _
-                                      "Rage", "Electro Ball", "Peck", "Leer", _
-                                      "Aerial Ace", "Double Kick", "Fury Swipes", "Sing", _
-                                      "Pound", "Disable", "Round", "Low Kick", _
-                                      "Karate Chop", "Seismic Toss", "Leech Life", "Fury Cutter", _
-                                      "Transform", "Reflect Type", "Metronome", "Mega Punch", _
-                                      "Encore", "Double Slap", "Follow Me", "Minimize", _
-                                      "Mud Sport", "Rock Polish", "Rock Throw", "Magnitude", _
-                                      "Rollout", "Swift", "Wrap", "Glare", _
-                                      "Screech", "Acid", "Astonish", "Wing Attack", _
-                                      "Sweet Scent", "Twister", "Mirror Move", "Double Team", _
-                                      "Horn Attack", "Confuse Ray", "Rock Blast", "Protect", _
-                                      "Crunch", "Crush Claw", "Wake-Up Slap", "Spore", _
-                                      "Chip Away", "Psybeam", "Smack Down", "Growth", _
-                                      "Fire Fang", "Water Pulse", "Toxic Spikes", "Featherdance", _
-                                      "Assurance", "Agility", "Stockpile", "Helping Hand", _
-                                      "Air Cutter", "Roar", "Odor Sleuth", "Flame Wheel", _
-                                      "Reversal", "Fire Spin", "Flame Burst", "Absorb", _
-                                      "Mega Drain", "Water Sport", "Hypnosis", "Rain Dance", _
-                                      "Bubblebeam", "Lucky Chant", "Body Slam", "Recover", _
-                                      "Teleport", "Miracle Eye", "Ally Switch", "Lick", _
-                                      "Lovely Kiss", "Powder Snow", "Ice Punch", "Heart Stamp", _
-                                      "Swallow", "Slam", "Spit Up", "Double-Edge", _
-                                      "Sand Tomb", "Safeguard", "Slash", "Knock Off", _
-                                      "Leaf Tornado", "Aqua Tail", "Silver Wind", "Pin Missile", _
-                                      "Super Fang", "Acid Spray", "Cosmic Power", "Mud Shot", _
-                                      "Fake Tears", "Splash", "Thunderbolt", "Rest", _
-                                      "Selfdestruct", "Tailwind", "Reflect", "Flail", _
-                                      "Psychic", "Worry Seed", "Skull Bash", "Will-O-Wisp", _
-                                      "Belly Drum", "Petal Dance", "DynamicPunch", "Bulldoze", _
-                                      "Ice Fang", "Synthesis", "Roost", "Mud Bomb", _
-                                      "Gyro Ball", "Flatter", "Acrobatics", "Moonlight", _
-                                      "Swagger", "Iron Defense", "Rage Powder", "Endeavor", _
-                                      "Feint", "Payback", "Telekinesis", "Thrash", _
-                                      "Gastro Acid", "Stealth Rock", "Kyogre's Rest", "Fake Out", _
-                                      "Faint Attack", "Taunt", "Pay Day", "Power Gem"}
+    Friend PokemonList As String() = {"Bulbizarre", "Herbizarre", "Florizarre", "Salamèche", _
+                                      "Reptincel", "Dracaufeu", "Carapuce", "Carabaffe", _
+                                      "Tortank", "Chenipan", "Chrysacier", "Papilusion", _
+                                      "Aspicot", "Coconfort", "Dardargnan", "Roucool", _
+                                      "Roucoups", "Roucarnage", "Rattata", "Rattatac", _
+                                      "Piafabec", "Rapasdepic", "Abo", "Arbok", _
+                                      "Pikachu", "Raichu", "Sabelette", "Sablaireau", _
+                                      "Nidoran" & ChrW(9792), "Nidorina", "Nidoqueen", "Nidoran" & ChrW(9794), _
+                                      "Nidorino", "Nidoking", "Mélofée", "Mélodelfe", _
+                                      "Goupix", "Feunard", "Rondoudou", "Grodoudou", _
+                                      "Nosferapti", "Nosferalto", "Mystherbe", "Ortide", _
+                                      "Rafflesia", "Paras", "Parasect", "Mimitoss", _
+                                      "Aéromite", "Taupiqueur", "Triopikeur", "Miaouss", _
+                                      "Persian", "Psykokwak", "Akwakwak", "Férosinge", _
+                                      "Colossinge", "Caninos", "Arcanin", "Ptitard", _
+                                      "Têtarte", "Tartard", "Abra", "Kadabra", _
+                                      "Alakazam", "Machoc", "Machopeur", "Mackogneur", _
+                                      "Chétiflor", "Boustiflor", "Empiflor", "Tentacool", _
+                                      "Tentacruel", "Racaillou", "Gravalanch", "Grolem", _
+                                      "Ponyta", "Galopa", "Ramoloss", "Flagadoss", _
+                                      "Magnéti", "Magnéton", "Canarticho", "Doduo", _
+                                      "Dodrio", "Otaria", "Lamantine", "Tadmorv", _
+                                      "Grotadmorv", "Kokiyas", "Crustabri", "Fantominus", _
+                                      "Spectrum", "Ectoplasma", "Onix", "Soporifik", _
+                                      "Hypnomade", "Krabby", "Krabboss", "Voltorbe", _
+                                      "Électrode", "Noeunoeuf", "Noadkoko", "Osselait", _
+                                      "Ossatueur", "Kicklee", "Tygnon", "Excelangue", _
+                                      "Smogo", "Smogogo", "Rhinocorne", "Rhinoféros", _
+                                      "Leveinard", "Saquedeneu", "Kangourex", "Hypotrempe", _
+                                      "Hypocéan", "Poissirène", "Poissoroy", "Stari", _
+                                      "Staross", "M. Mime", "Insécateur", "Lippoutou", _
+                                      "Élektek", "Magmar", "Scarabrute", "Tauros", _
+                                      "Magicarpe", "Léviator", "Lokhlass", "Métamorph", _
+                                      "Évoli", "Aquali", "Voltali", "Pyroli", _
+                                      "Porygon", "Amonita", "Amonistar", "Kabuto", _
+                                      "Kabutops", "Ptéra", "Ronflex", "Artikodin", _
+                                      "Électhor", "Sulfura", "Minidraco", "Draco", _
+                                      "Dracolosse", "Mewtwo", "Mew", "Germignon", _
+                                      "Macronium", "Méganium", "Héricendre", "Feurisson", _
+                                      "Typhlosion", "Kaiminus", "Crocrodil", "Aligatueur", _
+                                      "Fouinette", "Fouinar", "Hoothoot", "Noarfang", _
+                                      "Coxy", "Coxyclaque", "Mimigal", "Migalos", _
+                                      "Nostenfer", "Loupio", "Lanturn", "Pichu", _
+                                      "Mélo", "Toudoudou", "Togepi", "Togetic", _
+                                      "Natu", "Xatu", "Wattouat", "Lainergie", _
+                                      "Pharamp", "Joliflor", "Marill", "Azumarill", _
+                                      "Simularbre", "Tarpaud", "Granivol", "Floravol", _
+                                      "Cotovol", "Capumain", "Tournegrin", "Héliatronc", _
+                                      "Yanma", "Axoloto", "Maraiste", "Mentali", _
+                                      "Noctali", "Cornèbre", "Roigada", "Feuforêve", _
+                                      "Zarbi", "Qulbutoké", "Girafarig", "Pomdepik", _
+                                      "Foretress", "Insolourdo", "Scorplane", "Steelix", _
+                                      "Snubbull", "Granbull", "Qwilfish", "Cizayox", _
+                                      "Caratroc", "Scarhino", "Farfuret", "Teddiursa", _
+                                      "Ursaring", "Limagma", "Volcaropod", "Marcacrin", _
+                                      "Cochignon", "Corayon", "Rémoraid", "Octillery", _
+                                      "Cadoizo", "Démanta", "Airmure", "Malosse", _
+                                      "Démolosse", "Hyporoi", "Phanpy", "Donphan", _
+                                      "Porygon2", "Cerfrousse", "Queulorior", "Debugant", _
+                                      "Kapoera", "Lippouti", "Élekid", "Magby", _
+                                      "Écrémeuh", "Leuphorie", "Raikou", "Entei", _
+                                      "Suicune", "Embrylex", "Ymphect", "Tyranocif", _
+                                      "Lugia", "Ho-Oh", "Celebi", "Arcko", _
+                                      "Massko", "Jungko", "Poussifeu", "Galifeu", _
+                                      "Braségali", "Gobou", "Flobio", "Laggron", _
+                                      "Medhyèna", "Grahyèna", "Zigzaton", "Linéon", _
+                                      "Chenipotte", "Armulys", "Charmillon", "Blindalys", _
+                                      "Papinox", "Nénupiot", "Lombre", "Ludicolo", _
+                                      "Grainipiot", "Pifeuil", "Tengalice", "Nirondelle", _
+                                      "Hélédelle", "Goélise", "Bekipan", "Tarsal", _
+                                      "Kirlia", "Gardevoir", "Arakdo", "Maskadra", _
+                                      "Balignon", "Chapignon", "Parecool", "Vigoroth", _
+                                      "Monaflèmit", "Ningale", "Ninjask", "Munja", _
+                                      "Chuchmur", "Ramboum", "Brouhabam", "Makuhita", _
+                                      "Hariyama", "Azurill", "Tarinor", "Skitty", _
+                                      "Delcatty", "Ténéfix", "Mysdibule", "Galekid", _
+                                      "Galegon", "Galeking", "Méditikka", "Charmina", _
+                                      "Dynavolt", "Élecsprint", "Posipi", "Négapi", _
+                                      "Muciole", "Lumivole", "Rosélia", "Gloupti", _
+                                      "Avaltout", "Carvanha", "Sharpedo", "Wailmer", _
+                                      "Wailord", "Chamallot", "Camérupt", "Chartor", _
+                                      "Spoink", "Groret", "Spinda", "Kraknoix", _
+                                      "Vibraninf", "Libégon", "Cacnea", "Cacturne", _
+                                      "Tylton", "Altaria", "Mangriff", "Séviper", _
+                                      "Séléroc", "Solaroc", "Barloche", "Barbicha", _
+                                      "Écrapince", "Colhomard", "Balbuto", "Kaorine", _
+                                      "Lilia", "Vacilys", "Anorith", "Armaldo", _
+                                      "Barpau", "Milobellus", "Morphéo", "Kecleon", _
+                                      "Polichombr", "Branette", "Skelénox", "Téraclope", _
+                                      "Tropius", "Éoko", "Absol", "Okéoké", _
+                                      "Stalgamin", "Oniglali", "Obalie", "Phogleur", _
+                                      "Kaimorse", "Coquiperl", "Serpang", "Rosabyss", _
+                                      "Relicanth", "Lovdisc", "Draby", "Drackhaus", _
+                                      "Drattak", "Terhal", "Métang", "Métalosse", _
+                                      "Regirock", "Regice", "Registeel", "Latias", _
+                                      "Latios", "Kyogre", "Groudon", "Rayquaza", _
+                                      "Jirachi", "Deoxys"}
+
+    Friend AttackList As String() = {MOVE_NONE, "Tackle", "Sand Attack", "Tail Whip", _
+                                     "Quick Attack", "Growl", "Scratch", "String Shot", _
+                                     "Poison Sting", "Leech Seed", "Ember", "Bubble", _
+                                     "Focus Energy", "Bug Bite", "Harden", "Gust", _
+                                     "Vine Whip", "Smokescreen", "Withdraw", "Bite", _
+                                     "Confusion", "Fury Attack", "Thundershock", "Thunderwave", _
+                                     "Poison Powder", "Defense Curl", "Sleep Powder", "Take Down", _
+                                     "Razor Leaf", "Dragon Rage", "Scary Face", "Water Gun", _
+                                     "Rapid Spin", "Pursuit", "Hyper Fang", "Sucker Punch", _
+                                     "Whirlwind", "Stun Spore", "Supersonic", "Twineedle", _
+                                     "Rage", "Electro Ball", "Peck", "Leer", _
+                                     "Aerial Ace", "Double Kick", "Fury Swipes", "Sing", _
+                                     "Pound", "Disable", "Round", "Low Kick", _
+                                     "Karate Chop", "Seismic Toss", "Leech Life", "Fury Cutter", _
+                                     "Transform", "Reflect Type", "Metronome", "Mega Punch", _
+                                     "Encore", "Double Slap", "Follow Me", "Minimize", _
+                                     "Mud Sport", "Rock Polish", "Rock Throw", "Magnitude", _
+                                     "Rollout", "Swift", "Wrap", "Glare", _
+                                     "Screech", "Acid", "Astonish", "Wing Attack", _
+                                     "Sweet Scent", "Twister", "Mirror Move", "Double Team", _
+                                     "Horn Attack", "Confuse Ray", "Rock Blast", "Protect", _
+                                     "Crunch", "Crush Claw", "Wake-Up Slap", "Spore", _
+                                     "Chip Away", "Psybeam", "Smack Down", "Growth", _
+                                     "Fire Fang", "Water Pulse", "Toxic Spikes", "Featherdance", _
+                                     "Assurance", "Agility", "Stockpile", "Helping Hand", _
+                                     "Air Cutter", "Roar", "Odor Sleuth", "Flame Wheel", _
+                                     "Reversal", "Fire Spin", "Flame Burst", "Absorb", _
+                                     "Mega Drain", "Water Sport", "Hypnosis", "Rain Dance", _
+                                     "Bubblebeam", "Lucky Chant", "Body Slam", "Recover", _
+                                     "Teleport", "Miracle Eye", "Ally Switch", "Lick", _
+                                     "Lovely Kiss", "Powder Snow", "Ice Punch", "Heart Stamp", _
+                                     "Swallow", "Slam", "Spit Up", "Double-Edge", _
+                                     "Sand Tomb", "Safeguard", "Slash", "Knock Off", _
+                                     "Leaf Tornado", "Aqua Tail", "Silver Wind", "Pin Missile", _
+                                     "Super Fang", "Acid Spray", "Cosmic Power", "Mud Shot", _
+                                     "Fake Tears", "Splash", "Thunderbolt", "Rest", _
+                                     "Selfdestruct", "Tailwind", "Reflect", "Flail", _
+                                     "Psychic", "Worry Seed", "Skull Bash", "Will-O-Wisp", _
+                                     "Belly Drum", "Petal Dance", "DynamicPunch", "Bulldoze", _
+                                     "Ice Fang", "Synthesis", "Roost", "Mud Bomb", _
+                                     "Gyro Ball", "Flatter", "Acrobatics", "Moonlight", _
+                                     "Swagger", "Iron Defense", "Rage Powder", "Endeavor", _
+                                     "Feint", "Payback", "Telekinesis", "Thrash", _
+                                     "Gastro Acid", "Stealth Rock", "Kyogre's Rest", "Fake Out", _
+                                     "Faint Attack", "Taunt", "Pay Day", "Power Gem"}
 
     Friend ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", _
                                    "Pierre Eau", "Pierre Feu", "Canne"}
@@ -183,6 +185,11 @@ Public Class Form1_Main
 
     Friend achievements As String = "0000"
     Friend currentAchievements As String = "0000"
+
+    Dim sortedPl(PokemonList.Length - 1) As String
+    Dim sortedAl(AttackList.Length - 1) As String
+    Dim sortedPlIndices As New List(Of Integer)
+    Dim sortedAlIndices As New List(Of Integer)
 #End Region
 
 #Region "Structures"
@@ -512,7 +519,7 @@ Public Class Form1_Main
 
         lb_Team.Items.Clear()
         For Each p As Save.Pokemon In profile.team
-            lb_Team.Items.Add(PokemonList(p.num))
+            lb_Team.Items.Add(PokemonList(p.num - 1))
         Next p
 
         nud_Attempted.Value = profile.levelAttempted
@@ -664,7 +671,7 @@ Public Class Form1_Main
     End Sub
 
     Private Sub saveCurrentPokeData()
-        tmpPoke.num = cb_Specie.SelectedIndex + 1
+        tmpPoke.num = If(cb_SortAlpha.Checked, sortedPlIndices(cb_Specie.SelectedIndex) + 1, cb_Specie.SelectedIndex + 1)
         tmpPoke.lvl = nud_Level.Value
         tmpPoke.exp = CInt(tb_Exp.Text)
         tmpPoke.shiny = cb_Shiny.Checked
@@ -675,7 +682,7 @@ Public Class Form1_Main
         If cb_Move1.SelectedIndex < 1 Then
             invalidMovesCnt += 1
         Else
-            tmpMoves.Add(cb_Move1.SelectedIndex)
+            tmpMoves.Add(If(cb_SortAlpha.Checked, sortedAlIndices(cb_Move1.SelectedIndex), cb_Move1.SelectedIndex))
 
             If rb_SelMove1.Checked Then
                 tmpPoke.moveSel = 1
@@ -685,7 +692,7 @@ Public Class Form1_Main
         If cb_Move2.SelectedIndex < 1 Then
             invalidMovesCnt += 1
         Else
-            tmpMoves.Add(cb_Move2.SelectedIndex)
+            tmpMoves.Add(If(cb_SortAlpha.Checked, sortedAlIndices(cb_Move2.SelectedIndex), cb_Move2.SelectedIndex))
 
             If rb_SelMove2.Checked Then
                 tmpPoke.moveSel = 2 - invalidMovesCnt
@@ -695,7 +702,7 @@ Public Class Form1_Main
         If cb_Move3.SelectedIndex < 1 Then
             invalidMovesCnt += 1
         Else
-            tmpMoves.Add(cb_Move3.SelectedIndex)
+            tmpMoves.Add(If(cb_SortAlpha.Checked, sortedAlIndices(cb_Move3.SelectedIndex), cb_Move3.SelectedIndex))
 
             If rb_SelMove3.Checked Then
                 tmpPoke.moveSel = 3 - invalidMovesCnt
@@ -705,7 +712,7 @@ Public Class Form1_Main
         If cb_Move4.SelectedIndex < 1 Then
             invalidMovesCnt += 1
         Else
-            tmpMoves.Add(cb_Move4.SelectedIndex)
+            tmpMoves.Add(If(cb_SortAlpha.Checked, sortedAlIndices(cb_Move4.SelectedIndex), cb_Move4.SelectedIndex))
 
             If rb_SelMove4.Checked Then
                 tmpPoke.moveSel = 4 - invalidMovesCnt
@@ -728,7 +735,7 @@ Public Class Form1_Main
         saveCurrentPokeData()
 
         tmpTeam(pkmId) = tmpPoke
-        lb_Team.Items(pkmId) = PokemonList(tmpPoke.num)
+        lb_Team.Items(pkmId) = PokemonList(tmpPoke.num - 1)
 
         savingPoke = False
     End Sub
@@ -744,19 +751,19 @@ Public Class Form1_Main
             tmpPoke = tmpTeam(lb_Team.SelectedIndex)
 
             lbl_ID.Text = "ID : " & tmpPoke.id
-            cb_Specie.SelectedIndex = tmpPoke.num - 1
+            cb_Specie.SelectedIndex = If(cb_SortAlpha.Checked, sortedPlIndices.IndexOf(tmpPoke.num - 1), tmpPoke.num - 1)
             nud_Level.Value = tmpPoke.lvl
             tb_Exp.Text = tmpPoke.exp
             cb_Shiny.Checked = tmpPoke.shiny
 
             tmpMoveList = tmpPoke.fourMoves()
 
-            cb_Move1.SelectedIndex = tmpMoveList(0)
-            cb_Move2.SelectedIndex = tmpMoveList(1)
-            cb_Move3.SelectedIndex = tmpMoveList(2)
-            cb_Move4.SelectedIndex = tmpMoveList(3)
+            cb_Move1.SelectedIndex = If(cb_SortAlpha.Checked, sortedAlIndices.IndexOf(tmpMoveList(0)), tmpMoveList(0))
+            cb_Move2.SelectedIndex = If(cb_SortAlpha.Checked, sortedAlIndices.IndexOf(tmpMoveList(1)), tmpMoveList(1))
+            cb_Move3.SelectedIndex = If(cb_SortAlpha.Checked, sortedAlIndices.IndexOf(tmpMoveList(2)), tmpMoveList(2))
+            cb_Move4.SelectedIndex = If(cb_SortAlpha.Checked, sortedAlIndices.IndexOf(tmpMoveList(3)), tmpMoveList(3))
 
-            CType(gb_Moves.Controls.Find("rb_SelMove" & tmpPoke.moveSel, False)(0), RadioButton).Checked = True
+            CType(gb_Moves.Controls("rb_SelMove" & tmpPoke.moveSel), RadioButton).Checked = True
         End If
 
         updatingDisplay = False
@@ -768,7 +775,7 @@ Public Class Form1_Main
         End If
 
         tmpTeam.Add(poke)
-        lb_Team.Items.Add(PokemonList(poke.num))
+        lb_Team.Items.Add(PokemonList(poke.num - 1))
         lb_Team.SelectedIndex = lb_Team.Items.Count - 1
     End Sub
 
@@ -801,9 +808,55 @@ Public Class Form1_Main
 
     Private Sub refreshSprite()
         Dim rm As Resources.ResourceManager = New Resources.ResourceManager("PTD_Save_Editor.Resources", GetType(Form1_Main).Assembly)
-        PictureBox1.Image = CType(rm.GetObject("_" & cb_Specie.SelectedIndex + 1 & If(cb_Shiny.Checked, "s", "")), Drawing.Bitmap)
+        PictureBox1.Image = CType(rm.GetObject("_" & If(cb_SortAlpha.Checked AndAlso cb_Specie.SelectedIndex > -1, sortedPlIndices(cb_Specie.SelectedIndex) + 1, cb_Specie.SelectedIndex + 1) & If(cb_Shiny.Checked, "s", "")), Drawing.Bitmap)
         If PictureBox1.Image Is Nothing Then
             PictureBox1.Image = PictureBox1.ErrorImage
+        End If
+    End Sub
+
+    Private Sub sortLists(ByVal sorted As Boolean)
+        Dim oldPokeValue As Integer = cb_Specie.SelectedIndex, _
+            oldMove1Value As Integer = cb_Move1.SelectedIndex, _
+            oldMove2Value As Integer = cb_Move2.SelectedIndex, _
+            oldMove3Value As Integer = cb_Move3.SelectedIndex, _
+            oldMove4Value As Integer = cb_Move4.SelectedIndex
+
+        cb_Specie.Items.Clear()
+        cb_Move1.Items.Clear()
+        cb_Move2.Items.Clear()
+        cb_Move3.Items.Clear()
+        cb_Move4.Items.Clear()
+
+        If sorted Then
+            cb_Specie.Items.AddRange(sortedPl)
+            cb_Specie.SelectedIndex = sortedPlIndices.IndexOf(oldPokeValue)
+
+            cb_Move1.Items.AddRange(sortedAl)
+            cb_Move1.SelectedIndex = sortedAlIndices.IndexOf(oldMove1Value)
+
+            cb_Move2.Items.AddRange(sortedAl)
+            cb_Move2.SelectedIndex = sortedAlIndices.IndexOf(oldMove2Value)
+
+            cb_Move3.Items.AddRange(sortedAl)
+            cb_Move3.SelectedIndex = sortedAlIndices.IndexOf(oldMove3Value)
+
+            cb_Move4.Items.AddRange(sortedAl)
+            cb_Move4.SelectedIndex = sortedAlIndices.IndexOf(oldMove4Value)
+        Else
+            cb_Specie.Items.AddRange(PokemonList)
+            cb_Specie.SelectedIndex = sortedPlIndices(oldPokeValue)
+
+            cb_Move1.Items.AddRange(AttackList)
+            cb_Move1.SelectedIndex = sortedAlIndices(oldMove1Value)
+
+            cb_Move2.Items.AddRange(AttackList)
+            cb_Move2.SelectedIndex = sortedAlIndices(oldMove2Value)
+
+            cb_Move3.Items.AddRange(AttackList)
+            cb_Move3.SelectedIndex = sortedAlIndices(oldMove3Value)
+
+            cb_Move4.Items.AddRange(AttackList)
+            cb_Move4.SelectedIndex = sortedAlIndices(oldMove4Value)
         End If
     End Sub
 #End Region
@@ -815,14 +868,31 @@ Public Class Form1_Main
         Me.Text = Me.Text.Replace("{version}", VersionProg())
         lbl_ProgramVersion.Text = lbl_ProgramVersion.Text.Replace("{version}", VersionProg())
 
-        For i = 1 To PokemonList.Length - 1
-            cb_Specie.Items.Add(PokemonList(i))
-        Next i
+        cb_Specie.Items.AddRange(PokemonList)
 
         cb_Move1.Items.AddRange(AttackList)
         cb_Move2.Items.AddRange(AttackList)
         cb_Move3.Items.AddRange(AttackList)
         cb_Move4.Items.AddRange(AttackList)
+
+        For i As Integer = 0 To PokemonList.Length - 1
+            sortedPlIndices.Add(i)
+        Next i
+
+        For i As Integer = 0 To AttackList.Length - 1
+            sortedAlIndices.Add(i)
+        Next i
+
+        Array.Copy(PokemonList, sortedPl, PokemonList.Length)
+        Array.Copy(AttackList, sortedAl, AttackList.Length)
+
+        Dim tmpIndices As Integer() = sortedAlIndices.ToArray()
+        Array.Sort(sortedAl, tmpIndices)
+        sortedAlIndices = New List(Of Integer)(tmpIndices)
+
+        tmpIndices = sortedPlIndices.ToArray()
+        Array.Sort(sortedPl, tmpIndices)
+        sortedPlIndices = New List(Of Integer)(tmpIndices)
 
         Form2_Inv_Adv.cb_ItemList.Items.AddRange(ItemList)
 
@@ -982,15 +1052,15 @@ Public Class Form1_Main
     Private Sub cb_Move_SelectedIndexChanged(ByVal sender As ComboBox, ByVal e As System.EventArgs) Handles cb_Move1.SelectedIndexChanged, cb_Move2.SelectedIndexChanged, cb_Move3.SelectedIndexChanged, cb_Move4.SelectedIndexChanged
         If cb_Move1.SelectedIndex = 0 AndAlso cb_Move2.SelectedIndex = 0 AndAlso cb_Move3.SelectedIndex = 0 AndAlso cb_Move4.SelectedIndex = 0 Then
             If Not updatingDisplay Then
-                sender.SelectedIndex = tmpMoveList(CInt(sender.Tag) - 1)
+                sender.SelectedIndex = If(cb_SortAlpha.Checked, sortedAlIndices.IndexOf(tmpMoveList(CInt(sender.Tag) - 1)), tmpMoveList(CInt(sender.Tag) - 1))
                 Beep()
             End If
         Else
             If Not updatingDisplay Then
-                tmpMoveList(CInt(sender.Tag) - 1) = sender.SelectedIndex
+                tmpMoveList(CInt(sender.Tag) - 1) = If(cb_SortAlpha.Checked AndAlso sender.SelectedIndex > -1, sortedAlIndices(sender.SelectedIndex), sender.SelectedIndex)
             End If
 
-            Dim tmpControl As Control = gb_Moves.Controls.Find("rb_SelMove" & sender.Tag.ToString, False)(0)
+            Dim tmpControl As Control = gb_Moves.Controls("rb_SelMove" & sender.Tag.ToString)
 
             If sender.SelectedIndex > 0 Then
                 tmpControl.Enabled = True
@@ -999,7 +1069,7 @@ Public Class Form1_Main
 
                 If CType(tmpControl, RadioButton).Checked Then
                     For i = 1 To 4
-                        tmpControl = gb_Moves.Controls.Find("rb_SelMove" & i, False)(0)
+                        tmpControl = gb_Moves.Controls("rb_SelMove" & i)
                         If tmpControl.Enabled Then
                             CType(tmpControl, RadioButton).Checked = True
                             Exit For
@@ -1161,7 +1231,7 @@ Public Class Form1_Main
         tmpPoke.id = If(tmpTeam.Count < 1, 1, tmpTeam.Max(New Func(Of Save.Pokemon, Integer)(Function(p As Save.Pokemon) p.id)) + 1)
 
         tmpTeam.Insert(lb_Team.SelectedIndex + 1, tmpPoke)
-        lb_Team.Items.Insert(lb_Team.SelectedIndex + 1, PokemonList(tmpPoke.num))
+        lb_Team.Items.Insert(lb_Team.SelectedIndex + 1, PokemonList(tmpPoke.num - 1))
         lb_Team.SelectedIndex = lb_Team.SelectedIndex + 1
     End Sub
 
@@ -1230,7 +1300,7 @@ Public Class Form1_Main
     End Sub
 
     Private Sub cb_Specie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_Specie.SelectedIndexChanged
-        lbl_NotYetImplemented.Visible = cb_Specie.SelectedIndex > 0 AndAlso Not implementedPokemonList.Contains(cb_Specie.SelectedIndex + 1)
+        lbl_NotYetImplemented.Visible = cb_Specie.SelectedIndex > -1 AndAlso Not implementedPokemonList.Contains(If(cb_SortAlpha.Checked, sortedPlIndices(cb_Specie.SelectedIndex) + 1, cb_Specie.SelectedIndex + 1))
         refreshSprite()
     End Sub
 
@@ -1306,6 +1376,10 @@ Public Class Form1_Main
 
     Private Sub llbl_PTDSE_Website_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llbl_PTDSE_Website.LinkClicked
         System.Diagnostics.Process.Start("http://code.google.com/p/ptd-save-editor/")
+    End Sub
+
+    Private Sub cb_SortAlpha_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cb_SortAlpha.CheckedChanged
+        sortLists(cb_SortAlpha.Checked)
     End Sub
 #End Region
 End Class
