@@ -36,7 +36,9 @@ Partial Class Form1_Main
         Me.b_SaveAccount = New System.Windows.Forms.Button
         Me.lbl_Status = New System.Windows.Forms.Label
         Me.gb_Data = New System.Windows.Forms.GroupBox
+        Me.b_ExportProfile = New System.Windows.Forms.Button
         Me.cb_Jynx = New System.Windows.Forms.CheckBox
+        Me.b_ImportPkm = New System.Windows.Forms.Button
         Me.cb_ShinyGeodude = New System.Windows.Forms.CheckBox
         Me.nud_Challenge = New System.Windows.Forms.NumericUpDown
         Me.b_Events = New System.Windows.Forms.Button
@@ -48,6 +50,8 @@ Partial Class Form1_Main
         Me.nud_Attempted = New System.Windows.Forms.NumericUpDown
         Me.nud_Unlocked = New System.Windows.Forms.NumericUpDown
         Me.gb_Pokemon = New System.Windows.Forms.GroupBox
+        Me.b_ExportPkm = New System.Windows.Forms.Button
+        Me.cb_SortAlpha = New System.Windows.Forms.CheckBox
         Me.b_CancelPoke = New System.Windows.Forms.Button
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.lbl_MaxExp = New System.Windows.Forms.Label
@@ -97,7 +101,7 @@ Partial Class Form1_Main
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.b_Achievements = New System.Windows.Forms.Button
         Me.llbl_PTDSE_Website = New System.Windows.Forms.LinkLabel
-        Me.cb_SortAlpha = New System.Windows.Forms.CheckBox
+        Me.b_ImportProfile = New System.Windows.Forms.Button
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -252,7 +256,9 @@ Partial Class Form1_Main
         Me.gb_Data.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Data.Controls.Add(Me.b_ExportProfile)
         Me.gb_Data.Controls.Add(Me.cb_Jynx)
+        Me.gb_Data.Controls.Add(Me.b_ImportPkm)
         Me.gb_Data.Controls.Add(Me.cb_ShinyGeodude)
         Me.gb_Data.Controls.Add(Me.nud_Challenge)
         Me.gb_Data.Controls.Add(Me.b_Events)
@@ -280,20 +286,38 @@ Partial Class Form1_Main
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Data"
         '
+        'b_ExportProfile
+        '
+        Me.b_ExportProfile.Location = New System.Drawing.Point(327, 123)
+        Me.b_ExportProfile.Name = "b_ExportProfile"
+        Me.b_ExportProfile.Size = New System.Drawing.Size(80, 23)
+        Me.b_ExportProfile.TabIndex = 1008
+        Me.b_ExportProfile.Text = "Export profile"
+        Me.b_ExportProfile.UseVisualStyleBackColor = True
+        '
         'cb_Jynx
         '
         Me.cb_Jynx.AutoSize = True
-        Me.cb_Jynx.Location = New System.Drawing.Point(267, 105)
+        Me.cb_Jynx.Location = New System.Drawing.Point(187, 105)
         Me.cb_Jynx.Name = "cb_Jynx"
         Me.cb_Jynx.Size = New System.Drawing.Size(91, 17)
         Me.cb_Jynx.TabIndex = 104
         Me.cb_Jynx.Text = "Jynx obtained"
         Me.cb_Jynx.UseVisualStyleBackColor = True
         '
+        'b_ImportPkm
+        '
+        Me.b_ImportPkm.Location = New System.Drawing.Point(326, 354)
+        Me.b_ImportPkm.Name = "b_ImportPkm"
+        Me.b_ImportPkm.Size = New System.Drawing.Size(75, 23)
+        Me.b_ImportPkm.TabIndex = 1007
+        Me.b_ImportPkm.Text = "Import..."
+        Me.b_ImportPkm.UseVisualStyleBackColor = True
+        '
         'cb_ShinyGeodude
         '
         Me.cb_ShinyGeodude.AutoSize = True
-        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(267, 90)
+        Me.cb_ShinyGeodude.Location = New System.Drawing.Point(187, 90)
         Me.cb_ShinyGeodude.Name = "cb_ShinyGeodude"
         Me.cb_ShinyGeodude.Size = New System.Drawing.Size(143, 17)
         Me.cb_ShinyGeodude.TabIndex = 83
@@ -302,14 +326,14 @@ Partial Class Form1_Main
         '
         'nud_Challenge
         '
-        Me.nud_Challenge.Location = New System.Drawing.Point(216, 91)
+        Me.nud_Challenge.Location = New System.Drawing.Point(141, 92)
         Me.nud_Challenge.Name = "nud_Challenge"
         Me.nud_Challenge.Size = New System.Drawing.Size(40, 20)
         Me.nud_Challenge.TabIndex = 82
         '
         'b_Events
         '
-        Me.b_Events.Location = New System.Drawing.Point(332, 123)
+        Me.b_Events.Location = New System.Drawing.Point(219, 123)
         Me.b_Events.Name = "b_Events"
         Me.b_Events.Size = New System.Drawing.Size(75, 23)
         Me.b_Events.TabIndex = 102
@@ -319,7 +343,7 @@ Partial Class Form1_Main
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(81, 93)
+        Me.Label11.Location = New System.Drawing.Point(6, 94)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(133, 13)
         Me.Label11.TabIndex = 81
@@ -382,6 +406,7 @@ Partial Class Form1_Main
         '
         Me.gb_Pokemon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gb_Pokemon.Controls.Add(Me.b_ExportPkm)
         Me.gb_Pokemon.Controls.Add(Me.cb_SortAlpha)
         Me.gb_Pokemon.Controls.Add(Me.b_CancelPoke)
         Me.gb_Pokemon.Controls.Add(Me.PictureBox1)
@@ -410,6 +435,26 @@ Partial Class Form1_Main
         Me.gb_Pokemon.TabIndex = 70
         Me.gb_Pokemon.TabStop = False
         Me.gb_Pokemon.Text = "Pokémon"
+        '
+        'b_ExportPkm
+        '
+        Me.b_ExportPkm.Location = New System.Drawing.Point(320, 231)
+        Me.b_ExportPkm.Name = "b_ExportPkm"
+        Me.b_ExportPkm.Size = New System.Drawing.Size(75, 23)
+        Me.b_ExportPkm.TabIndex = 1006
+        Me.b_ExportPkm.Text = "Export..."
+        Me.b_ExportPkm.UseVisualStyleBackColor = True
+        '
+        'cb_SortAlpha
+        '
+        Me.cb_SortAlpha.AutoSize = True
+        Me.cb_SortAlpha.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cb_SortAlpha.Location = New System.Drawing.Point(358, 149)
+        Me.cb_SortAlpha.Name = "cb_SortAlpha"
+        Me.cb_SortAlpha.Size = New System.Drawing.Size(41, 31)
+        Me.cb_SortAlpha.TabIndex = 1005
+        Me.cb_SortAlpha.Text = "Alpha."
+        Me.cb_SortAlpha.UseVisualStyleBackColor = True
         '
         'b_CancelPoke
         '
@@ -851,7 +896,7 @@ Partial Class Form1_Main
         '
         Me.b_DelOrCreateProfile.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_DelOrCreateProfile.Enabled = False
-        Me.b_DelOrCreateProfile.Location = New System.Drawing.Point(334, 144)
+        Me.b_DelOrCreateProfile.Location = New System.Drawing.Point(334, 138)
         Me.b_DelOrCreateProfile.Name = "b_DelOrCreateProfile"
         Me.b_DelOrCreateProfile.Size = New System.Drawing.Size(85, 23)
         Me.b_DelOrCreateProfile.TabIndex = 1000
@@ -900,16 +945,15 @@ Partial Class Form1_Main
         Me.llbl_PTDSE_Website.TabStop = True
         Me.llbl_PTDSE_Website.Text = "PTD Save Editor Website"
         '
-        'cb_SortAlpha
+        'b_ImportProfile
         '
-        Me.cb_SortAlpha.AutoSize = True
-        Me.cb_SortAlpha.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cb_SortAlpha.Location = New System.Drawing.Point(358, 149)
-        Me.cb_SortAlpha.Name = "cb_SortAlpha"
-        Me.cb_SortAlpha.Size = New System.Drawing.Size(41, 31)
-        Me.cb_SortAlpha.TabIndex = 1005
-        Me.cb_SortAlpha.Text = "Alpha."
-        Me.cb_SortAlpha.UseVisualStyleBackColor = True
+        Me.b_ImportProfile.Enabled = False
+        Me.b_ImportProfile.Location = New System.Drawing.Point(339, 190)
+        Me.b_ImportProfile.Name = "b_ImportProfile"
+        Me.b_ImportProfile.Size = New System.Drawing.Size(80, 23)
+        Me.b_ImportProfile.TabIndex = 1009
+        Me.b_ImportProfile.Text = "Import profile"
+        Me.b_ImportProfile.UseVisualStyleBackColor = True
         '
         'Form1_Main
         '
@@ -917,6 +961,7 @@ Partial Class Form1_Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(437, 620)
         Me.Controls.Add(Me.llbl_PTDSE_Website)
+        Me.Controls.Add(Me.b_ImportProfile)
         Me.Controls.Add(Me.b_Achievements)
         Me.Controls.Add(Me.llbl_Sam_Blog)
         Me.Controls.Add(Me.lbl_ProgramVersion)
@@ -925,6 +970,7 @@ Partial Class Form1_Main
         Me.Controls.Add(Me.gb_Login)
         Me.Controls.Add(Me.gb_Profiles)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "Form1_Main"
         Me.Text = "Pokémon Tower Defense Save Editor v{version} - by M@T"
@@ -1027,5 +1073,9 @@ Partial Class Form1_Main
     Friend WithEvents b_Achievements As System.Windows.Forms.Button
     Friend WithEvents llbl_PTDSE_Website As System.Windows.Forms.LinkLabel
     Friend WithEvents cb_SortAlpha As System.Windows.Forms.CheckBox
+    Friend WithEvents b_ImportPkm As System.Windows.Forms.Button
+    Friend WithEvents b_ExportPkm As System.Windows.Forms.Button
+    Friend WithEvents b_ExportProfile As System.Windows.Forms.Button
+    Friend WithEvents b_ImportProfile As System.Windows.Forms.Button
 
 End Class
