@@ -30,7 +30,7 @@ Partial Class Form3_Evts
         '
         Me.b_DoEvent.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.b_DoEvent.Enabled = False
-        Me.b_DoEvent.Location = New System.Drawing.Point(49, 230)
+        Me.b_DoEvent.Location = New System.Drawing.Point(49, 243)
         Me.b_DoEvent.Name = "b_DoEvent"
         Me.b_DoEvent.Size = New System.Drawing.Size(75, 23)
         Me.b_DoEvent.TabIndex = 0
@@ -44,10 +44,10 @@ Partial Class Form3_Evts
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lb_Events.FormattingEnabled = True
         Me.lb_Events.IntegralHeight = False
-        Me.lb_Events.Items.AddRange(New Object() {"Rendre le Starter Shiny", "Obtenir un Bulbizarre Shiny", "Obtenir un Salamèche Shiny", "Obtenir un Carapuce Shiny", "Obtenir le Mew Shiny", "Obtenir le Pikachu Shiny", "Obtenir le Roucool Shiny", "Obtenir le Racaillou Shiny", "Obtenir le Rondoudou Shiny", "Obtenir le Rattata Shiny", "Obtenir Lippoutou", "Obtenir le Nosferapti Shiny", "Obtenir le Abra Shiny", "Obtenir le Salamèche Shiny", "Obtenir le Piafabec Shiny", "Obtenir le Magicarpe Shiny"})
+        Me.lb_Events.Items.AddRange(New Object() {"Rendre le Starter Shiny", "Obtenir un Bulbizarre Shiny", "Obtenir un Salamèche Shiny", "Obtenir un Carapuce Shiny", "Obtenir le Mew Shiny", "Obtenir le Pikachu Shiny", "Obtenir le Roucool Shiny", "Obtenir le Racaillou Shiny", "Obtenir le Rondoudou Shiny", "Obtenir le Rattata Shiny", "Obtenir Lippoutou", "Obtenir le Nosferapti Shiny", "Obtenir le Abra Shiny", "Obtenir le Salamèche Shiny", "Obtenir le Piafabec Shiny", "Obtenir le Magicarpe Shiny", "Obtenir Canarticho"})
         Me.lb_Events.Location = New System.Drawing.Point(12, 12)
         Me.lb_Events.Name = "lb_Events"
-        Me.lb_Events.Size = New System.Drawing.Size(160, 212)
+        Me.lb_Events.Size = New System.Drawing.Size(160, 225)
         Me.lb_Events.TabIndex = 1
         '
         'Form3_Evts
@@ -55,7 +55,7 @@ Partial Class Form3_Evts
         Me.AcceptButton = Me.b_DoEvent
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(184, 265)
+        Me.ClientSize = New System.Drawing.Size(184, 278)
         Me.Controls.Add(Me.lb_Events)
         Me.Controls.Add(Me.b_DoEvent)
         Me.KeyPreview = True

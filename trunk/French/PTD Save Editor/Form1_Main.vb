@@ -149,7 +149,8 @@ Public Class Form1_Main
                                             "Swagger", "Iron Defense", "Rage Powder", "Endeavor", _
                                             "Feint", "Payback", "Telekinesis", "Thrash", _
                                             "Gastro Acid", "Stealth Rock", "Kyogre's Rest", "Fake Out", _
-                                            "Faint Attack", "Taunt", "Pay Day", "Power Gem"}
+                                            "Faint Attack", "Taunt", "Pay Day", "Power Gem", _
+                                            "Swords Dance", "Night Slash", "Poison Jab"}
 
     Friend Shared ItemList As String() = {"(aucun)", "Pierre Lune", "Pierre Plante", "Pierre Foudre", _
                                           "Pierre Eau", "Pierre Feu", "Canne"}
@@ -159,9 +160,10 @@ Public Class Form1_Main
                                                           21, 22, 23, 24, 25, 26, 27, 28, 29, 30, _
                                                           31, 32, 33, 34, 35, 36, 37, 38, 39, 40, _
                                                           41, 42, 43, 44, 45, 46, 47, 52, 53, 56, _
-                                                          57, 58, 59, 60, 61, 62, 63, 64, 65, 69, _
-                                                          70, 71, 74, 75, 76, 90, 95, 116, 118, 120, _
-                                                          121, 124, 129, 130, 151, 382}
+                                                          57, 58, 59, 60, 61, 62, 63, 64, 65, 66, _
+                                                          69, 70, 71, 72, 73, 74, 75, 76, 77, 81, _
+                                                          83, 90, 95, 100, 116, 118, 120, 121, 124, 129, _
+                                                          130, 151, 382}
 #End Region
 
 #Region "Definitions"
@@ -184,6 +186,10 @@ Public Class Form1_Main
     Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
     Private serverEncoding As Encoding = UTF8
 
+    Private Const HEADER_PFL2 As String = "PFL2" & Chr(0) & Chr(0) & Chr(0) & Chr(0)
+    Private Const HEADER_PKM2 As String = "PKM2" & Chr(0) & Chr(0) & Chr(0) & Chr(0)
+    'Private Const HEADER_SAV2 As String = "SAV2" & Chr(0) & Chr(0) & Chr(0) & Chr(0)
+
     Friend achievements As String = "0000"
     Friend currentAchievements As String = "0000"
 
@@ -193,7 +199,7 @@ Public Class Form1_Main
     Dim sortedAlIndices As New List(Of Integer)
 #End Region
 
-#Region "Structures"
+#Region "Structures and Enums"
     Friend Structure Save
         Enum Versions As Byte
             UNDEFINED = 0
@@ -229,6 +235,10 @@ Public Class Form1_Main
             End Property
 
             Public Sub New(ByVal dataStr As String)
+                If dataStr.StartsWith(HEADER_PKM2) Then
+                    dataStr = dataStr.Substring(HEADER_PKM2.Length)
+                End If
+
                 Dim pos As Integer = 0
 
                 Dim dataArr As String() = dataStr.Split("|")
@@ -322,6 +332,10 @@ Public Class Form1_Main
         End Property
 
         Public Sub New(ByVal dataStr As String)
+            If dataStr.StartsWith(HEADER_PFL2) Then
+                dataStr = dataStr.Substring(HEADER_PFL2.Length)
+            End If
+
             Dim pos As Integer = 0
 
             Dim dataArr As String() = dataStr.Split("|")
@@ -437,6 +451,13 @@ Public Class Form1_Main
             Return New Save(EMPTY_ACCOUNT)
         End Function
     End Structure
+
+    Private Enum FileTypes As Byte
+        UNKNOWN = 0
+        PFL2 = 1
+        PKM2 = 2
+        'SAV2 = 3
+    End Enum
 #End Region
 
 #Region "Subs and Functions"
@@ -592,6 +613,7 @@ Public Class Form1_Main
         nud_Challenge.Value = profile.CLevelCompleted
         cb_ShinyGeodude.Checked = profile.CLevel1CodeUsed(0) = "1"
         cb_Jynx.Checked = profile.CLevel1CodeUsed.Length > 1 AndAlso profile.CLevel1CodeUsed(1) = "1"
+        'cb_Farfetchd.Checked = profile.CLevel1CodeUsed.Length > 2 AndAlso profile.CLevel1CodeUsed(2) = "1"
     End Sub
 
     Private Sub updateProfile(ByVal profileId As Integer)
@@ -631,6 +653,9 @@ Public Class Form1_Main
         profile.CLevel1CodeUsed = If(cb_ShinyGeodude.Checked, "1", "0") & _
                                   If(cb_Jynx.Checked, "1", "") & _
                                   If(profile.CLevel1CodeUsed.Length > 2, profile.CLevel1CodeUsed.Substring(2), "")
+        'If(cb_Jynx.Checked, "1", "0") & _
+        'If(cb_Farfetchd.Checked, "1", "") & _
+        'If(profile.CLevel1CodeUsed.Length > 3, profile.CLevel1CodeUsed.Substring(3), "")
 
         Select Case profileId
             Case 1
@@ -920,13 +945,6 @@ Public Class Form1_Main
         End If
     End Sub
 
-    Private Function LoadPokemonFromFile(ByVal filePath As String) As Save.Pokemon
-        Using sr As New StreamReader(filePath)
-            LoadPokemonFromFile = New Save.Pokemon(sr.ReadToEnd())
-            sr.Close()
-        End Using
-    End Function
-
     Private Sub saveCurrentProfile()
         If tb_Name.Visible AndAlso tb_Name.Text.Length > 0 Then
             lbl_Name.Text = tb_Name.Text
@@ -971,6 +989,50 @@ Public Class Form1_Main
 
         Return fileName
     End Function
+
+    Private Function GetFileType(ByVal fileName As String) As FileTypes
+        Dim fileContents As String = File.ReadAllText(fileName, UTF8)
+
+        If fileContents.StartsWith(HEADER_PFL2) Then
+            Return FileTypes.PFL2
+        ElseIf fileContents.StartsWith(HEADER_PKM2) Then
+            Return FileTypes.PKM2
+            'ElseIf fileContents.StartsWith(HEADER_SAV2) Then
+            '    Return FileTypes.SAV2
+        Else
+            Return FileTypes.UNKNOWN
+        End If
+    End Function
+
+    Private Sub exportPKM2(ByVal fileName As String, ByVal poke As Save.Pokemon)
+        File.WriteAllText(fileName, HEADER_PKM2 & poke.ToString(), Encoding.UTF8)
+    End Sub
+
+    Private Sub importMultiplePKM2(ByVal fileNames As String())
+        For Each fileName As String In fileNames
+            Try
+                addPokeToTeam(New Save.Pokemon(File.ReadAllText(fileName, Encoding.UTF8)))
+            Catch ex As Exception
+                If fileNames.Length = 1 Then
+                    MsgBox("Ce fichier n'est pas un fichier .ptdpkm valide." & vbNewLine & vbNewLine & _
+                           "L'erreur était : " & ex.Message, MsgBoxStyle.Critical, "Fichier Pokémon invalide")
+                End If
+            End Try
+        Next fileName
+    End Sub
+
+    Private Sub exportPFL2(ByVal fileName As String, ByVal profile As Save)
+        File.WriteAllText(fileName, HEADER_PFL2 & profile.ToString(), Encoding.UTF8)
+    End Sub
+
+    Private Sub importPFL2(ByVal fileName As String)
+        Try
+            setCurrentProfile(New Save(File.ReadAllText(fileName, Encoding.UTF8)))
+        Catch ex As Exception
+            MsgBox("Ce fichier n'est pas un fichier .ptdpfl valide." & vbNewLine & vbNewLine & _
+                   "L'erreur était : " & ex.Message, MsgBoxStyle.Critical, "Fichier de profil invalide")
+        End Try
+    End Sub
 #End Region
 
 #Region "Events"
@@ -1500,7 +1562,7 @@ Public Class Form1_Main
 
         If sfd.ShowDialog() = Windows.Forms.DialogResult.OK Then
             saveCurrentPokeData()
-            File.WriteAllText(sfd.FileName, tmpPoke.ToString())
+            exportPKM2(sfd.FileName, tmpPoke)
         End If
     End Sub
 
@@ -1515,45 +1577,17 @@ Public Class Form1_Main
         ofd.Title = "Veuillez choisir le(s) fichier(s) à importer..."
 
         If ofd.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            If ofd.FileNames.Length = 1 Then
-                Try
-                    tmpPoke = LoadPokemonFromFile(ofd.FileNames(0))
-
-                    addPokeToTeam(tmpPoke)
-                Catch ex As Exception
-                    MsgBox("Ce fichier n'est pas un fichier .ptdpkm valide." & vbNewLine & vbNewLine & _
-                           "L'erreur était : " & ex.Message, MsgBoxStyle.Critical, "Fichier Pokémon invalide")
-                End Try
-            ElseIf ofd.FileNames.Length > 1 Then
-                For Each fileName As String In ofd.FileNames
-                    Try
-                        addPokeToTeam(LoadPokemonFromFile(fileName))
-                    Catch
-                    End Try
-                Next fileName
-            End If
+            importMultiplePKM2(ofd.FileNames)
         End If
     End Sub
 
     Private Sub gb_Pokemon_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles gb_Pokemon.DragDrop
         Dim fileNames As String() = DirectCast(e.Data.GetData(DataFormats.FileDrop), String())
 
-        If fileNames.Length = 1 Then
-            Try
-                tmpPoke = LoadPokemonFromFile(fileNames(0))
-
-                addPokeToTeam(tmpPoke)
-            Catch ex As Exception
-                MsgBox("Ce fichier n'est pas un fichier .ptdpkm valide." & vbNewLine & vbNewLine & _
-                       "L'erreur était : " & ex.Message, MsgBoxStyle.Critical, "Fichier Pokémon invalide")
-            End Try
-        ElseIf fileNames.Length > 1 Then
-            For Each fileName As String In fileNames
-                Try
-                    addPokeToTeam(LoadPokemonFromFile(fileName))
-                Catch
-                End Try
-            Next fileName
+        If GetFileType(fileNames(0)) = FileTypes.PFL2 Then
+            importPFL2(fileNames(0))
+        Else
+            importMultiplePKM2(fileNames)
         End If
     End Sub
 
@@ -1576,7 +1610,7 @@ Public Class Form1_Main
 
         If sfd.ShowDialog() = Windows.Forms.DialogResult.OK Then
             saveCurrentProfile()
-            File.WriteAllText(sfd.FileName, GetCurrentProfile().ToString())
+            exportPFL2(sfd.FileName, GetCurrentProfile())
         End If
     End Sub
 
@@ -1590,24 +1624,14 @@ Public Class Form1_Main
         ofd.Title = "Veuillez choisir le fichier de profil à importer..."
 
         If ofd.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            Try
-                setCurrentProfile(New Save(File.ReadAllText(ofd.FileName)))
-            Catch ex As Exception
-                MsgBox("Ce fichier n'est pas un fichier .ptdpfl valide." & vbNewLine & vbNewLine & _
-                       "L'erreur était : " & ex.Message, MsgBoxStyle.Critical, "Fichier de profil invalide")
-            End Try
+            importPFL2(ofd.FileName)
         End If
     End Sub
 
     Private Sub gb_Data_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles gb_Data.DragDrop
         Dim fileNames As String() = DirectCast(e.Data.GetData(DataFormats.FileDrop), String())
 
-        Try
-            setCurrentProfile(New Save(File.ReadAllText(fileNames(0))))
-        Catch ex As Exception
-            MsgBox("Ce fichier n'est pas un fichier .ptdpfl valide." & vbNewLine & vbNewLine & _
-                   "L'erreur était : " & ex.Message, MsgBoxStyle.Critical, "Fichier de profil invalide")
-        End Try
+        importPFL2(fileNames(0))
     End Sub
 
     Private Sub gb_Data_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles gb_Data.DragEnter

@@ -489,7 +489,7 @@ Partial Class Form1_Main
         Me.lbl_MaxLevel.Name = "lbl_MaxLevel"
         Me.lbl_MaxLevel.Size = New System.Drawing.Size(81, 13)
         Me.lbl_MaxLevel.TabIndex = 107
-        Me.lbl_MaxLevel.Text = "Max = 36 (v2.9)"
+        Me.lbl_MaxLevel.Text = "Max = 36 (v3.0)"
         '
         'gb_GenerateCode
         '
@@ -923,7 +923,7 @@ Partial Class Form1_Main
         Me.llbl_Sam_Blog.Size = New System.Drawing.Size(82, 13)
         Me.llbl_Sam_Blog.TabIndex = 1003
         Me.llbl_Sam_Blog.TabStop = True
-        Me.llbl_Sam_Blog.Text = "PTD v2.9 alpha"
+        Me.llbl_Sam_Blog.Text = "PTD v3.0 alpha"
         '
         'b_Achievements
         '
