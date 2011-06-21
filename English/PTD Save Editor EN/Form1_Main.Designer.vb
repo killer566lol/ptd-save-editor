@@ -85,7 +85,7 @@ Partial Class Form1_Main
         Me.cb_Specie = New System.Windows.Forms.ComboBox
         Me.lb_Team = New System.Windows.Forms.ListBox
         Me.tb_Exp = New System.Windows.Forms.TextBox
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.gb_Version = New System.Windows.Forms.GroupBox
         Me.rb_Blue = New System.Windows.Forms.RadioButton
         Me.rb_Red = New System.Windows.Forms.RadioButton
         Me.Label6 = New System.Windows.Forms.Label
@@ -102,6 +102,7 @@ Partial Class Form1_Main
         Me.b_Achievements = New System.Windows.Forms.Button
         Me.llbl_PTDSE_Website = New System.Windows.Forms.LinkLabel
         Me.b_ImportProfile = New System.Windows.Forms.Button
+        Me.cb_Farfetchd = New System.Windows.Forms.CheckBox
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -113,16 +114,15 @@ Partial Class Form1_Main
         Me.gb_GenerateCode.SuspendLayout()
         Me.gb_Moves.SuspendLayout()
         CType(Me.nud_Level, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox4.SuspendLayout()
+        Me.gb_Version.SuspendLayout()
         CType(Me.nud_Badges, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'b_ImportAccount
         '
-        Me.b_ImportAccount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.b_ImportAccount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_ImportAccount.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b_ImportAccount.Location = New System.Drawing.Point(260, 11)
+        Me.b_ImportAccount.Location = New System.Drawing.Point(309, 11)
         Me.b_ImportAccount.Name = "b_ImportAccount"
         Me.b_ImportAccount.Size = New System.Drawing.Size(68, 23)
         Me.b_ImportAccount.TabIndex = 20
@@ -136,7 +136,7 @@ Partial Class Form1_Main
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tb_Email.Location = New System.Drawing.Point(49, 13)
         Me.tb_Email.Name = "tb_Email"
-        Me.tb_Email.Size = New System.Drawing.Size(205, 20)
+        Me.tb_Email.Size = New System.Drawing.Size(254, 20)
         Me.tb_Email.TabIndex = 0
         '
         'tb_Pass
@@ -147,7 +147,7 @@ Partial Class Form1_Main
         Me.tb_Pass.Location = New System.Drawing.Point(49, 39)
         Me.tb_Pass.Name = "tb_Pass"
         Me.tb_Pass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.tb_Pass.Size = New System.Drawing.Size(205, 20)
+        Me.tb_Pass.Size = New System.Drawing.Size(254, 20)
         Me.tb_Pass.TabIndex = 10
         '
         'Label1
@@ -174,7 +174,7 @@ Partial Class Form1_Main
         Me.gb_Profiles.Controls.Add(Me.rb_Profile2)
         Me.gb_Profiles.Controls.Add(Me.rb_Profile1)
         Me.gb_Profiles.Enabled = False
-        Me.gb_Profiles.Location = New System.Drawing.Point(352, 12)
+        Me.gb_Profiles.Location = New System.Drawing.Point(401, 12)
         Me.gb_Profiles.Name = "gb_Profiles"
         Me.gb_Profiles.Size = New System.Drawing.Size(73, 78)
         Me.gb_Profiles.TabIndex = 100
@@ -225,17 +225,16 @@ Partial Class Form1_Main
         Me.gb_Login.Controls.Add(Me.tb_Pass)
         Me.gb_Login.Location = New System.Drawing.Point(12, 12)
         Me.gb_Login.Name = "gb_Login"
-        Me.gb_Login.Size = New System.Drawing.Size(334, 78)
+        Me.gb_Login.Size = New System.Drawing.Size(383, 78)
         Me.gb_Login.TabIndex = 0
         Me.gb_Login.TabStop = False
         Me.gb_Login.Text = "Login"
         '
         'b_SaveAccount
         '
-        Me.b_SaveAccount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.b_SaveAccount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_SaveAccount.Enabled = False
-        Me.b_SaveAccount.Location = New System.Drawing.Point(260, 37)
+        Me.b_SaveAccount.Location = New System.Drawing.Point(309, 37)
         Me.b_SaveAccount.Name = "b_SaveAccount"
         Me.b_SaveAccount.Size = New System.Drawing.Size(68, 23)
         Me.b_SaveAccount.TabIndex = 44
@@ -256,8 +255,9 @@ Partial Class Form1_Main
         Me.gb_Data.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gb_Data.Controls.Add(Me.b_ExportProfile)
         Me.gb_Data.Controls.Add(Me.cb_Jynx)
+        Me.gb_Data.Controls.Add(Me.cb_Farfetchd)
+        Me.gb_Data.Controls.Add(Me.b_ExportProfile)
         Me.gb_Data.Controls.Add(Me.b_ImportPkm)
         Me.gb_Data.Controls.Add(Me.cb_ShinyGeodude)
         Me.gb_Data.Controls.Add(Me.nud_Challenge)
@@ -270,7 +270,7 @@ Partial Class Form1_Main
         Me.gb_Data.Controls.Add(Me.nud_Attempted)
         Me.gb_Data.Controls.Add(Me.nud_Unlocked)
         Me.gb_Data.Controls.Add(Me.gb_Pokemon)
-        Me.gb_Data.Controls.Add(Me.GroupBox4)
+        Me.gb_Data.Controls.Add(Me.gb_Version)
         Me.gb_Data.Controls.Add(Me.Label6)
         Me.gb_Data.Controls.Add(Me.nud_Badges)
         Me.gb_Data.Controls.Add(Me.Label5)
@@ -281,14 +281,14 @@ Partial Class Form1_Main
         Me.gb_Data.Enabled = False
         Me.gb_Data.Location = New System.Drawing.Point(12, 96)
         Me.gb_Data.Name = "gb_Data"
-        Me.gb_Data.Size = New System.Drawing.Size(413, 486)
+        Me.gb_Data.Size = New System.Drawing.Size(462, 486)
         Me.gb_Data.TabIndex = 200
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Data"
         '
         'b_ExportProfile
         '
-        Me.b_ExportProfile.Location = New System.Drawing.Point(327, 123)
+        Me.b_ExportProfile.Location = New System.Drawing.Point(376, 123)
         Me.b_ExportProfile.Name = "b_ExportProfile"
         Me.b_ExportProfile.Size = New System.Drawing.Size(80, 23)
         Me.b_ExportProfile.TabIndex = 1008
@@ -298,7 +298,7 @@ Partial Class Form1_Main
         'cb_Jynx
         '
         Me.cb_Jynx.AutoSize = True
-        Me.cb_Jynx.Location = New System.Drawing.Point(187, 105)
+        Me.cb_Jynx.Location = New System.Drawing.Point(187, 120)
         Me.cb_Jynx.Name = "cb_Jynx"
         Me.cb_Jynx.Size = New System.Drawing.Size(91, 17)
         Me.cb_Jynx.TabIndex = 104
@@ -307,7 +307,7 @@ Partial Class Form1_Main
         '
         'b_ImportPkm
         '
-        Me.b_ImportPkm.Location = New System.Drawing.Point(326, 354)
+        Me.b_ImportPkm.Location = New System.Drawing.Point(375, 354)
         Me.b_ImportPkm.Name = "b_ImportPkm"
         Me.b_ImportPkm.Size = New System.Drawing.Size(75, 23)
         Me.b_ImportPkm.TabIndex = 1007
@@ -333,7 +333,7 @@ Partial Class Form1_Main
         '
         'b_Events
         '
-        Me.b_Events.Location = New System.Drawing.Point(219, 123)
+        Me.b_Events.Location = New System.Drawing.Point(295, 123)
         Me.b_Events.Name = "b_Events"
         Me.b_Events.Size = New System.Drawing.Size(75, 23)
         Me.b_Events.TabIndex = 102
@@ -362,7 +362,7 @@ Partial Class Form1_Main
         '
         Me.b_SaveProfile.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_SaveProfile.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b_SaveProfile.Location = New System.Drawing.Point(319, 13)
+        Me.b_SaveProfile.Location = New System.Drawing.Point(368, 13)
         Me.b_SaveProfile.Name = "b_SaveProfile"
         Me.b_SaveProfile.Size = New System.Drawing.Size(88, 23)
         Me.b_SaveProfile.TabIndex = 80
@@ -431,14 +431,14 @@ Partial Class Form1_Main
         Me.gb_Pokemon.Controls.Add(Me.tb_Exp)
         Me.gb_Pokemon.Location = New System.Drawing.Point(6, 152)
         Me.gb_Pokemon.Name = "gb_Pokemon"
-        Me.gb_Pokemon.Size = New System.Drawing.Size(401, 328)
+        Me.gb_Pokemon.Size = New System.Drawing.Size(450, 328)
         Me.gb_Pokemon.TabIndex = 70
         Me.gb_Pokemon.TabStop = False
         Me.gb_Pokemon.Text = "Pokémon"
         '
         'b_ExportPkm
         '
-        Me.b_ExportPkm.Location = New System.Drawing.Point(320, 231)
+        Me.b_ExportPkm.Location = New System.Drawing.Point(369, 231)
         Me.b_ExportPkm.Name = "b_ExportPkm"
         Me.b_ExportPkm.Size = New System.Drawing.Size(75, 23)
         Me.b_ExportPkm.TabIndex = 1006
@@ -451,14 +451,14 @@ Partial Class Form1_Main
         Me.cb_SortAlpha.CheckAlign = System.Drawing.ContentAlignment.TopCenter
         Me.cb_SortAlpha.Location = New System.Drawing.Point(358, 149)
         Me.cb_SortAlpha.Name = "cb_SortAlpha"
-        Me.cb_SortAlpha.Size = New System.Drawing.Size(41, 31)
+        Me.cb_SortAlpha.Size = New System.Drawing.Size(62, 31)
         Me.cb_SortAlpha.TabIndex = 1005
-        Me.cb_SortAlpha.Text = "Alpha."
+        Me.cb_SortAlpha.Text = "Sort alpha."
         Me.cb_SortAlpha.UseVisualStyleBackColor = True
         '
         'b_CancelPoke
         '
-        Me.b_CancelPoke.Location = New System.Drawing.Point(320, 94)
+        Me.b_CancelPoke.Location = New System.Drawing.Point(369, 94)
         Me.b_CancelPoke.Name = "b_CancelPoke"
         Me.b_CancelPoke.Size = New System.Drawing.Size(75, 23)
         Me.b_CancelPoke.TabIndex = 1005
@@ -487,9 +487,9 @@ Partial Class Form1_Main
         Me.lbl_MaxLevel.AutoSize = True
         Me.lbl_MaxLevel.Location = New System.Drawing.Point(184, 48)
         Me.lbl_MaxLevel.Name = "lbl_MaxLevel"
-        Me.lbl_MaxLevel.Size = New System.Drawing.Size(81, 13)
+        Me.lbl_MaxLevel.Size = New System.Drawing.Size(90, 13)
         Me.lbl_MaxLevel.TabIndex = 107
-        Me.lbl_MaxLevel.Text = "Max = 36 (v3.0)"
+        Me.lbl_MaxLevel.Text = "Max = 36 (v3.0.1)"
         '
         'gb_GenerateCode
         '
@@ -754,9 +754,8 @@ Partial Class Form1_Main
         '
         'b_SavePoke
         '
-        Me.b_SavePoke.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_SavePoke.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b_SavePoke.Location = New System.Drawing.Point(203, 94)
+        Me.b_SavePoke.Location = New System.Drawing.Point(252, 94)
         Me.b_SavePoke.Name = "b_SavePoke"
         Me.b_SavePoke.Size = New System.Drawing.Size(111, 23)
         Me.b_SavePoke.TabIndex = 100
@@ -792,16 +791,16 @@ Partial Class Form1_Main
         Me.tb_Exp.Size = New System.Drawing.Size(61, 20)
         Me.tb_Exp.TabIndex = 30
         '
-        'GroupBox4
+        'gb_Version
         '
-        Me.GroupBox4.Controls.Add(Me.rb_Blue)
-        Me.GroupBox4.Controls.Add(Me.rb_Red)
-        Me.GroupBox4.Location = New System.Drawing.Point(261, 19)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(56, 65)
-        Me.GroupBox4.TabIndex = 60
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Version"
+        Me.gb_Version.Controls.Add(Me.rb_Blue)
+        Me.gb_Version.Controls.Add(Me.rb_Red)
+        Me.gb_Version.Location = New System.Drawing.Point(279, 19)
+        Me.gb_Version.Name = "gb_Version"
+        Me.gb_Version.Size = New System.Drawing.Size(56, 65)
+        Me.gb_Version.TabIndex = 60
+        Me.gb_Version.TabStop = False
+        Me.gb_Version.Text = "Version"
         '
         'rb_Blue
         '
@@ -896,7 +895,7 @@ Partial Class Form1_Main
         '
         Me.b_DelOrCreateProfile.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_DelOrCreateProfile.Enabled = False
-        Me.b_DelOrCreateProfile.Location = New System.Drawing.Point(334, 138)
+        Me.b_DelOrCreateProfile.Location = New System.Drawing.Point(383, 138)
         Me.b_DelOrCreateProfile.Name = "b_DelOrCreateProfile"
         Me.b_DelOrCreateProfile.Size = New System.Drawing.Size(85, 23)
         Me.b_DelOrCreateProfile.TabIndex = 1000
@@ -920,10 +919,10 @@ Partial Class Form1_Main
         Me.llbl_Sam_Blog.AutoSize = True
         Me.llbl_Sam_Blog.Location = New System.Drawing.Point(12, 598)
         Me.llbl_Sam_Blog.Name = "llbl_Sam_Blog"
-        Me.llbl_Sam_Blog.Size = New System.Drawing.Size(82, 13)
+        Me.llbl_Sam_Blog.Size = New System.Drawing.Size(91, 13)
         Me.llbl_Sam_Blog.TabIndex = 1003
         Me.llbl_Sam_Blog.TabStop = True
-        Me.llbl_Sam_Blog.Text = "PTD v3.0 alpha"
+        Me.llbl_Sam_Blog.Text = "PTD v3.0.1 alpha"
         '
         'b_Achievements
         '
@@ -937,8 +936,9 @@ Partial Class Form1_Main
         '
         'llbl_PTDSE_Website
         '
+        Me.llbl_PTDSE_Website.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.llbl_PTDSE_Website.AutoSize = True
-        Me.llbl_PTDSE_Website.Location = New System.Drawing.Point(296, 598)
+        Me.llbl_PTDSE_Website.Location = New System.Drawing.Point(345, 598)
         Me.llbl_PTDSE_Website.Name = "llbl_PTDSE_Website"
         Me.llbl_PTDSE_Website.Size = New System.Drawing.Size(129, 13)
         Me.llbl_PTDSE_Website.TabIndex = 1004
@@ -948,18 +948,28 @@ Partial Class Form1_Main
         'b_ImportProfile
         '
         Me.b_ImportProfile.Enabled = False
-        Me.b_ImportProfile.Location = New System.Drawing.Point(339, 190)
+        Me.b_ImportProfile.Location = New System.Drawing.Point(388, 190)
         Me.b_ImportProfile.Name = "b_ImportProfile"
         Me.b_ImportProfile.Size = New System.Drawing.Size(80, 23)
         Me.b_ImportProfile.TabIndex = 1009
         Me.b_ImportProfile.Text = "Import profile"
         Me.b_ImportProfile.UseVisualStyleBackColor = True
         '
+        'cb_Farfetchd
+        '
+        Me.cb_Farfetchd.AutoSize = True
+        Me.cb_Farfetchd.Location = New System.Drawing.Point(187, 105)
+        Me.cb_Farfetchd.Name = "cb_Farfetchd"
+        Me.cb_Farfetchd.Size = New System.Drawing.Size(117, 17)
+        Me.cb_Farfetchd.TabIndex = 1010
+        Me.cb_Farfetchd.Text = "Farfetch'd obtained"
+        Me.cb_Farfetchd.UseVisualStyleBackColor = True
+        '
         'Form1_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(437, 620)
+        Me.ClientSize = New System.Drawing.Size(486, 620)
         Me.Controls.Add(Me.llbl_PTDSE_Website)
         Me.Controls.Add(Me.b_ImportProfile)
         Me.Controls.Add(Me.b_Achievements)
@@ -991,8 +1001,8 @@ Partial Class Form1_Main
         Me.gb_Moves.ResumeLayout(False)
         Me.gb_Moves.PerformLayout()
         CType(Me.nud_Level, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
+        Me.gb_Version.ResumeLayout(False)
+        Me.gb_Version.PerformLayout()
         CType(Me.nud_Badges, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1016,7 +1026,7 @@ Partial Class Form1_Main
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents tb_Money As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents gb_Version As System.Windows.Forms.GroupBox
     Friend WithEvents rb_Blue As System.Windows.Forms.RadioButton
     Friend WithEvents rb_Red As System.Windows.Forms.RadioButton
     Friend WithEvents gb_Pokemon As System.Windows.Forms.GroupBox
@@ -1077,5 +1087,6 @@ Partial Class Form1_Main
     Friend WithEvents b_ExportPkm As System.Windows.Forms.Button
     Friend WithEvents b_ExportProfile As System.Windows.Forms.Button
     Friend WithEvents b_ImportProfile As System.Windows.Forms.Button
+    Friend WithEvents cb_Farfetchd As System.Windows.Forms.CheckBox
 
 End Class

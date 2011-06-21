@@ -103,7 +103,7 @@ Public Class Form3_Evts
                     tmpEventPoke.num = 83
                     tmpEventPoke.shiny = False
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {42, 2, 43}) ' Peck, Sand Attack, Leer
-                    'Form1_Main.cb_Farfetchd.Checked = True
+                    Form1_Main.cb_Farfetchd.Checked = True
 
                 Case Else
                     Exit Sub

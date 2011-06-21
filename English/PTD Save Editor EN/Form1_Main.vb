@@ -183,7 +183,7 @@ Public Class Form1_Main
     Private Const SERVER_LINK As String = "http://www.sndgames.com/php/poke.php"
     Private Const SERVER_LINK_TRADE As String = "http://www.sndgames.com/php/trading.php"
     Private Const SERVER_LINK_ACHIEVEMENTS As String = "http://www.sndgames.com/php/achieve.php"
-    Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
+    Private Const USER_AGENT As String = "Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0"
     Private serverEncoding As Encoding = UTF8
 
     Private Const HEADER_PFL2 As String = "PFL2" & Chr(0) & Chr(0) & Chr(0) & Chr(0)
@@ -315,7 +315,7 @@ Public Class Form1_Main
         Public team As List(Of Pokemon)     ' Pokémon team
         Public Inv As List(Of Integer)      ' Inventory
         Public CLevelCompleted As Integer   ' Challenge Levels completed
-        Public CLevel1CodeUsed As String    ' In-game events (as of v2.9 : Shiny Geodude and Jynx)
+        Public CLevel1CodeUsed As String    ' In-game events (as of v3.0 : Shiny Geodude, Jynx and Farfetch'd)
 
         Public Const EMPTY_ACCOUNT As String = "Satoshi|0|0|0|0|0|0|0|0|0"
 
@@ -613,7 +613,7 @@ Public Class Form1_Main
         nud_Challenge.Value = profile.CLevelCompleted
         cb_ShinyGeodude.Checked = profile.CLevel1CodeUsed(0) = "1"
         cb_Jynx.Checked = profile.CLevel1CodeUsed.Length > 1 AndAlso profile.CLevel1CodeUsed(1) = "1"
-        'cb_Farfetchd.Checked = profile.CLevel1CodeUsed.Length > 2 AndAlso profile.CLevel1CodeUsed(2) = "1"
+        cb_Farfetchd.Checked = profile.CLevel1CodeUsed.Length > 2 AndAlso profile.CLevel1CodeUsed(2) = "1"
     End Sub
 
     Private Sub updateProfile(ByVal profileId As Integer)
@@ -651,11 +651,9 @@ Public Class Form1_Main
         profile.Inv = New List(Of Integer)(tmpInv)
         profile.CLevelCompleted = nud_Challenge.Value
         profile.CLevel1CodeUsed = If(cb_ShinyGeodude.Checked, "1", "0") & _
-                                  If(cb_Jynx.Checked, "1", "") & _
-                                  If(profile.CLevel1CodeUsed.Length > 2, profile.CLevel1CodeUsed.Substring(2), "")
-        'If(cb_Jynx.Checked, "1", "0") & _
-        'If(cb_Farfetchd.Checked, "1", "") & _
-        'If(profile.CLevel1CodeUsed.Length > 3, profile.CLevel1CodeUsed.Substring(3), "")
+                                  If(cb_Jynx.Checked, "1", "0") & _
+                                  If(cb_Farfetchd.Checked, "1", "") & _
+                                  If(profile.CLevel1CodeUsed.Length > 3, profile.CLevel1CodeUsed.Substring(3), "")
 
         Select Case profileId
             Case 1
