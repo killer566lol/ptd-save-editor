@@ -150,7 +150,11 @@ Public Class Form1_Main
                                             "Feint", "Payback", "Telekinesis", "Thrash", _
                                             "Gastro Acid", "Stealth Rock", "Kyogre's Rest", "Fake Out", _
                                             "Faint Attack", "Taunt", "Pay Day", "Power Gem", _
-                                            "Swords Dance", "Night Slash", "Poison Jab"}
+                                            "Swords Dance", "Night Slash", "Poison Jab", "Seed Bomb", _
+                                            "Flamethrower", "Drill Peck", "Sandstorm", "Gravity", _
+                                            "Poison Fang", "Giga Drain", "Cross Chop", "Nasty Plot", _
+                                            "ExtremeSpeed", "Hydro Pump", "Earthquake", "Avalanche", _
+                                            "Psycho Cut", "Barrier", "Bind", "Rock Tomb"}
 
     Friend Shared ItemList As String() = {"(none)", "Moon Stone", "Leaf Stone", "Thunderstone", _
                                           "Water Stone", "Fire Stone", "Old Rod"}

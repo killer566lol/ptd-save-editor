@@ -36,8 +36,9 @@ Partial Class Form1_Main
         Me.b_SaveAccount = New System.Windows.Forms.Button
         Me.lbl_Status = New System.Windows.Forms.Label
         Me.gb_Data = New System.Windows.Forms.GroupBox
-        Me.b_ExportProfile = New System.Windows.Forms.Button
         Me.cb_Jynx = New System.Windows.Forms.CheckBox
+        Me.cb_Farfetchd = New System.Windows.Forms.CheckBox
+        Me.b_ExportProfile = New System.Windows.Forms.Button
         Me.b_ImportPkm = New System.Windows.Forms.Button
         Me.cb_ShinyGeodude = New System.Windows.Forms.CheckBox
         Me.nud_Challenge = New System.Windows.Forms.NumericUpDown
@@ -102,7 +103,6 @@ Partial Class Form1_Main
         Me.b_Achievements = New System.Windows.Forms.Button
         Me.llbl_PTDSE_Website = New System.Windows.Forms.LinkLabel
         Me.b_ImportProfile = New System.Windows.Forms.Button
-        Me.cb_Farfetchd = New System.Windows.Forms.CheckBox
         Me.gb_Profiles.SuspendLayout()
         Me.gb_Login.SuspendLayout()
         Me.gb_Data.SuspendLayout()
@@ -286,15 +286,6 @@ Partial Class Form1_Main
         Me.gb_Data.TabStop = False
         Me.gb_Data.Text = "Data"
         '
-        'b_ExportProfile
-        '
-        Me.b_ExportProfile.Location = New System.Drawing.Point(376, 123)
-        Me.b_ExportProfile.Name = "b_ExportProfile"
-        Me.b_ExportProfile.Size = New System.Drawing.Size(80, 23)
-        Me.b_ExportProfile.TabIndex = 1008
-        Me.b_ExportProfile.Text = "Export profile"
-        Me.b_ExportProfile.UseVisualStyleBackColor = True
-        '
         'cb_Jynx
         '
         Me.cb_Jynx.AutoSize = True
@@ -304,6 +295,25 @@ Partial Class Form1_Main
         Me.cb_Jynx.TabIndex = 104
         Me.cb_Jynx.Text = "Jynx obtained"
         Me.cb_Jynx.UseVisualStyleBackColor = True
+        '
+        'cb_Farfetchd
+        '
+        Me.cb_Farfetchd.AutoSize = True
+        Me.cb_Farfetchd.Location = New System.Drawing.Point(187, 105)
+        Me.cb_Farfetchd.Name = "cb_Farfetchd"
+        Me.cb_Farfetchd.Size = New System.Drawing.Size(117, 17)
+        Me.cb_Farfetchd.TabIndex = 1010
+        Me.cb_Farfetchd.Text = "Farfetch'd obtained"
+        Me.cb_Farfetchd.UseVisualStyleBackColor = True
+        '
+        'b_ExportProfile
+        '
+        Me.b_ExportProfile.Location = New System.Drawing.Point(376, 123)
+        Me.b_ExportProfile.Name = "b_ExportProfile"
+        Me.b_ExportProfile.Size = New System.Drawing.Size(80, 23)
+        Me.b_ExportProfile.TabIndex = 1008
+        Me.b_ExportProfile.Text = "Export profile"
+        Me.b_ExportProfile.UseVisualStyleBackColor = True
         '
         'b_ImportPkm
         '
@@ -487,9 +497,9 @@ Partial Class Form1_Main
         Me.lbl_MaxLevel.AutoSize = True
         Me.lbl_MaxLevel.Location = New System.Drawing.Point(184, 48)
         Me.lbl_MaxLevel.Name = "lbl_MaxLevel"
-        Me.lbl_MaxLevel.Size = New System.Drawing.Size(90, 13)
+        Me.lbl_MaxLevel.Size = New System.Drawing.Size(81, 13)
         Me.lbl_MaxLevel.TabIndex = 107
-        Me.lbl_MaxLevel.Text = "Max = 36 (v3.0.1)"
+        Me.lbl_MaxLevel.Text = "Max = 40 (v3.1)"
         '
         'gb_GenerateCode
         '
@@ -919,10 +929,10 @@ Partial Class Form1_Main
         Me.llbl_Sam_Blog.AutoSize = True
         Me.llbl_Sam_Blog.Location = New System.Drawing.Point(12, 598)
         Me.llbl_Sam_Blog.Name = "llbl_Sam_Blog"
-        Me.llbl_Sam_Blog.Size = New System.Drawing.Size(91, 13)
+        Me.llbl_Sam_Blog.Size = New System.Drawing.Size(82, 13)
         Me.llbl_Sam_Blog.TabIndex = 1003
         Me.llbl_Sam_Blog.TabStop = True
-        Me.llbl_Sam_Blog.Text = "PTD v3.0.1 alpha"
+        Me.llbl_Sam_Blog.Text = "PTD v3.1 alpha"
         '
         'b_Achievements
         '
@@ -954,16 +964,6 @@ Partial Class Form1_Main
         Me.b_ImportProfile.TabIndex = 1009
         Me.b_ImportProfile.Text = "Import profile"
         Me.b_ImportProfile.UseVisualStyleBackColor = True
-        '
-        'cb_Farfetchd
-        '
-        Me.cb_Farfetchd.AutoSize = True
-        Me.cb_Farfetchd.Location = New System.Drawing.Point(187, 105)
-        Me.cb_Farfetchd.Name = "cb_Farfetchd"
-        Me.cb_Farfetchd.Size = New System.Drawing.Size(117, 17)
-        Me.cb_Farfetchd.TabIndex = 1010
-        Me.cb_Farfetchd.Text = "Farfetch'd obtained"
-        Me.cb_Farfetchd.UseVisualStyleBackColor = True
         '
         'Form1_Main
         '

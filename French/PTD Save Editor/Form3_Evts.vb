@@ -105,6 +105,15 @@ Public Class Form3_Evts
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {42, 2, 43}) ' Peck, Sand Attack, Leer
                     Form1_Main.cb_Farfetchd.Checked = True
 
+                Case 17  ' Onix
+                    tmpEventPoke.num = 95
+                    tmpEventPoke.shiny = False
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {64, 1, 14, 198}) ' Mud Sport, Tackle, Harden, Bind
+
+                Case 18  ' Shiny Onix
+                    tmpEventPoke.num = 95
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {64, 1, 14, 198}) ' Mud Sport, Tackle, Harden, Bind
+
                 Case Else
                     Exit Sub
 
