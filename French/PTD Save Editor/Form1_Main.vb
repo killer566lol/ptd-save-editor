@@ -243,39 +243,33 @@ Public Class Form1_Main
                     dataStr = dataStr.Substring(HEADER_PKM2.Length)
                 End If
 
-                Dim pos As Integer = 0
+                Dim dataQueue As New Queue(Of String)(dataStr.Split("|"))
 
-                Dim dataArr As String() = dataStr.Split("|")
-
-                Me.num = CInt(dataArr(pos))
-                pos += 1
-                Me.lvl = CInt(dataArr(pos))
-                pos += 1
-                Me.exp = CInt(dataArr(pos))
-                pos += 1
-                Dim _numMoves As Integer = CInt(dataArr(pos))
+                Me.num = CInt(dataQueue.Dequeue())
+                Me.lvl = CInt(dataQueue.Dequeue())
+                Me.exp = CInt(dataQueue.Dequeue())
+                Dim _numMoves As Integer = CInt(dataQueue.Dequeue())
 
                 If num > PokemonList.Length() OrElse _numMoves > 4 OrElse num < 0 OrElse _numMoves < 0 Then
                     Throw New Exception("Données du Pokémon invalides.")
                 End If
 
-                pos += 1
-                Me.shiny = (dataArr(pos) <> "0")
-                pos += 1
+                Me.shiny = (dataQueue.Dequeue() <> "0")
 
                 Me.m = New List(Of Integer)
 
+                Dim currMove As Integer
                 For m As Integer = 1 To _numMoves
-                    If dataArr(pos) > AttackList.Length() OrElse dataArr(pos) < 0 Then
+                    currMove = CInt(dataQueue.Dequeue())
+
+                    If currMove > AttackList.Length() OrElse currMove < 0 Then
                         Throw New Exception("Attaque non encore implémentée.")
                     End If
 
-                    Me.m.Add(CInt(dataArr(pos)))
-
-                    pos += 1
+                    Me.m.Add(currMove)
                 Next m
 
-                Me.moveSel = CInt(dataArr(pos))
+                Me.moveSel = CInt(dataQueue.Dequeue())
 
                 If Me.moveSel > 4 OrElse Me.moveSel < 0 Then
                     Throw New Exception("Données du Pokémon invalides.")
@@ -335,57 +329,44 @@ Public Class Form1_Main
             End Get
         End Property
 
+        Private Function CheckUndefined(ByVal data As String) As Integer
+            Return If(data = "undefined", 0, CInt(data))
+        End Function
+
         Public Sub New(ByVal dataStr As String)
             If dataStr.StartsWith(HEADER_PFL2) Then
                 dataStr = dataStr.Substring(HEADER_PFL2.Length)
             End If
 
-            Dim pos As Integer = 0
+            Dim dataQueue As New Queue(Of String)(dataStr.Split("|"))
 
-            Dim dataArr As String() = dataStr.Split("|")
-
-            Me.name = dataArr(pos)
-            pos += 1
-            Me.badges = If(dataArr(pos) = "undefined", 0, CInt(dataArr(pos)))
-            pos += 1
-            Me.money = If(dataArr(pos) = "undefined", 0, CInt(dataArr(pos)))
-            pos += 1
-            Me.unlocked = If(dataArr(pos) = "undefined", 0, CInt(dataArr(pos)))
-            pos += 1
-            Me.levelAttempted = If(dataArr(pos) = "undefined", 0, CInt(dataArr(pos)))
-            pos += 1
-            Me.ver = If(dataArr(pos) = "undefined", Versions.UNDEFINED, CByte(dataArr(pos)))
-            pos += 1
-            Dim _hmp As Integer = CInt(dataArr(pos))
-            pos += 1
+            Me.name = dataQueue.Dequeue()
+            Me.badges = CheckUndefined(dataQueue.Dequeue())
+            Me.money = CheckUndefined(dataQueue.Dequeue())
+            Me.unlocked = CheckUndefined(dataQueue.Dequeue())
+            Me.levelAttempted = CheckUndefined(dataQueue.Dequeue())
+            Me.ver = CheckUndefined(dataQueue.Dequeue())
+            Dim _hmp As Integer = CInt(dataQueue.Dequeue())
 
             Me.team = New List(Of Save.Pokemon)
 
             For p As Integer = 1 To _hmp
                 Dim tmpPokeBuild As New Save.Pokemon()
 
-                tmpPokeBuild.id = CInt(dataArr(pos))
-                pos += 1
-                tmpPokeBuild.num = CInt(dataArr(pos))
-                pos += 1
-                tmpPokeBuild.lvl = CInt(dataArr(pos))
-                pos += 1
-                tmpPokeBuild.exp = CInt(dataArr(pos))
-                pos += 1
-                Dim _numMoves As Integer = CInt(dataArr(pos))
-                pos += 1
-                tmpPokeBuild.shiny = (dataArr(pos) <> "0")
-                pos += 1
+                tmpPokeBuild.id = CInt(dataQueue.Dequeue())
+                tmpPokeBuild.num = CInt(dataQueue.Dequeue())
+                tmpPokeBuild.lvl = CInt(dataQueue.Dequeue())
+                tmpPokeBuild.exp = CInt(dataQueue.Dequeue())
+                Dim _numMoves As Integer = CInt(dataQueue.Dequeue())
+                tmpPokeBuild.shiny = (dataQueue.Dequeue() <> "0")
 
                 tmpPokeBuild.m = New List(Of Integer)
 
                 For m As Integer = 1 To _numMoves
-                    tmpPokeBuild.m.Add(CInt(dataArr(pos)))
-                    pos += 1
+                    tmpPokeBuild.m.Add(CInt(dataQueue.Dequeue()))
                 Next m
 
-                tmpPokeBuild.moveSel = CInt(dataArr(pos))
-                pos += 1
+                tmpPokeBuild.moveSel = CInt(dataQueue.Dequeue())
 
                 If tmpPokeBuild.moveSel > tmpPokeBuild.m.Count Then
                     tmpPokeBuild.moveSel = tmpPokeBuild.m.Count
@@ -394,21 +375,17 @@ Public Class Form1_Main
                 Me.team.Add(tmpPokeBuild)
             Next p
 
-            Dim _numInv As Integer = CInt(dataArr(pos))
-            pos += 1
+            Dim _numInv As Integer = CInt(dataQueue.Dequeue())
 
             Me.Inv = New List(Of Integer)
 
             For i As Integer = 1 To _numInv
-                Me.Inv.Add(CInt(dataArr(pos)))
-                pos += 1
+                Me.Inv.Add(CInt(dataQueue.Dequeue()))
             Next i
 
-            If dataArr.Length > pos Then
-                Me.CLevelCompleted = CInt(dataArr(pos))
-                pos += 1
-                Me.CLevel1CodeUsed = dataArr(pos)
-                pos += 1
+            If dataQueue.Count > 0 Then
+                Me.CLevelCompleted = CInt(dataQueue.Dequeue())
+                Me.CLevel1CodeUsed = dataQueue.Dequeue()
             Else
                 Me.CLevelCompleted = 0
                 Me.CLevel1CodeUsed = "0"
