@@ -114,6 +114,15 @@ Public Class Form3_Evts
                     tmpEventPoke.num = 95
                     tmpEventPoke.m = New List(Of Integer)(New Integer() {64, 1, 14, 198}) ' Mud Sport, Tackle, Harden, Bind
 
+                Case 19  ' Staryu
+                    tmpEventPoke.num = 120
+                    tmpEventPoke.shiny = False
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 14}) ' Tackle, Harden
+
+                Case 20  ' Shiny Staryu
+                    tmpEventPoke.num = 120
+                    tmpEventPoke.m = New List(Of Integer)(New Integer() {1, 14}) ' Tackle, Harden
+
                 Case Else
                     Exit Sub
 

@@ -29,7 +29,10 @@ Partial Class Form4_Achvts
         Me.cb_Achieve1_1 = New System.Windows.Forms.CheckBox
         Me.b_Validate = New System.Windows.Forms.Button
         Me.b_Cancel = New System.Windows.Forms.Button
+        Me.gb_Achieve2 = New System.Windows.Forms.GroupBox
+        Me.cb_Achieve2_1 = New System.Windows.Forms.CheckBox
         Me.gb_Achieve1.SuspendLayout()
+        Me.gb_Achieve2.SuspendLayout()
         Me.SuspendLayout()
         '
         'gb_Achieve1
@@ -97,7 +100,7 @@ Partial Class Form4_Achvts
         '
         Me.b_Validate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.b_Validate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b_Validate.Location = New System.Drawing.Point(12, 83)
+        Me.b_Validate.Location = New System.Drawing.Point(12, 131)
         Me.b_Validate.Name = "b_Validate"
         Me.b_Validate.Size = New System.Drawing.Size(75, 23)
         Me.b_Validate.TabIndex = 1
@@ -108,12 +111,33 @@ Partial Class Form4_Achvts
         '
         Me.b_Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.b_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.b_Cancel.Location = New System.Drawing.Point(150, 83)
+        Me.b_Cancel.Location = New System.Drawing.Point(150, 131)
         Me.b_Cancel.Name = "b_Cancel"
         Me.b_Cancel.Size = New System.Drawing.Size(75, 23)
         Me.b_Cancel.TabIndex = 2
         Me.b_Cancel.Text = "Cancel"
         Me.b_Cancel.UseVisualStyleBackColor = True
+        '
+        'gb_Achieve2
+        '
+        Me.gb_Achieve2.Controls.Add(Me.cb_Achieve2_1)
+        Me.gb_Achieve2.Location = New System.Drawing.Point(12, 83)
+        Me.gb_Achieve2.Name = "gb_Achieve2"
+        Me.gb_Achieve2.Size = New System.Drawing.Size(213, 42)
+        Me.gb_Achieve2.TabIndex = 4
+        Me.gb_Achieve2.TabStop = False
+        Me.gb_Achieve2.Text = "Star wars"
+        '
+        'cb_Achieve2_1
+        '
+        Me.cb_Achieve2_1.AutoSize = True
+        Me.cb_Achieve2_1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cb_Achieve2_1.Location = New System.Drawing.Point(6, 19)
+        Me.cb_Achieve2_1.Name = "cb_Achieve2_1"
+        Me.cb_Achieve2_1.Size = New System.Drawing.Size(108, 17)
+        Me.cb_Achieve2_1.TabIndex = 0
+        Me.cb_Achieve2_1.Text = "Starmie Defeated"
+        Me.cb_Achieve2_1.UseVisualStyleBackColor = True
         '
         'Form4_Achvts
         '
@@ -121,7 +145,8 @@ Partial Class Form4_Achvts
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.b_Cancel
-        Me.ClientSize = New System.Drawing.Size(237, 118)
+        Me.ClientSize = New System.Drawing.Size(237, 166)
+        Me.Controls.Add(Me.gb_Achieve2)
         Me.Controls.Add(Me.b_Cancel)
         Me.Controls.Add(Me.b_Validate)
         Me.Controls.Add(Me.gb_Achieve1)
@@ -135,6 +160,8 @@ Partial Class Form4_Achvts
         Me.Text = "Achievements"
         Me.gb_Achieve1.ResumeLayout(False)
         Me.gb_Achieve1.PerformLayout()
+        Me.gb_Achieve2.ResumeLayout(False)
+        Me.gb_Achieve2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -145,4 +172,6 @@ Partial Class Form4_Achvts
     Friend WithEvents cb_Achieve1_1 As System.Windows.Forms.CheckBox
     Friend WithEvents b_Validate As System.Windows.Forms.Button
     Friend WithEvents b_Cancel As System.Windows.Forms.Button
+    Friend WithEvents gb_Achieve2 As System.Windows.Forms.GroupBox
+    Friend WithEvents cb_Achieve2_1 As System.Windows.Forms.CheckBox
 End Class
