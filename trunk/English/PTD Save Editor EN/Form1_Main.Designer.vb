@@ -497,9 +497,9 @@ Partial Class Form1_Main
         Me.lbl_MaxLevel.AutoSize = True
         Me.lbl_MaxLevel.Location = New System.Drawing.Point(184, 48)
         Me.lbl_MaxLevel.Name = "lbl_MaxLevel"
-        Me.lbl_MaxLevel.Size = New System.Drawing.Size(81, 13)
+        Me.lbl_MaxLevel.Size = New System.Drawing.Size(51, 13)
         Me.lbl_MaxLevel.TabIndex = 107
-        Me.lbl_MaxLevel.Text = "Max = 40 (v3.1)"
+        Me.lbl_MaxLevel.Text = "Max = 40"
         '
         'gb_GenerateCode
         '
@@ -929,10 +929,10 @@ Partial Class Form1_Main
         Me.llbl_Sam_Blog.AutoSize = True
         Me.llbl_Sam_Blog.Location = New System.Drawing.Point(12, 598)
         Me.llbl_Sam_Blog.Name = "llbl_Sam_Blog"
-        Me.llbl_Sam_Blog.Size = New System.Drawing.Size(82, 13)
+        Me.llbl_Sam_Blog.Size = New System.Drawing.Size(91, 13)
         Me.llbl_Sam_Blog.TabIndex = 1003
         Me.llbl_Sam_Blog.TabStop = True
-        Me.llbl_Sam_Blog.Text = "PTD v3.1 alpha"
+        Me.llbl_Sam_Blog.Text = "PTD v3.1.5 alpha"
         '
         'b_Achievements
         '

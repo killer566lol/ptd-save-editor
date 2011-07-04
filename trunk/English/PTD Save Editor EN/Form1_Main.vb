@@ -154,7 +154,8 @@ Public Class Form1_Main
                                             "Flamethrower", "Drill Peck", "Sandstorm", "Gravity", _
                                             "Poison Fang", "Giga Drain", "Cross Chop", "Nasty Plot", _
                                             "ExtremeSpeed", "Hydro Pump", "Earthquake", "Avalanche", _
-                                            "Psycho Cut", "Barrier", "Bind", "Rock Tomb"}
+                                            "Psycho Cut", "Barrier", "Bind", "Rock Tomb", _
+                                            "Camouflage"}
 
     Friend Shared ItemList As String() = {"(none)", "Moon Stone", "Leaf Stone", "Thunderstone", _
                                           "Water Stone", "Fire Stone", "Old Rod"}
@@ -194,8 +195,10 @@ Public Class Form1_Main
     Private Const HEADER_PKM2 As String = "PKM2" & Chr(0) & Chr(0) & Chr(0) & Chr(0)
     'Private Const HEADER_SAV2 As String = "SAV2" & Chr(0) & Chr(0) & Chr(0) & Chr(0)
 
-    Friend achievements As String = "0000"
-    Friend currentAchievements As String = "0000"
+    Friend achievements1 As String = "0000"
+    Friend currentAchievements1 As String = "0000"
+    Friend achievements2 As Boolean = False
+    Friend currentAchievements2 As Boolean = False
 
     Dim sortedPl(PokemonList.Length - 1) As String
     Dim sortedAl(AttackList.Length - 1) As String
@@ -479,11 +482,13 @@ Public Class Form1_Main
         Return ServerRequest(nc, SERVER_LINK, email, pass)
     End Function
 
-    Private Function UpdateAchievement(ByVal email As String, ByVal pass As String, ByVal pos As Integer) As String
+    Private Function UpdateAchievement(ByVal email As String, ByVal pass As String, ByVal type As String, Optional ByVal pos As Integer = -1) As String
         Dim nc As New NameValueCollection()
         nc.Add("Action", "updateAccount")
-        nc.Add("type", "1")
-        nc.Add("pos", CStr(pos))
+        nc.Add("type", type)
+        If pos <> -1 Then
+            nc.Add("pos", CStr(pos))
+        End If
 
         Return ServerRequest(nc, SERVER_LINK_ACHIEVEMENTS, email, pass)
     End Function
@@ -1107,9 +1112,15 @@ Public Class Form1_Main
                 profile3Set = False
             End If
 
-            If achiev.ContainsKey("Result") AndAlso achiev("Result") = "Success" AndAlso achiev.ContainsKey("Ach1") Then
-                achievements = achiev("Ach1")
-                currentAchievements = achievements
+            If achiev.ContainsKey("Result") AndAlso achiev("Result") = "Success" Then
+                If achiev.ContainsKey("Ach1") Then
+                    achievements1 = achiev("Ach1")
+                    currentAchievements1 = achievements1
+                End If
+                If achiev.ContainsKey("Ach2") Then
+                    achievements2 = achiev("Ach2") = "1"
+                    currentAchievements2 = achievements2
+                End If
             End If
 
             gb_Profiles.Enabled = True
@@ -1278,20 +1289,25 @@ Public Class Form1_Main
             lbl_Status.Text = "Saving achievements..."
             gb_Login.Refresh()
 
-            Dim tmpAchievements As String = achievements
+            Dim tmpAchievements1 As String = achievements1
 
-            For i As Integer = 0 To currentAchievements.Length - 1
-                If achievements(i) = "0"c AndAlso currentAchievements(i) <> "0"c Then
-                    achiev = GetDictionaryFromString(UpdateAchievement(tb_Email.Text, tb_Pass.Text, i))
+            For i As Integer = 0 To currentAchievements1.Length - 1
+                If achievements1(i) = "0"c AndAlso currentAchievements1(i) <> "0"c Then
+                    achiev = GetDictionaryFromString(UpdateAchievement(tb_Email.Text, tb_Pass.Text, "1", i))
 
                     If achiev.ContainsKey("Result") AndAlso achiev("Result") = "Success" AndAlso achiev.ContainsKey("Ach1") Then
-                        tmpAchievements = achiev("Ach1")
+                        tmpAchievements1 = achiev("Ach1")
                     End If
                 End If
             Next i
 
-            achievements = tmpAchievements
-            currentAchievements = tmpAchievements
+            achievements1 = tmpAchievements1
+            currentAchievements1 = tmpAchievements1
+
+            If (Not achievements2) AndAlso currentAchievements2 Then
+                UpdateAchievement(tb_Email.Text, tb_Pass.Text, "2")
+                achievements2 = True
+            End If
         Catch
             MsgBox("An error occurred while updating the save on the server." & vbNewLine & _
                    "Please retry.", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error")
@@ -1556,7 +1572,7 @@ Public Class Form1_Main
         ofd.Title = "Please choose one or more Pokémon files..."
 
         If ofd.ShowDialog() = Windows.Forms.DialogResult.OK Then
-             importMultiplePKM2(ofd.FileNames)
+            importMultiplePKM2(ofd.FileNames)
         End If
     End Sub
 
